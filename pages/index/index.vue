@@ -11,7 +11,7 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello 浙里寻'
 			}
 		},
 		onLoad() {
