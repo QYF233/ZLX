@@ -15,9 +15,10 @@
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  git pull 拉取最新文件 push之前输入
+2.  git add .
+3.  git commit -m "" 提交到暂存区
+4.  git push 上传到远程仓库
 
 #### 参与贡献
 
