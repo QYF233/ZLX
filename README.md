@@ -16,8 +16,8 @@
 #### 使用说明
 
 1.  git pull 拉取最新文件 push之前输入
-2.  git add .
-3.  git commit -m "" 提交到暂存区
+2.  git add . 提交到暂存区
+3.  git commit -m "" 提交到本地仓库
 4.  git push 上传到远程仓库
 
 #### 参与贡献
