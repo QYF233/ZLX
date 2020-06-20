@@ -1,12 +1,16 @@
 <template>
 	<view class="content">
-		这里是首页
+		<home-header></home-header>
 	</view>
 </template>
 
 <script>
+	import HomeHeader from './components/Header'
 	export default {
 		name: 'Home',
+		components: {
+		  HomeHeader
+		},
 		data() {
 			return {
 				title: ''
@@ -24,8 +28,6 @@
 <style>
 	.content {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		background-color: #CCCCCC;
 	}
 </style>
