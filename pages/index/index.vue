@@ -3,6 +3,9 @@
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
+			<a href="pages/food/food">美食页面</a>
+			<a href="pages/hotel/hotel">酒店页面</a>
+			<a href="pages/science/science">景点页面</a>
 		</view>
 	</view>
 </template>
