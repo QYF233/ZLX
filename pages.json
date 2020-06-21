@@ -5,29 +5,35 @@
 			"style": {
 				"navigationBarTitleText": "首页"
 			}
-		}
-        ,{
+		},
+        {
             "path" : "pages/food/food",
             "style" : {
 				"navigationBarTitleText": "美食"
 			}
-        }
-        ,{
+        },
+        {
             "path" : "pages/hotel/hotel",
             "style" : {
 				"navigationBarTitleText": "酒店"
 			}
-        }
-        ,{
+        },
+        {
             "path" : "pages/science/science",
             "style" : {
 				"navigationBarTitleText": "景点"
 			}
-        }
-        ,{
+        },
+        {
             "path" : "pages/tabBar/tabBar",
             "style" : {}
-        }
+        },
+		{
+		    "path" : "pages/tourist/tourist",
+		    "style" : {
+				"navigationBarTitleText": "路线"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
