@@ -4,7 +4,9 @@
 			<div class="iconfont icon">&#xea94;</div>
 			<div class="title">搜城市/酒店/景点/美食</div>
 		</div>
-		<div class="iconfont add">&#xe601;</div>
+		<div class='right'>
+			<div class="iconfont add">&#xe601;</div>
+		</div>
 	</div>
 </template>
 
@@ -15,27 +17,34 @@ export default{
 </script>
 
 <style>
-	.add{
-		display: inline-block;
+	.header{
+		position: relative;
+		display: inline-flex;
+		width: 100%;
 	}
 	.search{
 		border-radius: 25px;
 		background-color: #fff;
-		width: 300px;
+		width: 75%;
 		height: 30px;
 		line-height: 30px;
-		font-size: 16px;
 		float: left;
-		margin: 10px 20px;
-		padding: 5px;
+		margin: 10px 0px 10px 20px;
+		padding: 2px;
+		color: #666;
 	}
 	.search .icon{
 		margin: 0px 10px;
 	}
-	.add{
-		height: 30px;
-		margin-top: 15px;
+	.right{
 		float: right;
+		height: 30px;
+		width: auto;
+		line-height: 30px;
+		text-align: center;
+		margin:10px 20px;
+	}
+	.add{
 		font-size: 25px;
 		color: #fff;
 	}
