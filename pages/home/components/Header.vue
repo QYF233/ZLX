@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="search">
-			<div class="iconfont icon">&#xea94;</div>
+			<div class="iconfont icon">&#xe678;</div>
 			<div class="title">搜城市/酒店/景点/美食</div>
 		</div>
 		<div class='right'>
@@ -21,6 +21,7 @@ export default{
 		position: relative;
 		display: inline-flex;
 		width: 100%;
+		padding: 25px;
 	}
 	.search{
 		border-radius: 25px;

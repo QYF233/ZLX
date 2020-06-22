@@ -34,6 +34,6 @@ export default {
 		background-color: #CCCCCC;
 		background-image: url(../../static/xihu.jpg);
 		background-repeat:no-repeat;
-		background-size: contain;
+		background-size: cover;
 	}
 </style>

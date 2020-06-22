@@ -3,35 +3,38 @@
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"navigationStyle":"custom"
 			}
 		},
         {
             "path" : "pages/food/food",
             "style" : {
-				"navigationBarTitleText": "美食"
+				"navigationBarTitleText": "寻吃"
 			}
         },
         {
             "path" : "pages/hotel/hotel",
             "style" : {
-				"navigationBarTitleText": "酒店"
+				"navigationBarTitleText": "寻住"
 			}
-        },
-        {
-            "path" : "pages/science/science",
-            "style" : {
-				"navigationBarTitleText": "景点"
-			}
-        },
-        {
-            "path" : "pages/tabBar/tabBar",
-            "style" : {}
         },
 		{
 		    "path" : "pages/tourist/tourist",
 		    "style" : {
-				"navigationBarTitleText": "路线"
+				"navigationBarTitleText": "寻游"
+			}
+		},
+		{
+			"path":"pages/locations/locations",
+			"style":{
+				"navigationBarTitleText":"寻境"
+			}
+		},
+		{
+			"path":"pages/play/play",
+			"style":{
+				"navigationBarTitleText":"寻乐"
 			}
 		}
     ],
@@ -40,5 +43,37 @@
 		"navigationBarTitleText": "浙里寻",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"color":"#000",
+		"selectedColor":"#007AFF",
+		"backgroundColor":"#FFFFFF",
+		"list":[
+			{
+				"iconPath":"static/logo.png",
+				"selectedIconPath":"static/logo.png",
+				"pagePath":"pages/home/home",
+				"text":"首页"
+			},
+			{
+				"iconPath":"static/logo.png",
+				"selectedIconPath":"static/logo.png",
+				"pagePath":"pages/food/food",
+				"text":"占位"
+			},
+			{
+				"iconPath":"static/logo.png",
+				"selectedIconPath":"static/logo.png",
+				"pagePath":"pages/hotel/hotel",
+				"text":"占位"
+			},
+			{
+				"iconPath":"static/logo.png",
+				"selectedIconPath":"static/logo.png",
+				"pagePath":"pages/locations/locations",
+				"text":"我"
+			}
+		]
+		
 	}
 }
