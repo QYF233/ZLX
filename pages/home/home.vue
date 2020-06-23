@@ -45,6 +45,5 @@
 		background-image: url('~@/static/xihu.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
-		padding-top: 50rpx;
 	}
 </style>

@@ -61,14 +61,15 @@ export default{
 		margin: 90rpx 60rpx 0 0;
 		height: 60rpx;
 		line-height: 60rpx;
-		width: 200rpx;
-		background-color: #1fb1c18d;
+		width: 180rpx;
+		background-color: #1fb1c1;
 		color: #fff;
 		font-size: 36rpx;
 		border-radius: 50rpx;
-		padding: 4rpx 10rpx;
+		padding: 5rpx 8rpx;
 	}
 	.right .iconfont{
 		margin: 0 10rpx 0 20rpx;
+		text-align: center;
 	}
 </style>
