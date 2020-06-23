@@ -37,6 +37,10 @@
 				"navigationBarTitleText":"寻乐"
 			}
 		}
+        ,{
+            "path" : "pages/home/components/Icon",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
