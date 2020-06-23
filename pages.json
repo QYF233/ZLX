@@ -36,17 +36,24 @@
 			"style":{
 				"navigationBarTitleText":"寻乐"
 			}
+		},
+		{
+			"path":"pages/me/Me",
+			"style":{
+				"navigationBarTitleText":"我",
+				"navigationStyle":"custom"
+			}
 		}
-        ,{
-            "path" : "pages/home/components/Icon",
-            "style" : {}
-        }
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "浙里寻",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus":{
+			"bounce":"none"
+		}
 	},
 	"tabBar":{
 		"color":"#000",
@@ -54,8 +61,8 @@
 		"backgroundColor":"#FFFFFF",
 		"list":[
 			{
-				"iconPath":"static/logo.png",
-				"selectedIconPath":"static/logo.png",
+				"iconPath":"static/tabbar/tabbar-home-gray.png",
+				"selectedIconPath":"static/tabbar/tabbar-home-blue.png",
 				"pagePath":"pages/home/home",
 				"text":"首页"
 			},
@@ -72,9 +79,9 @@
 				"text":"占位"
 			},
 			{
-				"iconPath":"static/logo.png",
-				"selectedIconPath":"static/logo.png",
-				"pagePath":"pages/locations/locations",
+				"iconPath":"static/tabbar/tabbar-my-gray.png",
+				"selectedIconPath":"static/tabbar/tabbar-my-blue.png",
+				"pagePath":"pages/me/Me",
 				"text":"我"
 			}
 		]
