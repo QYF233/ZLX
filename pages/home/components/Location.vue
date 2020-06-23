@@ -1,7 +1,7 @@
 <template>
-	<div class="location">
+	<view class="location">
 		<div class="city">杭州</div>
-	</div>
+	</view>
 </template>
 
 <script>
@@ -13,10 +13,13 @@ export default{
 <style>
 	.location{
 		position: absolute;
-		top: 0;
+		top: 54px;
 		left: 0;
 		display: inline-flex;
 		height: 100px;
 		width: 100%;
+	}
+	.city{
+		font-size: 25px;
 	}
 </style>
