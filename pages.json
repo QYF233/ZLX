@@ -16,7 +16,8 @@
         {
             "path" : "pages/hotel/hotel",
             "style" : {
-				"navigationBarTitleText": "寻住"
+				"navigationBarTitleText": "寻住",
+				"navigationStyle":"custom"
 			}
         },
 		{
@@ -63,19 +64,19 @@
 				"iconPath":"static/logo.png",
 				"selectedIconPath":"static/logo.png",
 				"pagePath":"pages/food/food",
-				"text":"占位"
+				"text":"美食"
 			},
 			{
 				"iconPath":"static/logo.png",
 				"selectedIconPath":"static/logo.png",
 				"pagePath":"pages/hotel/hotel",
-				"text":"占位"
+				"text":"酒店"
 			},
 			{
 				"iconPath":"static/logo.png",
 				"selectedIconPath":"static/logo.png",
 				"pagePath":"pages/locations/locations",
-				"text":"我"
+				"text":"我的"
 			}
 		]
 		

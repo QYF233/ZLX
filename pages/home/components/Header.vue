@@ -1,12 +1,12 @@
 <template>
 	<view class="header">
-		<div class="search">
-			<div class="iconfont icon">&#xe678;</div>
-			<div class="title">搜城市/酒店/景点/美食</div>
-		</div>
-		<div class='right'>
-			<div class="iconfont add">&#xe601;</div>
-		</div>
+		<view class="search">
+			<text class="iconfont icon">&#xe678;</text>
+			<text class="title">搜城市/酒店/景点/美食</text>
+		</view>
+		<view class='right'>
+			<view class="iconfont add">&#xe601;</view>
+		</view>
 	</view>
 </template>
 
@@ -21,35 +21,31 @@ export default{
 		position: relative;
 		display: inline-flex;
 		width: 100%;
-		/* padding: 25px; */
 	}
 	.search{
-		border-radius: 25px;
+		border-radius: 50rpx;
 		background-color: #fff;
 		width: 75%;
-		height: 30px;
+		height: 60rpx;
 		line-height: 30px;
 		float: left;
-		margin: 10px 0px 10px 20px;
-		padding: 2px;
+		margin: 20rpx 0rpx 20rpx 40rpx;
+		padding: 4rpx;
 		color: #666;
 	}
 	.search .icon{
-		margin: 0px 10px;
+		margin: 0rpx 20rpx;
 	}
 	.right{
 		float: right;
-		height: 30px;
+		height: 60rpx;
 		width: auto;
-		line-height: 30px;
+		line-height: 60rpx;
 		text-align: center;
-		margin:10px 20px;
+		margin:20rpx 40rpx;
 	}
 	.add{
-		font-size: 25px;
+		font-size: 50rpx;
 		color: #fff;
-	}
-	.search .title,.search .icon{
-		display: inline-block;
 	}
 </style>

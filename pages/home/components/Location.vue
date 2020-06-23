@@ -1,16 +1,16 @@
 <template>
 	<view class="location">
-		<div class="left">
-			<div class="up">
-				<div class="city">杭州</div>
-				<span class="iconfont">&#xe658;</span>
-			</div>
-			<div class="temp">
-				<span class="iconfont">&#xe646;</span>
-				<span class="low">20</span>~<span class="hight">30</span>℃
-			</div>
-		</div>
-		<div class="right"><span class="iconfont">&#xe61c;</span>看旅图</div>
+		<view class="left">
+			<view class="up">
+				<view class="city">杭州</view>
+				<text class="iconfont">&#xe658;</text>
+			</view>
+			<view class="temp">
+				<text class="iconfont">&#xe646;</text>
+				<text class="low">20</text>~<text class="hight">30</text>℃
+			</view>
+		</view>
+		<view class="right"><text class="iconfont">&#xe61c;</text>看旅图</view>
 	</view>
 </template>
 
@@ -24,7 +24,7 @@ export default{
 	.location{
 		left: 0;
 		display: flex;
-		height: 100px;
+		height: 200rpx;
 		width: 100%;
 		flex-direction: column;
 	}
@@ -32,43 +32,43 @@ export default{
 		display: flex;
 	}
 	.city{
-		font-size: 40px;
+		font-size: 80rpx;
 		color: #fff;
-		margin-left: 30px;
-		margin-top: 15px;
-		height: 55px;
-		line-height: 55px;
+		margin-left: 60rpx;
+		margin-top: 30rpx;
+		height: 110rpx;
+		line-height: 110rpx;
 	}
 	.up .iconfont{
 		color: #fff;
-		margin-top: 15px;
-		font-size: 20px;
-		margin-left:5px;
-		height: 55px;
-		line-height: 55px;
+		margin-top: 30rpx;
+		font-size: 40rpx;
+		margin-left:10rpx;
+		height: 110rpx;
+		line-height: 110rpx;
 	}
 	.temp{
-		font-size: 16px;
-		margin-left: 30px;
+		font-size: 32rpx;
+		margin-left: 60rpx;
 		color: #fff;
 	}
 	.temp .iconfont{
-		margin-right: 5px;
+		margin-right: 10rpx;
 	}
 	.right{
 		position: absolute;
 		right: 0;
-		margin: 45px 30px 0 0;
-		height: 30px;
-		line-height: 30px;
-		width: 100px;
+		margin: 90rpx 60rpx 0 0;
+		height: 60rpx;
+		line-height: 60rpx;
+		width: 200rpx;
 		background-color: #1fb1c18d;
 		color: #fff;
-		font-size: 18px;
-		border-radius: 25px;
-		padding: 2px 5px;
+		font-size: 36rpx;
+		border-radius: 50rpx;
+		padding: 4rpx 10rpx;
 	}
 	.right .iconfont{
-		margin: 0 5px 0 10px;
+		margin: 0 10rpx 0 20rpx;
 	}
 </style>

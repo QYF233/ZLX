@@ -1,12 +1,12 @@
 <template>
 	<view>
-		<div class="icon">
-			<div class="item"><span class="iconfont">&#xe61a;</span></div>
-			<div class="item"><span class="iconfont">&#xe61b;</span></div>
-			<div class="item"><span class="iconfont">&#xe61d;</span></div>
-			<div class="item"><span class="iconfont">&#xe602;</span></div>
-			<div class="item"><span class="iconfont">&#xe607;</span></div>
-		</div>
+		<view class="icon">
+			<view class="item"><span class="iconfont">&#xe61a;</span></view>
+			<view class="item"><span class="iconfont">&#xe61b;</span></view>
+			<view class="item"><span class="iconfont">&#xe61d;</span></view>
+			<view class="item"><span class="iconfont">&#xe602;</span></view>
+			<view class="item"><span class="iconfont">&#xe607;</span></view>
+		</view>
 	</view>
 </template>
 
