@@ -2,12 +2,14 @@
 	<view class="location">
 		<view class="left">
 			<view class="up">
-				<view class="city">{{city}}</view>
+				<view class="city" v-if="city!=''">{{city}}</view>
+				<view class="city" v-else>定位中...</view>
 				<text class="iconfont">&#xe658;</text>
 			</view>
 			<view class="temp">
 				<text class="iconfont">&#xe646;</text>
-				<text class="low">20</text>~<text class="hight">30</text>℃
+				<template v-if="low!=''&&high!=''"><text class="low">{{low}}</text>~<text class="hight">{{high}}</text></template>
+				<text v-else>正在获取天气...</text>
 			</view>
 		</view>
 		<view class="right"><text class="iconfont">&#xe61c;</text>看旅图</view>
@@ -19,7 +21,9 @@ export default{
 	name: 'HomeLocation',
 	data(){
 		return {
-			city:'杭州市'
+			city:'',
+			low:'',
+			high:''
 		}
 	},
 	beforeCreate() {
@@ -27,8 +31,22 @@ export default{
 			geocode:true,
 			type:'gcj02',
 			success: (res) => {
-				this.city = res.address.city
-				console.log(res)
+				if(res.address){
+					this.city = res.address.city
+					uni.request({
+						url:'http://wthrcdn.etouch.cn/weather_mini',
+						data:{city:this.city},
+						success:(result)=>{
+							if(result.statusCode===200){
+								let data = result.data.data
+								let wether = data.forecast
+								let today = wether[0]
+								this.low = today.low.split(' ')[1]
+								this.high = today.high.split(' ')[1]
+							}
+						}
+					 })
+				}
 			}
 		})
 	}
