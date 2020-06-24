@@ -1,6 +1,6 @@
 <template>
-	<view class="top_icon">
-		<image class="icon" :src="icon"></image>
+	<view class="top_icon" :style="{backgroundImage:'url('+backgroundImg+')'}" @click="changeBg">
+		<image class="icon" :src="icon" @click.stop="previewIcon"></image>
 		<p class="user">{{username}}</p>
 	</view>
 </template>
@@ -10,7 +10,24 @@ export default {
 	name:"MeHeader",
 	props:{
 		icon:String,
-		username:String
+		username:String,
+		backgroundImg:String
+	},
+	methods:{
+		previewIcon(ev){
+			uni.previewImage({
+				urls:[this.icon]
+			})
+		},
+		changeBg(){
+			uni.chooseImage({
+				count:1,
+				sizeType:['original'],
+				success(res) {
+					
+				}
+			})
+		}
 	}
 }
 </script>
@@ -25,7 +42,7 @@ export default {
 	}
 	.top_icon{
 		padding-top: 200rpx;
-		background-color: #2B9939;
+		background-size: cover;
 	}
 	.icon{
 		display: block;
