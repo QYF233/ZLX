@@ -2,7 +2,7 @@
 	<view class="location">
 		<view class="left">
 			<view class="up">
-				<view class="city">杭州</view>
+				<view class="city">{{city}}</view>
 				<text class="iconfont">&#xe658;</text>
 			</view>
 			<view class="temp">
@@ -16,7 +16,22 @@
 
 <script>
 export default{
-	name: 'HomeLocation'
+	name: 'HomeLocation',
+	data(){
+		return {
+			city:'杭州市'
+		}
+	},
+	beforeCreate() {
+		uni.getLocation({
+			geocode:true,
+			type:'gcj02',
+			success: (res) => {
+				this.city = res.address.city
+				console.log(res)
+			}
+		})
+	}
 }
 </script>
 
