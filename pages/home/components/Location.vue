@@ -8,7 +8,7 @@
 			</view>
 			<view class="temp">
 				<text class="iconfont">&#xe646;</text>
-				<template v-if="low!=''&&high!=''"><text class="low">{{low}}</text>~<text class="hight">{{high}}</text></template>
+				<template v-if="low!=''&&high!=''">{{wetherType}} <text class="low">{{low}}</text>~<text class="hight">{{high}}</text></template>
 				<text v-else>正在获取天气...</text>
 			</view>
 		</view>
@@ -23,7 +23,8 @@ export default{
 		return {
 			city:'',
 			low:'',
-			high:''
+			high:'',
+			wetherType:''
 		}
 	},
 	beforeCreate() {
@@ -43,6 +44,7 @@ export default{
 								let today = wether[0]
 								this.low = today.low.split(' ')[1]
 								this.high = today.high.split(' ')[1]
+								this.wetherType = today.type
 							}
 						}
 					 })
