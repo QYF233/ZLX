@@ -49,6 +49,12 @@
 			"style":{
 				"navigationBarTitleText":"注册"
 			}
+		},
+		{
+			"path":"pages/me/Setting",
+			"style":{
+				"navigationBarTitleText":"设置"
+			}
 		}
     ],
 	"globalStyle": {

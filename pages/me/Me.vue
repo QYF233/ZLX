@@ -1,12 +1,10 @@
 <template>
 	<view class="content">
-		<template v-if="userId==''">
-			<login></login>
-		</template>
-		<template v-else>
-			<me-header :icon="icon" :username="username" :backgroundImg="backgroundImg"></me-header>
+		<login v-show="userId===''"></login>
+		<view  v-show="userId!==''">
+			<me-header :icon="icon" :username="username" :backgroundImg="backgroundImg"></me-header> 
 			<options></options>
-		</template>
+		</view>
 	</view>
 </template>
 
@@ -27,6 +25,18 @@ export default {
 			username:'昵称',
 			backgroundImg:'/static/xihu.jpg',
 			userId:''
+		}
+	},
+	onShow() {
+		try {
+		    const value = uni.getStorageSync('uId');
+		    if (value) {
+		        this.userId = value
+		    }else{
+				this.userId = ''
+			}
+		} catch (e) {
+		    // error
 		}
 	}
 }

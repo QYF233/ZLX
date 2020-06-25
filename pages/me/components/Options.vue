@@ -25,12 +25,14 @@
 					<view class="item-view-right">个人信息</view>
 				</view>
 			</li>
-			<li class="item">
-				<view class="item-view">
-					<view class="item-view-left">图标 </view>
-					<view class="item-view-right">设置</view>
-				</view>
-			</li>
+			<navigator url="/pages/me/Setting">
+				<li class="item">
+					<view class="item-view">
+						<view class="item-view-left">图标 </view>
+						<view class="item-view-right">设置</view>
+					</view>
+				</li>
+			</navigator>
 			<li class="item">
 				<view class="item-view">
 					<view class="item-view-left">图标 </view>
@@ -52,8 +54,9 @@ export default {
 	name:"Option",
 	methods:{
 		to:function(to){
+			console.log(to)
 			uni.navigateTo({
-				url:to
+				url:'/pages/me/Setting'
 			})
 		}
 	}

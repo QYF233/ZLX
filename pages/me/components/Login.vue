@@ -9,7 +9,7 @@
 			<navigator url="/pages/me/Register" hover-class="none">
 				<text>忘记密码？</text>
 			</navigator>
-			<button type="primary" form-type="submit">登录</button>
+			<button type="primary" form-type="submit" :loading="load">登录</button>
 		</form>
 		<navigator class="toregister" url="/pages/me/Register" hover-class="none">
 			用户注册
@@ -20,9 +20,44 @@
 <script>
 	export default {
 		name:'Login',
+		data(){
+			return {
+				load:false
+			}
+		},
 		methods:{
 			formSubmit(e){
-				console.log(e)
+				let data = e.detail.value
+				if( !(/^1[3456789]\d{9}$/.test(data.user))
+				&& !(/^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/.test(data.user))){
+					uni.showToast({
+						title:'用户名不正确',
+						icon:'none',
+						position:'top'
+					})
+				}else if(!(/^(?![A-Z]+$)(?![a-z]+$)(?!\d+$)(?![\W_]+$)\S{6,16}$/.test(data.password))){
+					uni.showToast({
+						title:'密码由6-21字母和数字组成，不能是纯数字或纯英文',
+						icon:'none',
+						position:'top'
+					})
+				}else{
+					this.load = true
+					uni.setStorage({
+						key:'uId',
+						data:'123'
+					})
+					uni.switchTab({
+						url:'/pages/home/home',
+						success() {
+							uni.switchTab({
+								url:'/pages/me/Me'
+							})
+						}
+					})
+					this.load = false
+				}
+				
 			}
 		}
 	}
@@ -33,7 +68,7 @@
 		padding: 70rpx;
 	}
 	input{
-		border-bottom: 1px solid #DC143C;
+		border-bottom: 1px solid #d5d5d5;
 		padding: 20rpx;
 		caret-color:#DC143C;
 		margin-top: 55rpx;
@@ -51,9 +86,10 @@
 	.toregister{
 		position: absolute;
 		bottom: 40rpx;
-		font-size: 18px;
+		font-size: 16px;
 		left: 70rpx;
 		right: 70rpx;
 		text-align: center;
+		color: #007AFF;
 	}
 </style>
