@@ -7,6 +7,7 @@
 			<home-header></home-header>
 			<home-location></home-location>
 			<home-icon></home-icon>
+			<home-find></home-find>
 		</view>
 	</view>
 </template>
@@ -15,13 +16,14 @@
 	import HomeHeader from './components/Header'
 	import HomeLocation from './components/Location'
 	import HomeIcon from './components/Icon'
-
+	import HomeFind from './components/Find'
 	export default {
 		name: 'Home',
 		components: {
 			HomeHeader,
 			HomeLocation,
-			HomeIcon
+			HomeIcon,
+			HomeFind
 		},
 		data() {
 			return {
@@ -41,9 +43,8 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		background-color: #CCCCCC;
-		background-image: url('~@/static/xihu.jpg');
+		background: url('~@/static/image/xihu2.png');
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: contain;
 	}
 </style>

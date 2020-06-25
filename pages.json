@@ -56,6 +56,10 @@
 				"navigationBarTitleText":"设置"
 			}
 		}
+        ,{
+            "path" : "pages/home/components/Find",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -79,13 +83,13 @@
 			},
 			{
 				"iconPath":"static/logo.png",
-				"selectedIconPath":"static/logo.png",
+				"selectedIconPath":"static/image/logo.png",
 				"pagePath":"pages/food/food",
 				"text":"美食"
 			},
 			{
 				"iconPath":"static/logo.png",
-				"selectedIconPath":"static/logo.png",
+				"selectedIconPath":"static/image/logo.png",
 				"pagePath":"pages/hotel/hotel",
 				"text":"酒店"
 			},
