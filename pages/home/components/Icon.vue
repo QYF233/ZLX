@@ -24,7 +24,7 @@
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻吃',
-				  url: ''
+				  url: ''				
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
