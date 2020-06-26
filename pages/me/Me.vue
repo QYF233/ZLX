@@ -21,9 +21,9 @@ export default {
 	},
 	data() {
 		return {
-			icon:'/static/logo.png',
+			icon:'/static/image/logo.png',
 			username:'昵称',
-			backgroundImg:'/static/xihu.jpg',
+			backgroundImg:'/static/image/xihu.jpg',
 			userId:''
 		}
 	},

@@ -82,13 +82,13 @@
 				"text":"首页"
 			},
 			{
-				"iconPath":"static/logo.png",
+				"iconPath":"static/image/logo.png",
 				"selectedIconPath":"static/image/logo.png",
 				"pagePath":"pages/food/food",
 				"text":"美食"
 			},
 			{
-				"iconPath":"static/logo.png",
+				"iconPath":"static/image/logo.png",
 				"selectedIconPath":"static/image/logo.png",
 				"pagePath":"pages/hotel/hotel",
 				"text":"酒店"
