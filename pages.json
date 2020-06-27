@@ -60,6 +60,13 @@
             "path" : "pages/home/components/Find",
             "style" : {}
         }
+		,{
+		    "path" : "pages/zy-search/zy-search",
+		    "style" : {
+				"navigationBarTitleText": "搜索",
+				"navigationStyle":"custom"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

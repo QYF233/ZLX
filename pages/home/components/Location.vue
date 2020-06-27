@@ -12,7 +12,7 @@
 				<text v-else>正在获取天气...</text>
 			</view>
 		</view>
-		<view class="right"><text class="iconfont">&#xe61c;</text>看旅图</view>
+		<view class="right"><text class="iconfont">&#xe61c;</text><text class="title">看旅图</text></view>
 	</view>
 </template>
 
@@ -55,7 +55,7 @@ export default{
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.location{
 		left: 0;
 		display: flex;
@@ -90,21 +90,16 @@ export default{
 	.temp .iconfont{
 		margin-right: 10rpx;
 	}
-	.right{
+	.right
 		position: absolute;
 		right: 0;
 		margin: 90rpx 60rpx 0 0;
-		height: 60rpx;
-		line-height: 60rpx;
-		width: 180rpx;
+		width 168rpx
+		height: 50rpx;
+		line-height 50rpx;
 		background-color: #1fb1c1;
 		color: #fff;
-		font-size: 36rpx;
 		border-radius: 50rpx;
-		padding: 5rpx 8rpx;
-	}
-	.right .iconfont{
-		margin: 0 10rpx 0 20rpx;
-		text-align: center;
-	}
+		.iconfont
+			margin 0 20rpx;
 </style>

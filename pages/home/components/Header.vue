@@ -1,9 +1,11 @@
 <template>
 	<view class="header">
-		<view class="search">
-			<text class="iconfont icon">&#xe678;</text>
-			<text class="title">搜城市/酒店/景点/美食</text>
-		</view>
+		<navigator url="/pages/zy-search/zy-search" open-type="navigate" class="search">
+			<view>
+				<text class="iconfont icon">&#xe678;</text>
+				<text class="title">搜城市/酒店/景点/美食</text>
+			</view>
+		</navigator>
 		<view class='right'>
 			<view class="iconfont add">&#xe601;</view>
 		</view>
@@ -11,7 +13,7 @@
 </template>
 
 <script>
-export default{
+export default {
 	name: 'HomeHeader',
 }
 </script>
@@ -31,20 +33,13 @@ export default{
 		float: left;
 		margin: 20rpx 0rpx 20rpx 40rpx;
 		padding: 4rpx;
-		color: #666;
+		color: #9c9c9c;
 	}
 	.search .icon{
 		margin: 0rpx 20rpx;
 	}
-	.right{
-		float: right;
-		height: 60rpx;
-		width: auto;
-		line-height: 60rpx;
-		text-align: center;
-		margin:20rpx 40rpx;
-	}
 	.add{
+		margin: 30rpx 0rpx 20rpx 40rpx;
 		font-size: 50rpx;
 		color: #fff;
 	}
