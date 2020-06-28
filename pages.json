@@ -73,6 +73,27 @@
 				"navigationStyle":"custom"
 			}
 		}
+		,{
+		    "path" : "pages/atmosphere/atmosphere",
+		    "style" : {
+				"navigationBarTitleText": "寻意"
+			}
+		},{
+		    "path" : "pages/painting/painting",
+		    "style" : {
+				"navigationBarTitleText": "寻画"
+			}
+		},{
+		    "path" : "pages/poem/poem",
+		    "style" : {
+				"navigationBarTitleText": "寻诗"
+			}
+		},{
+		    "path" : "pages/treasure/treasure",
+		    "style" : {
+				"navigationBarTitleText": "寻宝"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
