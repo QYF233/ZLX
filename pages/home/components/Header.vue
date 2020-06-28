@@ -1,6 +1,6 @@
 <template>
 	<view class="header">
-		<navigator url="/pages/zy-search/zy-search" open-type="navigate" class="search">
+		<navigator url="/pages/zy-search/zy-search" open-type="navigate" class="search" hover-class="none">
 			<view>
 				<text class="iconfont icon">&#xe678;</text>
 				<text class="title">搜城市/酒店/景点/美食</text>

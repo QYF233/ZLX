@@ -1,6 +1,10 @@
 <template name="zy-search">
 	<view>
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<view class="search">
+			
 			<!-- #ifdef APP-PLUS -->
 				<image src="../../static/zy-search/voice.svg" mode="aspectFit" @click="startRecognize()" class="voice-icon"></image>
 			<!-- #endif -->
@@ -154,7 +158,6 @@
 			padding: 16upx 20upx 16upx 0;
 			position: absolute;
 			left: 16upx;
-			top: 4upx;
 			z-index: 10;
 		}
 		.search-icon{

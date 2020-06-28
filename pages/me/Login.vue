@@ -48,14 +48,11 @@
 						data:'123'
 					})
 					uni.switchTab({
-						url:'/pages/home/home',
+						url:'/pages/me/Me',
 						success() {
-							uni.switchTab({
-								url:'/pages/me/Me'
-							})
+							this.load = false
 						}
 					})
-					this.load = false
 				}
 				
 			}

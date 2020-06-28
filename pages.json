@@ -93,6 +93,11 @@
 		    "style" : {
 				"navigationBarTitleText": "寻宝"
 			}
+		},{
+			"path":"pages/me/Login",
+			"style":{
+				"navigationBarTitleText":"用户登录"
+			}
 		}
     ],
 	"globalStyle": {

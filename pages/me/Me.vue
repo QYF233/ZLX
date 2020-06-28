@@ -1,6 +1,11 @@
 <template>
 	<view class="content">
-		<login v-show="userId===''"></login>
+		<view v-show="userId===''" class="not-login">
+			您还没有登录^_^
+			<navigator url="/pages/me/Login" hover-class="none">
+				<button size="mini" type="primary">点击登录</button>
+			</navigator>
+		</view>
 		<view  v-show="userId!==''">
 			<me-header :icon="icon" :username="username" :backgroundImg="backgroundImg"></me-header> 
 			<options></options>
@@ -11,13 +16,11 @@
 <script>
 import MeHeader from './components/MeHeader'
 import Options from './components/Options'
-import Login from './components/Login'
 export default {
 	name:'Me',
 	components:{
 		MeHeader,
-		Options,
-		Login
+		Options
 	},
 	data() {
 		return {
@@ -42,4 +45,10 @@ export default {
 }
 </script>
 <style>
+	.not-login{
+		width: 100%;
+		text-align: center;
+		font-size: 18px;
+		margin-top: 550rpx;
+	}
 </style>
