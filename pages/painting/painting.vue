@@ -1,5 +1,5 @@
 <template>
-	<view>寻境</view>
+	<view>寻画</view>
 </template>
 
 <script>

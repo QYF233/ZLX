@@ -1,16 +1,20 @@
 <template>
 	<view class="box">
 		<view class="icon-b" v-for="(item,index) in iconListBig" :key = 'index'>
-			<view class="item">
+			<navigator :url='item.url' v-if="index<2" open-type="switchTab" class="item">
 				<view class="iconfont">&#xe61d;</view>
 				<view class="name">{{item.name}}</view>
-			</view>
+			</navigator>
+			<navigator :url='item.url' v-else open-type="navigate" class="item">
+				<view class="iconfont">&#xe61d;</view>
+				<view class="name">{{item.name}}</view>
+			</navigator>
 		</view>
 		<view class="icon-s" v-for="(item,index) in iconListSm" :key = 'index'>
-			<view class="item">
+			<navigator :url='item.url' open-type="navigate" class="item">
 				<view class="iconfont">&#xe61d;</view>
 				<view class="name">{{item.name}}</view>
-			</view>
+			</navigator>
 		</view>
 	</view>
 </template>
@@ -24,49 +28,49 @@
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻吃',
-				  url: ''				
+				  url: '/pages/food/food'				
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻住',
-				  url: ''
+				  url: '/pages/hotel/hotel'
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻游',
-				  url: ''
+				  url: '/pages/tourist/tourist'
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻境',
-				  url: ''
+				  url: '/pages/locations/locations'
 				}],
 				
 				iconListSm: [{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻意',
-				  url: ''
+				  url: '/pages/atmosphere/atmosphere'
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻乐',
-				  url: ''
+				  url: '/pages/play/play'
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻宝',
-				  url: ''
+				  url: '/pages/treasure/treasure'
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻诗',
-				  url: ''
+				  url: '/pages/poem/poem'
 				},{
 				  icon: '&#xe61d;',
 				  color: 'red',
 				  name: '寻画',
-				  url: ''
+				  url: '/pages/painting/painting'
 				}]
 			}
 		},
