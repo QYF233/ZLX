@@ -13,7 +13,7 @@
 					<view class="pic">
 						<image class="image" mode="widthFix" :src="item.image" style="width: 100%; display: block;"></image>
 					</view>
-					<view class="content">{{item.content}}</view>
+					<view class="conmment">{{item.content}}</view>
 					<view class="user">
 						<image style="width: 40upx; height: 40upx; border-radius: 50%; margin-right: 10upx;" :src="item.user.avatar"></image>
 						<text>{{item.user.name}}</text>
@@ -106,8 +106,8 @@ export default {
 	.content
 		margin 4% 2% 4% 2%;
 		padding 2% 1% 2% 1%
-		// background-color #F8F8F8;
-		background-color red;
+		background-color #F8F8F8;
+		// background-color red;
 		border-radius 20rpx;
 		.title
 			margin 1% 1% 2% 1%;
@@ -135,7 +135,7 @@ export default {
 						image
 							display block;
 							will-change transform;
-					.content
+					.conmment
 						font-size 32rpx;
 						padding 20rpx 10rpx 0 10rpx;
 						color #333;
