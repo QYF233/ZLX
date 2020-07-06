@@ -5,7 +5,7 @@
 		</view>
 
 		<view class="cu-bar search  bg-white">
-			<view class="search-form round" @tap="gotoLunBo">
+			<view class="search-form round">
 				<text class="cuIcon-search"></text>
 				<input focus @blur="InputBlur" @confirm="searchStart()" :adjust-position="false" type="text" placeholder="搜城市/酒店/景点/美食"
 				 confirm-type="search" v-model.trim="searchText"></input>

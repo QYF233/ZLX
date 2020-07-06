@@ -3,8 +3,7 @@
 		<view class="cu-bar search">
 			<view class="search-form round" @tap="gotoLunBo">
 				<text class="cuIcon-search"></text>
-				<input @focus="InputFocus" @blur="InputBlur" :adjust-position="false" type="text" placeholder="搜城市/酒店/景点/美食"
-				 confirm-type="search"></input>
+				<text>搜城市/酒店/景点/美食</text>
 			</view>
 			<view class="action">
 				<view class="iconfont add">&#xe6cd;</view>

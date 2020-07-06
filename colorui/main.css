@@ -1486,6 +1486,7 @@ button.cuIcon.lg {
 	align-items: center;
 	min-height: 100upx;
 	justify-content: space-between;
+	padding: 20upx 0;
 }
 
 .cu-bar .action {
@@ -1625,8 +1626,8 @@ button.cuIcon.lg {
 
 .cu-bar .search-form {
 	background-color: #f5f5f5;
-	line-height: 64upx;
-	height: 64upx;
+	line-height: 75upx;
+	height: 75upx;
 	font-size: 24upx;
 	color: #333333;
 	flex: 1;

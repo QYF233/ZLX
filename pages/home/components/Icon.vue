@@ -1,22 +1,16 @@
 <template>
-	<view class="box">
-		<view class="icon-b" v-for="(item,index) in iconListBig" :key = 'index'>
-			<navigator :url='item.url' v-if="index<2" open-type="switchTab" class="item">
-				<view class="iconfont" :style="{color:item.color}">{{item.icon}}</view>
-				<view class="name">{{item.name}}</view>
-			</navigator>
-			<navigator :url='item.url' v-else open-type="navigate" class="item">
-				<view class="iconfont tubiaozhizuomoban_fengjing" :style="{color:item.color}">{{item.icon}}</view>
-				<view class="name">{{item.name}}</view>
-			</navigator>
+		<view class="box cu-list grid margin" :class="['col-' + gridCol,gridBorder?'':'no-border']">
+			<view class="icon-b cu-item" v-for="(item,index) in iconListBig" :key = 'index' v-if="index<gridCol*2">
+				<navigator :url='item.url' v-if="index<2" open-type="switchTab" class="item">
+					<view class="iconfont" :style="{color:item.color}">{{item.icon}}</view>
+					<text class="name">{{item.name}}</text>
+				</navigator>
+				<navigator :url='item.url' v-else open-type="navigate" class="item">
+					<view class="iconfont tubiaozhizuomoban_fengjing" :style="{color:item.color}">{{item.icon}}</view>
+					<view class="name">{{item.name}}</view>
+				</navigator>
+			</view>
 		</view>
-		<!-- <view class="icon-s" v-for="(item,index) in iconListSm" :key = 'index'>
-			<navigator :url='item.url' open-type="navigate" class="item">
-				<view class="iconfont" :style="{color:item.color}">&#xe61d;</view>
-				<view class="name">{{item.name}}</view>
-			</navigator>
-		</view> -->
-	</view>
 </template>
 
 <script>
@@ -24,6 +18,7 @@
 		name: 'HomeIcon',
 		data() {
 			return {
+				gridCol: 4,
 				iconListBig: [{
 				  icon: '\ue60b',
 				  color: '#e2c326',
@@ -70,29 +65,10 @@
 
 <style lang="stylus" scoped>
 	.box
-		margin: 40rpx;
 		background-color: #FFF;
 		border-radius: 20rpx;	
-	.icon-b
-		display: inline-flex;
-		flex-direction: row;
-		color: #5f5f5f;
 		.item
-			margin: 10rpx 30rpx;
 			.iconfont
 				font-size: 60rpx;
-				margin: 40rpx 20rpx;
-			.name
-				margin: 0rpx 20rpx;
-	/* .icon-s
-		display: inline-flex;
-		flex-direction: row;
-		color: #5f5f5f;
-		.item
-			margin: 10rpx 10rpx;
-			.iconfont
-				font-size: 50rpx;
-				margin: 30rpx 30rpx;
-			.name
-				margin: 30rpx 20rpx; */
+				margin: 20rpx 20rpx;
 </style>
