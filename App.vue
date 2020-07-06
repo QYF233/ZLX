@@ -1,30 +1,35 @@
 <script>
 	export default {
+		onLaunch: function() {
+		    uni.getSystemInfo({
+		        success: function(e) {
+		            // #ifndef MP
+		            Vue.prototype.StatusBar = e.statusBarHeight;
+		            if (e.platform == 'android') {
+		                Vue.prototype.CustomBar = e.statusBarHeight + 50;
+		            } else {
+		                Vue.prototype.CustomBar = e.statusBarHeight + 45;
+		            };
+		            // #endif
+		            // #ifdef MP-WEIXIN
+		            Vue.prototype.StatusBar = e.statusBarHeight;
+		            let custom = wx.getMenuButtonBoundingClientRect();
+		            Vue.prototype.Custom = custom;
+		            Vue.prototype.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+		            // #endif       
+		            // #ifdef MP-ALIPAY
+		            Vue.prototype.StatusBar = e.statusBarHeight;
+		            Vue.prototype.CustomBar = e.statusBarHeight + e.titleBarHeight;
+		            // #endif
+		        }
+		    })
+		}
 	}
 </script>
 
 <style>
-	/*每个页面公共css */
-@font-face {
-  font-family: 'iconfont';  /* project id 1897670 */
-  src: url('//at.alicdn.com/t/font_1897670_apcjt8k3v3.eot');
-  src: url('//at.alicdn.com/t/font_1897670_apcjt8k3v3.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1897670_apcjt8k3v3.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1897670_apcjt8k3v3.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1897670_apcjt8k3v3.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1897670_apcjt8k3v3.svg#iconfont') format('svg');
-}
-	*{
-		font-size: 14px;
-	}
-	li{
-		list-style: none;
-	}
-	.iconfont{
-		font-family: iconfont;
-	}
-	.status_bar {
-	    height: var(--status-bar-height);
-	    width: 100%;
-	}
+	@import "colorui/main.css";
+	@import "colorui/icon.css";
+	@import "app.css";/* 本项目css */
+
 </style>

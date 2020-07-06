@@ -12,7 +12,9 @@
 				<text v-else>正在获取天气...</text>
 			</view>
 		</view>
-		<view class="right"><text class="iconfont">&#xe61c;</text><text class="title">看旅图</text></view>
+		<view class="right">
+			<button class="cu-btn round"><text class="iconfont">&#xe61c;</text>看旅图</button>
+		</view>
 	</view>
 </template>
 
@@ -97,9 +99,7 @@ export default{
 		width 168rpx
 		height: 50rpx;
 		line-height 50rpx;
-		background-color: #1fb1c1;
 		color: #fff;
 		border-radius: 50rpx;
-		.iconfont
-			margin 0 20rpx;
+
 </style>

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import zySearch from '../../components/zy-search/zy-search.vue'
+	import zySearch from '../home/components/Search.vue'
 	export default {
 		components: {
 			zySearch
@@ -15,7 +15,7 @@
 			return {
 				themeClass: 'block',
 				speechEngine: 'baidu', //语音识别引擎
-				hotList: ['栏目1','栏目2','栏目3','栏目4']	//初始化推荐列表
+				hotList: ['五星级酒店','美食','游乐园','民宿']	//初始化推荐列表
 			}
 		},
 		methods: {

@@ -1,0 +1,27 @@
+/*每个页面公共css */
+@font-face {
+  font-family: 'iconfont';  /* project id 1897670 */
+  src: url('//at.alicdn.com/t/font_1897670_knsd7zxf3d.eot');
+  src: url('//at.alicdn.com/t/font_1897670_knsd7zxf3d.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1897670_knsd7zxf3d.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1897670_knsd7zxf3d.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1897670_knsd7zxf3d.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1897670_knsd7zxf3d.svg#iconfont') format('svg');
+}
+
+* {
+	font-size: 14px;
+}
+
+li {
+	list-style: none;
+}
+
+.iconfont {
+	font-family: iconfont;
+}
+
+.status_bar {
+	height: var(--status-bar-height);
+	width: 100%;
+}

@@ -67,7 +67,7 @@
             "style" : {}
         }
 		,{
-		    "path" : "pages/zy-search/zy-search",
+		    "path" : "pages/search/search",
 		    "style" : {
 				"navigationBarTitleText": "搜索",
 				"navigationStyle":"custom"

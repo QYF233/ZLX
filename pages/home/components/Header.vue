@@ -1,46 +1,44 @@
 <template>
 	<view class="header">
-		<navigator url="/pages/zy-search/zy-search" open-type="navigate" class="search" hover-class="none">
-			<view>
-				<text class="iconfont icon">&#xe678;</text>
-				<text class="title">搜城市/酒店/景点/美食</text>
+		<view class="cu-bar search">
+			<view class="search-form round" @tap="gotoLunBo">
+				<text class="cuIcon-search"></text>
+				<input @focus="InputFocus" @blur="InputBlur" :adjust-position="false" type="text" placeholder="搜城市/酒店/景点/美食"
+				 confirm-type="search"></input>
 			</view>
-		</navigator>
-		<view class='right'>
-			<view class="iconfont add">&#xe601;</view>
+			<view class="action">
+				<view class="iconfont add">&#xe6cd;</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-export default {
-	name: 'HomeHeader',
-}
+	export default {
+		name: 'HomeHeader',
+		data() {
+			return {
+				InputBottom: 0
+			};
+		},
+		methods: {
+			InputFocus(e) {
+				this.InputBottom = e.detail.height
+			},
+			InputBlur(e) {
+				this.InputBottom = 0
+			},
+			gotoLunBo() {
+				uni.navigateTo({
+					url: "/pages/search/search"
+				})
+			}
+		}
+	}
 </script>
 
 <style>
-	.header{
-		position: relative;
-		display: inline-flex;
-		width: 100%;
-	}
-	.search{
-		border-radius: 50rpx;
-		background-color: #fff;
-		width: 75%;
-		height: 60rpx;
-		line-height: 30px;
-		float: left;
-		margin: 20rpx 0rpx 20rpx 40rpx;
-		padding: 4rpx;
-		color: #9c9c9c;
-	}
-	.search .icon{
-		margin: 0rpx 20rpx;
-	}
-	.add{
-		margin: 30rpx 0rpx 20rpx 40rpx;
-		font-size: 50rpx;
+	.add {
 		color: #fff;
 	}
 </style>
