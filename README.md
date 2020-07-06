@@ -1,7 +1,11 @@
 # ZLX
 
 #### 介绍
-诗画浙江项目
+第十九届大学生多媒体大赛 主题：诗画浙江 类型：app
+
+本项目名称：浙里寻
+本项目类型：浙江全域旅游宣传类app
+开发框架：uni-app
 
 #### 软件架构
 软件架构说明
@@ -9,31 +13,18 @@
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  git remote set-url origin https://gitee.com/kikoblog/ZLX.git	更换远程仓库地址
+2.  git pull 拉取最新文件 push之前输入
+3.  git add . 提交到暂存区
+4.  git commit -m "" 提交到本地仓库
+5.  git push 上传到远程仓库
 
-#### 使用说明
-
-1.  git pull 拉取最新文件 push之前输入
-2.  git add . 提交到暂存区
-3.  git commit -m "" 提交到本地仓库
-4.  git push 上传到远程仓库
 
 #### 参与贡献
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+1.  求琰锋
+2.  林其隆
+3.  熊新欣
+4.  王佳
+5.  傅成涛
 
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
-7.  11111
