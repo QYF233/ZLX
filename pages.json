@@ -98,6 +98,11 @@
 			"style":{
 				"navigationBarTitleText":"用户登录"
 			}
+		},{
+			"path":"pages/city/city",
+			"style":{
+				"navigationBarTitleText":"城市列表"
+			}
 		}
     ],
 	"globalStyle": {

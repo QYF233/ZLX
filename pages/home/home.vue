@@ -17,7 +17,6 @@
 	import HomeLocation from './components/Location'
 	import HomeIcon from './components/Icon'
 	import HomeFind from './components/Find'
-	import HomeSearch from './components/Search'
 	
 	export default {
 		name: 'Home',

@@ -5,7 +5,7 @@
 				<view class="up flex">
 					<view class="city" v-if="city!=''">{{city}}</view>
 					<view class="city" v-else>定位中...</view>
-					<text class="cuIcon-rounddown"></text>
+					<text class="cuIcon-rounddown"  @tap="gotoLunBo"></text>
 				</view>
 				<view class="temp">
 					<text class="iconfont lg temp-icon">&#xe646;</text>
@@ -32,6 +32,13 @@
 				low: '',
 				high: '',
 				wetherType: ''
+			}
+		},
+		methods:{
+			gotoLunBo() {
+				uni.navigateTo({
+					url: "/pages/city/city"
+				})
 			}
 		},
 		beforeCreate() {

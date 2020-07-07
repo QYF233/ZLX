@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import zySearch from '../home/components/Search.vue'
+	import zySearch from './components/Search.vue'
 	export default {
 		components: {
 			zySearch
