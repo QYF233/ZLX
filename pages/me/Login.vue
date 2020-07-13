@@ -66,8 +66,8 @@
 	}
 	input{
 		border-bottom: 1px solid #d5d5d5;
-		padding: 20rpx;
 		caret-color:#DC143C;
+		padding:0 20rpx;
 		margin-top: 55rpx;
 	}
 	.title{
