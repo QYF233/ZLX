@@ -3,10 +3,7 @@
 		<view class="find">
 			<view class="title">旅行发现</view>
 			<view class="contianer">
-				<view class="item">item</view>
-				<view class="item">item</view>
-				<view class="item">item</view>
-				<view class="item">item</view>
+				<view class="item">瀑布流</view>
 			</view>
 		</view>
 	</view>
