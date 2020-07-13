@@ -41,7 +41,7 @@
 				})
 			}
 		},
-		beforeCreate() {
+		beforeCreate () {
 			uni.getLocation({
 				geocode: true,
 				type: 'gcj02',
