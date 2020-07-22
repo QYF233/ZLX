@@ -6,7 +6,7 @@
 		<form @submit="formSubmit">
 			<input type="text" name="user" placeholder="输入邮箱或手机号">
 			<input type="text" name="password" password="true" placeholder="输入密码">
-			<navigator url="/pages/me/Register" hover-class="none">
+			<navigator url="/pages/me/Register" hover-class="none" class="forget">
 				<text>忘记密码？</text>
 			</navigator>
 			<button type="primary" form-type="submit" :loading="load">登录</button>
@@ -88,5 +88,8 @@
 		right: 70rpx;
 		text-align: center;
 		color: #007AFF;
+	}
+	.forget{
+		margin-top: 20rpx;
 	}
 </style>
