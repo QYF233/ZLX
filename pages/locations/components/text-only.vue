@@ -9,6 +9,7 @@
 				<view class="text">{{changeTextSize}}</view>
 			</view>
 		</view>
+		<view class="date">{{date}}</view>
 	</view>
 </template>
 <script>
@@ -22,10 +23,14 @@
 			}
 		},
 		props:{
-			id:Number,
+			id: {
+				type:Number,
+				required:true
+			},
 			title:String,
 			text:String,
 			author:String,
+			date:String
 		},
 		computed:{
 			changeTextSize(){

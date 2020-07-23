@@ -12,6 +12,7 @@
 				<image class="image" :src="photo"></image>
 			</view>
 		</view>
+		<view class="date">{{date}}</view>
 	</view>
 </template>
 <script>
@@ -25,11 +26,15 @@
 			}
 		},
 		props:{
-			id:Number,
+			id:{
+				type:Number,
+				require:true
+			},
 			title:String,
 			text:String,
 			author:String,
-			photo:String
+			photo:String,
+			date:String
 		},
 		computed:{
 			changeTextSize(){
