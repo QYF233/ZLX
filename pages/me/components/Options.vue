@@ -2,49 +2,51 @@
 	<view class="options">
 		<ul class="option-ul">
 			<li class="option-li" @click="to('comment')">
-				<view class="iconfont">&#xe614;</view> 
+				<view class="iconfont">0</view> 
 				<view class="li-button">评论</view>
 			</li>
 			<li class="option-li" @click="to('reply')">
-				<view class="iconfont">&#xe62e;</view> 
+				<view class="iconfont">0</view> 
 				<view class="li-button">回复</view>
 			</li>
 			<li class="option-li" @click="to('article')">
-				<view class="iconfont">&#xe606;</view> 
+				<view class="iconfont">0</view> 
 				<view class="li-button">发表</view>
 			</li>
 			<li class="option-li" @click="to('mine')">
-				<view class="iconfont">&#xe62b;</view> 
+				<view class="iconfont">0</view> 
 				<view class="li-button">收藏</view>
 			</li>
 		</ul>
 		<ul>
 			<li class="item">
 				<view class="item-view">
-					<view class="item-view-left">图标 </view>
+					<view class="item-view-left"><view class="iconfont">&#xe67a;</view></view>
 					<view class="item-view-right">个人信息</view>
 				</view>
 			</li>
 			<navigator url="/pages/me/Setting">
 				<li class="item">
 					<view class="item-view">
-						<view class="item-view-left">图标 </view>
+						<view class="item-view-left"><view class="iconfont">&#xe610;</view></view>
 						<view class="item-view-right">设置</view>
 					</view>
 				</li>
 			</navigator>
 			<li class="item">
 				<view class="item-view">
-					<view class="item-view-left">图标 </view>
+					<view class="item-view-left"><view class="iconfont">&#xe647;</view></view>
 					<view class="item-view-right">反馈</view>
 				</view>
 			</li>
-			<li class="item">
-				<view class="item-view">
-					<view class="item-view-left">图标 </view>
-					<view class="item-view-right">关于</view>
-				</view>
-			</li>
+			<navigator url="/pages/me/about">
+				<li class="item">
+					<view class="item-view">
+						<view class="item-view-left"><view class="iconfont">&#xe629;</view></view>
+						<view class="item-view-right">关于</view>
+					</view>
+				</li>
+			</navigator>
 		</ul>
 	</view>
 </template>
@@ -53,12 +55,7 @@
 export default {
 	name:"Option",
 	methods:{
-		to:function(to){
-			console.log(to)
-			uni.navigateTo({
-				url:'/pages/me/Setting'
-			})
-		}
+		
 	}
 }
 </script>
@@ -78,9 +75,14 @@ export default {
 	}
 	.iconfont{
 		font-size: 40rpx;
+	}
+	.option-ul .iconfont{
 		text-align: center;
 		margin-bottom: 10rpx;
 		color: #007AFF;
+	}
+	.item .iconfont{
+		margin-right: 4rpx;
 	}
 	.li-button{
 		text-align: center;

@@ -108,6 +108,11 @@
 			"style":{
 				"navigationBarTitleText":"详情"
 			}
+		},{
+			"path":"pages/me/about",
+			"style":{
+				"navigationBarTitleText":"关于"
+			}
 		}
     ],
 	"globalStyle": {

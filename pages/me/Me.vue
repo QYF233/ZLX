@@ -24,9 +24,9 @@ export default {
 	},
 	data() {
 		return {
-			icon:'/static/image/logo.png',
-			username:'昵称',
-			backgroundImg:'/static/image/xihu.jpg',
+			icon:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595506331552&di=f900d1bd55ad21ca94215c21ee2d8dfc&imgtype=0&src=http%3A%2F%2Ftupian.qqw21.com%2Farticle%2FUploadPic%2F2020-6%2F2020617225141628.jpg',
+			username:'林其龙',
+			backgroundImg:'https://5b0988e595225.cdn.sohucs.com/images/20180711/e8a9f506059745e3863ba12d378d2e26.jpeg',
 			userId:''
 		}
 	},
