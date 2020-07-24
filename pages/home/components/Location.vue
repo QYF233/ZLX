@@ -1,10 +1,9 @@
 <template>
 	<view class="location solid-bottom ">
 		<view class="flex justify-between">
-			<view class="left">
+			<view class="left" @click="getLocation">
 				<view class="up flex">
-					<view class="city" v-if="city!=''">{{city}}</view>
-					<view class="city" v-else>定位中...</view>
+					<view class="city">{{city}}</view>
 					<text class="cuIcon-rounddown"  @tap="gotoLunBo"></text>
 				</view>
 				<view class="temp">
@@ -28,7 +27,7 @@
 		name: 'HomeLocation',
 		data() {
 			return {
-				city: '',
+				city: '正在定位...',
 				low: '',
 				high: '',
 				wetherType: ''
@@ -39,34 +38,40 @@
 				uni.navigateTo({
 					url: "/pages/city/city"
 				})
+			},
+			getLocation(){
+				this.city = '正在定位...'
+				this.high = ''
+				this.low = ''
+				uni.getLocation({
+					geocode: true,
+					type: 'gcj02',
+					success: (res) => {
+						if (res.address) {
+							this.city = res.address.city
+							uni.request({
+								url: 'http://wthrcdn.etouch.cn/weather_mini',
+								data: {
+									city: this.city
+								},
+								success: (result) => {
+									if (result.statusCode === 200) {
+										let data = result.data.data
+										let wether = data.forecast
+										let today = wether[0]
+										this.low = today.low.split(' ')[1]
+										this.high = today.high.split(' ')[1]
+										this.wetherType = today.type
+									}
+								}
+							})
+						}
+					}
+				})
 			}
 		},
-		beforeCreate () {
-			uni.getLocation({
-				geocode: true,
-				type: 'gcj02',
-				success: (res) => {
-					if (res.address) {
-						this.city = res.address.city
-						uni.request({
-							url: 'http://wthrcdn.etouch.cn/weather_mini',
-							data: {
-								city: this.city
-							},
-							success: (result) => {
-								if (result.statusCode === 200) {
-									let data = result.data.data
-									let wether = data.forecast
-									let today = wether[0]
-									this.low = today.low.split(' ')[1]
-									this.high = today.high.split(' ')[1]
-									this.wetherType = today.type
-								}
-							}
-						})
-					}
-				}
-			})
+		beforeMount () {
+			this.getLocation()
 		}
 	}
 </script>

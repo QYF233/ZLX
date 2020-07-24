@@ -23,10 +23,14 @@
 						<view class="btn" @click="toggleReply">回复</view>
 					</view>
 				</view>
-				<view class="goreply" v-show="show">
-					<input type="text" class="replyinput" @blur="hideReply" :value="myreply"@input="input">
-					<view class="replybtn" type="primary" @click="send">发表</view>
-				</view>
+				<uni-transition
+				:mode-class="['slide-right','fade','zoom-in']"
+				:show="show">
+					<view class="goreply">
+						<input type="text" class="replyinput" @blur="hideReply" :value="myreply"@input="input" :placeholder="placehoder">
+						<view class="replybtn" type="primary" @click="send">发表</view>
+					</view>
+				</uni-transition>
 				<view class="replys" v-show="replys.length>0">
 					<template v-for="reply in replys">
 						<reply :key="reply.id" :id="reply.id" :username="reply.username" :context="reply.context" :replyto="reply.replyto"></reply>
@@ -55,8 +59,12 @@
 		data(){
 			return {
 				show:false,
-				myreply:''
+				myreply:'',
+				placehoder:''
 			}
+		},
+		beforeMount() {
+			this.placehoder = "回复给 " + this.username + ":"
 		},
 		methods:{
 			toggleReply(){

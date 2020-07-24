@@ -113,6 +113,11 @@
 			"style":{
 				"navigationBarTitleText":"关于"
 			}
+		},{
+			"path":"pages/me/tellUs",
+			"style":{
+				"navigationBarTitleText":"反馈"
+			}
 		}
     ],
 	"globalStyle": {
@@ -121,7 +126,9 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"app-plus":{
-			"bounce":"none"
+			"bounce":"none",
+			"animationType":"zoom-fade-out",
+			"animationDuration": 300
 		}
 	},
 	"tabBar":{

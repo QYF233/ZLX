@@ -33,12 +33,14 @@
 					</view>
 				</li>
 			</navigator>
-			<li class="item">
-				<view class="item-view">
-					<view class="item-view-left"><view class="iconfont">&#xe647;</view></view>
-					<view class="item-view-right">反馈</view>
-				</view>
-			</li>
+			<navigator url="/pages/me/tellUs">
+				<li class="item">
+					<view class="item-view">
+						<view class="item-view-left"><view class="iconfont">&#xe647;</view></view>
+						<view class="item-view-right">反馈</view>
+					</view>
+				</li>
+			</navigator>
 			<navigator url="/pages/me/about">
 				<li class="item">
 					<view class="item-view">

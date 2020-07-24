@@ -21,7 +21,9 @@
 		methods:{
 			todetail:function(){
 				uni.navigateTo({
-					url:'/pages/locations/locationsDetail?id='+this.id
+					url:'/pages/locations/locationsDetail?id='+this.id,
+					animationType: 'slide-in-bottom',
+					animationDuration: 300
 				})
 			}
 		},

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="container" :class="{dark:dark}">
+		<view class="container" :class="{show:show}">
 			<view class="title">{{title}}</view>
 			<view class="author">{{author}}</view>
 			<view class="date">{{date}}</view>
@@ -19,13 +19,14 @@
 				<view class="foot-right"></view>
 			</view>
 		</view>
-		<view :class="{bigfoot:dark,foot:!dark}">
-			<view :class="[isshow?'bigsay':'']">
-				<textarea type="text" :class="[isshow?'bigcommentinput':'commentinput']" @blur="hideComment" 
+		<view :class="{bigfoot:show,foot:!show}">
+			<view :class="[show?'bigsay':'']">
+				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" @blur="hideComment" 
 				:value="comment" placeholder="说点什么..." @focus="showComment" @input="input"/>
-				<button v-show="dark" class="send" size="mini" type="primary" @click="send">发表</button>
+				<button v-show="show" class="send" size="mini" type="primary" @click="send">发表</button>
+				<view v-show="show" class="number">{{textcounter}}/140</view>
 			</view>
-			<view class="save-like" v-show="!dark">
+			<view class="save-like" v-show="!show">
 				<view class="save" :class="{clicked:saveclicked}" @click="saveadd">
 					<view class="iconfont">
 						&#xe90d;
@@ -68,17 +69,19 @@
 				this.likeclicked = !this.likeclicked
 			},
 			showComment(){
-				this.dark = true
+				this.show = true
 			},
 			hideComment(){
-				this.dark = false
+				this.show = false
 			},
 			send(){
 				console.log(this.comment + ' ' + this.id)
 				this.comment = ''
+				this.textcounter = 0
 			},
 			input(e){
 				this.comment = e.detail.value
+				this.textcounter = this.comment.length
 			},
 		},
 		onLoad(option) {
@@ -90,11 +93,6 @@
 			　　title:t
 			})
 			this.id = option.id
-		},
-		computed:{
-			isshow(){
-				return this.dark
-			}
 		},
 		data() {
 			return {
@@ -224,7 +222,8 @@
 				],
 				saveclicked:false,
 				likeclicked:false,
-				dark:false,
+				show:false,
+				textcounter:0,
 				comment:''
 			}
 		}
@@ -232,6 +231,11 @@
 </script>
 
 <style>
+	.number {
+		position: absolute;
+		bottom: 12rpx;
+		right: 150rpx;
+	}
 	h1 {
 		font-size: 18px;
 	}
@@ -267,6 +271,7 @@
 		margin: 10rpx 10rpx;
 	}
 	.foot {
+		border-top: 1px solid #E5E5E5;
 		background-color: #FFFFFF;
 		width: 100%;
 		height: 90rpx;
@@ -301,20 +306,22 @@
 		position: fixed;
 	}
 	.commentinput{
+		background-color: #F5F5F5;
 		width: 500rpx;
 		height: 60rpx;
 		border-radius: 10rpx;
 		margin: 15rpx 0;
 		line-height: 60rpx;
-		padding: 0 10rpx;
+		padding:0 10rpx;
 	}
-	.dark{
-		filter: contrast(30%);
+	.show{
+		filter: contrast(10%);
 	}
 	.bigfoot{
+		border-top: 1px solid #E5E5E5;
 		background-color: #FFFFFF;
 		width: 100%;
-		height: 400rpx;
+		height: 300rpx;
 		padding: 0 25rpx;
 		position: absolute;
 		bottom: 0;
@@ -326,11 +333,12 @@
 		width: 100%;
 	}
 	.bigcommentinput{
+		background-color: #F5F5F5;
 		width: 100%;
-		height: 370rpx;
+		height: 270rpx;
 		border-radius: 10rpx;
 		margin: 15rpx 0;
-		padding: 0 10rpx;
+		padding: 10rpx;
 	}
 	.send{
 		position: absolute;

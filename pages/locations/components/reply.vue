@@ -7,14 +7,20 @@
 			<text>:{{context}}</text>
 			
 		</view>
-		<view class="goreply" v-show="show">
-			<input type="text" class="replyinput" @blur="hideInput" :value="text" @input="input">
-			<view class="replybtn" @click="send">发表</view>
-		</view>
+		
+		<uni-transition 
+		:mode-class="['slide-right']"
+		:show="show">
+			<view class="goreply">
+				<input type="text" class="replyinput" @blur="hideInput" :value="text" @input="input" :placeholder="placehoder">
+				<view class="replybtn" @click="send">发表</view>
+			</view>
+		</uni-transition>
 	</view>
 </template>
 
 <script>
+	import uniTransition from "@/components/uni-transition/uni-transition.vue"
 	export default {
 		name:"Reply",
 		props:{
@@ -23,11 +29,18 @@
 			replyto:String,
 			context:String
 		},
+		components:{
+			uniTransition
+		},
 		data(){
 			return {
 				show:false,
-				text:''
+				text:'',
+				placehoder:''
 			}
+		},
+		beforeMount() {
+			this.placehoder = '回复给 ' + this.username + ":"
 		},
 		methods:{
 			toggleInput(){
