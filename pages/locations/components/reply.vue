@@ -27,7 +27,8 @@
 			id:Number,
 			username:String,
 			replyto:Object,
-			context:String
+			context:String,
+			dark:Boolean
 		},
 		components:{
 			uniTransition
@@ -44,7 +45,10 @@
 		},
 		methods:{
 			toggleInput(){
-				this.show = !this.show
+				if(!this.dark){
+					this.show = !this.show
+				}
+				
 			},
 			hideInput(){
 				this.show = false
@@ -54,7 +58,8 @@
 			},
 			send(){
 				console.log(this.text + ' ' + this.id)
-				this.text = ''
+				this.text = '',
+				this.$emit("update",1)
 			}
 		}
 	}

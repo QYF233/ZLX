@@ -1,9 +1,6 @@
 <!-- 寻住 -->
 <template>
 	<view>
-		<view class="status_bar">
-			<!-- 这里是状态栏 -->
-		</view>
 		<view>
 			<swiper class="screen-swiper" :class="dotStyle?'square-dot':'round-dot'" :indicator-dots="true" :circular="true"
 			 :autoplay="true" interval="5000" duration="500">

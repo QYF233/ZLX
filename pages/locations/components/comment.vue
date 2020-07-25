@@ -33,7 +33,7 @@
 				</uni-transition>
 				<view class="replys" v-show="replys.length>0">
 					<template v-for="reply in replys">
-						<reply :key="reply.id" :id="reply.id" :username="reply.user.username" :context="reply.context" :replyto="reply.replyto"></reply>
+						<reply @update="update" :key="reply.id" :id="reply.id" :username="reply.user.username" :context="reply.context" :replyto="reply.replyto"></reply>
 					</template>
 				</view>
 			</view>
@@ -54,7 +54,8 @@
 			username:String,
 			context:String,
 			replys:Array,
-			time:String
+			time:String,
+			dark:Boolean
 		},
 		data(){
 			return {
@@ -68,7 +69,10 @@
 		},
 		methods:{
 			toggleReply(){
-				this.show = !this.show
+				if(!this.dark){
+					this.show = !this.show
+				}
+				
 			},
 			hideReply(){
 				this.show = false
@@ -76,9 +80,13 @@
 			send(){
 				console.log(this.myreply+ ' ' + this.id)
 				this.myreply = ''
+				this.$emit("update",1)
 			},
 			input(e){
 				this.myreply = e.detail.value
+			},
+			update(date){
+				this.$emit("update",date)
 			}
 		}
 	}

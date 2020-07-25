@@ -48,7 +48,7 @@
 
 <style lang="stylus" scoped>
 	.box
-		margin: 40rpx;
+		margin: 40rpx 0;
 		background-color: #FFF;
 		border-radius: 20rpx;	
 		text-align :center;

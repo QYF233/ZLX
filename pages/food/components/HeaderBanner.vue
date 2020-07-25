@@ -1,11 +1,14 @@
 <template>
-	<swiper class="screen-swiper square-dot" indicator-dots="true" autoplay="true" circular="true">
-		<swiper-item v-for="food in foods" :key="food.id">
-			<view class="swiper-item" @click="to(food.id)">
-				<img :src="food.url" mode="" class="img"></img>
-			</view>
-		</swiper-item>
-	</swiper>
+	<view class="banner">
+		<swiper class="swiper square-dot" indicator-dots="true" autoplay="true" circular="true">
+			<swiper-item v-for="food in foods" :key="food.id">
+				<view class="swiper-item" @click="to(food.id)">
+					<img :src="food.url" mode="" class="img"></img>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	
 </template>
 
 <script>
@@ -24,7 +27,14 @@
 
 <style>
 	.img{
-		height: 400rpx;
+		height:300rpx;
 		width: 100%;
+		border-radius: 10px;
+	}
+	.swiper {
+		height: 300rpx;
+	}
+	.banner {
+		margin-top: 20rpx;
 	}
 </style>

@@ -7,7 +7,7 @@
 			<input type="text" name="nickname" class="input" placeholder="输入昵称"/>
 			<input type="text" name="user" class="input" placeholder="输入邮箱或手机号"/>
 			<view class="verification_code">
-				<input type="text" name="verification_code" class="code input" placeholder="输入验证码"/>
+				<input type="digit" name="verification_code" class="code input" placeholder="输入验证码"/>
 				<view class="send_code_btn_container">
 					<button type="default" size="mini" class="send_code_btn" @click="sendCode" :disabled="disable">{{message}}</button>
 				</view>

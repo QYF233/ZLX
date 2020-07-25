@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="container" :class="{show:show}" @click="hideComment">
+		<view class="container" :class="{show:show}" @tap="hideComment">
 			<view class="title">{{title}}</view>
 			<view class="author">{{author}}</view>
 			<view class="date">{{date}}</view>
@@ -10,7 +10,7 @@
 				<view class="comment" v-for="c in comments" :key="c.id">
 					<comment :id="c.id" :usericon="c.usericon"
 					:username="c.user.username" :context="c.context"
-					:replys="c.replys" :time="c.time"></comment>
+					:replys="c.replys" :time="c.time" :dark="show" @update="update"></comment>
 				</view>
 			</view>
 			<view class="footer">
@@ -22,7 +22,7 @@
 		<view :class="{bigfoot:show,foot:!show}">
 			<view :class="[show?'bigsay':'']">
 				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" 
-				:value="comment" placeholder="说点什么..." @focus="showComment" @input="input"/>
+				:value="comment" placeholder="说点什么..." @click="showComment" @input="input"/>
 				<uni-transition
 				:mode-class="['slide-buttom','fade','zoom-in']" :duration="300"
 				:show="show">
@@ -94,6 +94,9 @@
 			cancel(){
 				this.comment = ''
 				this.hideComment()
+			},
+			update(data){
+				console.log(data)
 			}
 		},
 		computed:{

@@ -1,6 +1,6 @@
 <!-- 寻吃 -->
 <template>
-	<view>
+	<view class="container">
 		<header-banner :foods="foodsInBanner"></header-banner>
 		<food-image></food-image>
 		<view class="more">更多</view>
@@ -57,5 +57,8 @@
 	margin-right:75rpx;
 	margin-bottom:50rpx;
 	color:orange;
+}
+.container {
+	padding: 0 20rpx;
 }
 </style>
