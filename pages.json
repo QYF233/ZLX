@@ -16,8 +16,7 @@
         {
             "path" : "pages/hotel/hotel",
             "style" : {
-				"navigationBarTitleText": "寻住",
-				"navigationStyle":"custom"
+				"navigationBarTitleText": "寻住"
 			}
         },
 		{

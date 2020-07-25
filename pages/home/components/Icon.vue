@@ -1,11 +1,7 @@
 <template>
-		<view class="box cu-list grid margin" :class="['col-' + gridCol,gridBorder?'':'no-border']">
-			<view class="icon-b cu-item" v-for="(item,index) in iconListBig" :key = 'index' v-if="index<gridCol*2">
-				<navigator :url='item.url' v-if="index<2" open-type="switchTab" class="item">
-					<view class="iconfont" :style="{color:item.color}">{{item.icon}}</view>
-					<text class="name">{{item.name}}</text>
-				</navigator>
-				<navigator :url='item.url' v-else open-type="navigate" class="item">
+		<view class="box cu-list grid margin col-4 no-border">
+			<view class="icon-b cu-item" v-for="(item,index) in iconListBig" :key = 'index'>
+				<navigator :url='item.url' open-type="navigate" class="item">
 					<view class="iconfont tubiaozhizuomoban_fengjing" :style="{color:item.color}">{{item.icon}}</view>
 					<view class="name">{{item.name}}</view>
 				</navigator>
@@ -18,7 +14,6 @@
 		name: 'HomeIcon',
 		data() {
 			return {
-				gridCol: 4,
 				iconListBig: [{
 				  icon: '\ue60b',
 				  color: '#e2c326',
