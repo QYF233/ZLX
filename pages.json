@@ -144,16 +144,10 @@
 				"text":"首页"
 			},
 			{
-				"iconPath":"static/image/logo.png",
-				"selectedIconPath":"static/image/logo.png",
-				"pagePath":"pages/food/food",
-				"text":"美食"
-			},
-			{
-				"iconPath":"static/image/logo.png",
-				"selectedIconPath":"static/image/logo.png",
-				"pagePath":"pages/hotel/hotel",
-				"text":"酒店"
+				"iconPath":"static/tabbar/tabbar-category-gray.png",
+				"selectedIconPath":"static/tabbar/tabbar-category-blue.png",
+				"pagePath":"pages/painting/painting",
+				"text":"旅拍"
 			},
 			{
 				"iconPath":"static/tabbar/tabbar-my-gray.png",
