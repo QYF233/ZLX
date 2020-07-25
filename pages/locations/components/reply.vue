@@ -9,7 +9,7 @@
 		</view>
 		
 		<uni-transition 
-		:mode-class="['slide-right']"
+		:mode-class="['slide-right','fade','zoom-in']" :duration="300"
 		:show="show">
 			<view class="goreply">
 				<input type="text" class="replyinput" @blur="hideInput" :value="text" @input="input" :placeholder="placehoder">

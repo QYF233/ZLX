@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<button @click="logout">退出登录</button>
+		<button @click="logout" size="default" type="warn" style="margin: 500rpx 95rpx;">退出登录</button>
 	</view>
 </template>
 

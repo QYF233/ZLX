@@ -44,7 +44,11 @@
 			setTimeout(function () {
 				uni.stopPullDownRefresh({
 					success:function(){
-						console.log("refresh")
+						uni.showToast({
+							title:'刷新成功',
+							icon:'none',
+							position:'bottom'
+						})
 					}
 				});
 			}, 300);

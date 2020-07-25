@@ -3,12 +3,11 @@
 		<view class="cu-bar search">
 			<view class="search-form round solid line-gray">
 				<text class="cuIcon-search"></text>
-				<input @focus="InputFocus" @blur="InputBlur" :adjust-position="false" type="text" placeholder="搜索你想要的美食"
-				 confirm-type="search"></input>
+				<input  type="text" placeholder="搜索你想要的美食" confirm-type="search"></input>
 			</view>
-			<view class="grid ">
+			<view class="gird">
 				<view class="text-center select-city ">
-					<button class="cu-btn round line-gray" >选择城市</button>
+					<button class="cu-btn round line-gray">选择城市</button>
 				</view>
 			</view>
 			<!-- <view class="right">
@@ -34,7 +33,7 @@
 			}
 		},
 		methods: {
-
+			
 		},
 	}
 </script>

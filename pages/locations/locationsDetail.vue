@@ -23,10 +23,17 @@
 			<view :class="[show?'bigsay':'']">
 				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" 
 				:value="comment" placeholder="说点什么..." @focus="showComment" @input="input"/>
-				<button v-show="show" class="cancel" size="mini" type="warn" @click="cancel">取消</button>
-				<button v-show="show" class="send" size="mini" type="primary" @click="send">发表</button>
-				<view v-show="show" class="number">{{counter}}/140</view>
+				<uni-transition
+				:mode-class="['slide-buttom','fade','zoom-in']" :duration="300"
+				:show="show">
+					<button class="cancel" size="mini" type="warn" @click="cancel">取消</button>
+					<button class="send" size="mini" type="primary" @click="send">发表</button>
+					<view class="number">{{counter}}/140</view>
+				</uni-transition>
 			</view>
+			<uni-transition
+			:mode-class="['slide-top','fade','zoom-in']" :duration="300"
+			:show="!show">
 			<view class="save-like" v-show="!show">
 				<view class="save" :class="{clicked:saveclicked}" @click="saveadd">
 					<view class="iconfont">
@@ -41,6 +48,7 @@
 					<text>&nbsp; {{like}}</text>
 				</view>
 			</view>
+			</uni-transition>
 		</view>
 	</view>
 </template>

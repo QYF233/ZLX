@@ -1,20 +1,20 @@
 <template>
 	<view class="options">
 		<ul class="option-ul">
-			<li class="option-li" @click="to('comment')">
+			<li class="option-li">
 				<view class="iconfont">0</view> 
 				<view class="li-button">评论</view>
 			</li>
-			<li class="option-li" @click="to('reply')">
+			<li class="option-li">
 				<view class="iconfont">0</view> 
 				<view class="li-button">回复</view>
 			</li>
-			<li class="option-li" @click="to('article')">
+			<li class="option-li">
 				<view class="iconfont">0</view> 
 				<view class="li-button">发表</view>
 			</li>
-			<li class="option-li" @click="to('mine')">
-				<view class="iconfont">0</view> 
+			<li class="option-li">
+				<view class="iconfont">0</view>
 				<view class="li-button">收藏</view>
 			</li>
 		</ul>
