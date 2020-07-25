@@ -1,3 +1,4 @@
+<!-- 寻吃 -->
 <template>
 	<view>
 		<search-tool></search-tool>

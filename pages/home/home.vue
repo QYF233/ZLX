@@ -17,7 +17,6 @@
 	import HomeLocation from './components/Location'
 	import HomeIcon from './components/Icon'
 	import HomeFind from './components/Find'
-	
 	export default {
 		name: 'Home',
 		components: {
@@ -27,9 +26,7 @@
 			HomeFind
 		},
 		data() {
-			return {
-				title: ''
-			}
+			return {}
 		},
 		onLoad() {
 

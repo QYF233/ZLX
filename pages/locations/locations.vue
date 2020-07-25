@@ -1,3 +1,4 @@
+<!-- 寻境 -->
 <template>
 	<view>
 		<view v-for="article in articles" :key="article.id">
