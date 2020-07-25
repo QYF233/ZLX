@@ -43,16 +43,18 @@
 					})
 				}else{
 					this.load = true
-					uni.setStorage({
-						key:'uId',
-						data:'123'
-					})
-					uni.switchTab({
-						url:'/pages/me/Me',
-						success() {
-							this.load = false
-						}
-					})
+					setTimeout(()=>{
+						uni.setStorage({
+							key:'uId',
+							data:'123'
+						})
+						uni.switchTab({
+							url:'/pages/me/Me',
+							success() {
+								this.load = false
+							}
+						})
+					},500)	
 				}
 				
 			}

@@ -3,7 +3,7 @@
 		<view class="reply" @click="toggleInput">
 			<text class="name">{{username}}</text>
 			
-			<template v-if="replyto!==''"><text class="huifu">回复</text> <text class="name">{{replyto}}</text></template>
+			<template v-if="replyto!==null"><text class="huifu">回复</text> <text class="name">{{replyto.username}}</text></template>
 			<text>:{{context}}</text>
 			
 		</view>
@@ -26,7 +26,7 @@
 		props:{
 			id:Number,
 			username:String,
-			replyto:String,
+			replyto:Object,
 			context:String
 		},
 		components:{

@@ -4,7 +4,7 @@
 			<view class="left" @click="getLocation">
 				<view class="up flex">
 					<view class="city">{{city}}</view>
-					<text class="cuIcon-rounddown"  @tap="gotoLunBo"></text>
+					<text class="cuIcon-rounddown"  @click.stop="gotoLunBo"></text>
 				</view>
 				<view class="temp">
 					<text class="iconfont lg temp-icon">&#xe646;</text>
@@ -27,7 +27,7 @@
 		name: 'HomeLocation',
 		data() {
 			return {
-				city: '正在定位...',
+				city: '',
 				low: '',
 				high: '',
 				wetherType: ''
@@ -43,31 +43,34 @@
 				this.city = '正在定位...'
 				this.high = ''
 				this.low = ''
-				uni.getLocation({
-					geocode: true,
-					type: 'gcj02',
-					success: (res) => {
-						if (res.address) {
-							this.city = res.address.city
-							uni.request({
-								url: 'http://wthrcdn.etouch.cn/weather_mini',
-								data: {
-									city: this.city
-								},
-								success: (result) => {
-									if (result.statusCode === 200) {
-										let data = result.data.data
-										let wether = data.forecast
-										let today = wether[0]
-										this.low = today.low.split(' ')[1]
-										this.high = today.high.split(' ')[1]
-										this.wetherType = today.type
+				setTimeout(()=>{
+					uni.getLocation({
+						geocode: true,
+						type: 'gcj02',
+						success: (res) => {
+							if (res.address) {
+								this.city = res.address.city
+								uni.request({
+									url: 'http://wthrcdn.etouch.cn/weather_mini',
+									data: {
+										city: this.city
+									},
+									success: (result) => {
+										if (result.statusCode === 200) {
+											let data = result.data.data
+											let wether = data.forecast
+											let today = wether[0]
+											this.low = today.low.split(' ')[1]
+											this.high = today.high.split(' ')[1]
+											this.wetherType = today.type
+										}
 									}
-								}
-							})
+								})
+							}
 						}
-					}
-				})
+					})
+				},300)
+				
 			}
 		},
 		beforeMount () {

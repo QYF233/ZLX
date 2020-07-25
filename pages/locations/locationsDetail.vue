@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="container" :class="{show:show}">
+		<view class="container" :class="{show:show}" @click="hideComment">
 			<view class="title">{{title}}</view>
 			<view class="author">{{author}}</view>
 			<view class="date">{{date}}</view>
@@ -9,7 +9,7 @@
 				<h1>评论</h1>
 				<view class="comment" v-for="c in comments" :key="c.id">
 					<comment :id="c.id" :usericon="c.usericon"
-					:username="c.username" :context="c.context"
+					:username="c.user.username" :context="c.context"
 					:replys="c.replys" :time="c.time"></comment>
 				</view>
 			</view>
@@ -21,10 +21,11 @@
 		</view>
 		<view :class="{bigfoot:show,foot:!show}">
 			<view :class="[show?'bigsay':'']">
-				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" @blur="hideComment" 
+				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" 
 				:value="comment" placeholder="说点什么..." @focus="showComment" @input="input"/>
+				<button v-show="show" class="cancel" size="mini" type="warn" @click="cancel">取消</button>
 				<button v-show="show" class="send" size="mini" type="primary" @click="send">发表</button>
-				<view v-show="show" class="number">{{textcounter}}/140</view>
+				<view v-show="show" class="number">{{counter}}/140</view>
 			</view>
 			<view class="save-like" v-show="!show">
 				<view class="save" :class="{clicked:saveclicked}" @click="saveadd">
@@ -77,12 +78,20 @@
 			send(){
 				console.log(this.comment + ' ' + this.id)
 				this.comment = ''
-				this.textcounter = 0
+				this.hideComment()
 			},
 			input(e){
 				this.comment = e.detail.value
-				this.textcounter = this.comment.length
 			},
+			cancel(){
+				this.comment = ''
+				this.hideComment()
+			}
+		},
+		computed:{
+			counter(){
+				return this.comment.length
+			}
 		},
 		onLoad(option) {
 			let t = this.title
@@ -116,13 +125,19 @@
 					{
 						id:10,
 						usericon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
-						username:'露露欧尼酱',
+						user:{
+							id:555,
+							username:'露露欧尼酱'
+						},
 						context:'每次都要赞你', 
 						replys:[
 							{
 								id:100,
-								username:'亦雨清晨',
-								replyto:'',
+								user:{
+									id:12,
+									username:'亦雨清晨'
+								},
+								replyto:null,
 								context:'谢谢',
 							}
 						],
@@ -131,19 +146,28 @@
 					{
 						id:11,
 						usericon:'https://pic4.zhimg.com/e2cc2b856_s.jpg',
-						username:'叽歪陈',
+						user:{
+							id:132,
+							username:'叽歪陈'
+						},
 						context:'太粗略了，好多真的值得去的景点没提，河坊街什么的真的不值一提。龙井、茅家埠、梅家坞、九溪，这些不应该一个西湖就带过了。',
 						replys:[
 							{
 								id:100,
-								username:'亦雨清晨',
-								replyto:'',
+								user:{
+									id:13,
+									username:'亦雨清晨'
+								},
+								replyto:null,
 								context:'好的吧 回头修改修改',
 							},
 							{
 								id:101,
-								username:'你还怕大雨吗',
-								replyto:'',
+								user:{
+									id:14,
+									username:'你还怕大雨吗'
+								},
+								replyto:null,
 								context:'那杭州什么地方比较值得去呢',
 							}
 						],
@@ -152,13 +176,19 @@
 					{
 						id:12,
 						usericon:'https://pic1.zhimg.com/v2-1a5316c3a9945bf2377ea2c05d9a65a2_s.jpg',
-						username:'起风了',
+						user:{
+							id:88879,
+							username:'起风了'
+						},
 						context:'表示在这一个月了，除了西湖没哪个值得去的。湿地上次进去刚好花期还不错。平时也没必要进去，边上有个不用钱的小湿地就很不错了。',
 						replys:[
 							{
 								id:100,
-								username:'sniperelite',
-								replyto:'',
+								user:{
+									id:15,
+									username:'sniperelite'
+								},
+								replyto:null,
 								context:'杭州可不就看个西湖和湖边嘛。还有就是江边的六和塔那些去看看就成了。',
 							}
 						],
@@ -167,7 +197,10 @@
 					{
 						id:13,
 						usericon:'https://pic3.zhimg.com/v2-d6e979060d88563a7a066adb530964d8_s.jpg',
-						username:'Levi',
+						user:{
+							id:223156,
+							username:'Levi'
+						},
 						context:'上次去了西湖音乐喷泉，真的非常好看',
 						replys:[
 							
@@ -177,43 +210,70 @@
 					{
 						id:14,
 						usericon:'https://pic4.zhimg.com/v2-85390b19224d589bc8f4b38414724c78_s.jpg',
-						username:'小新',
+						user:{
+							id:777,
+							username:'小新'
+						},
 						context:'这个规划个人感觉蛮靠谱的，过几天带爸妈去杭州两天打算照楼主的路线游玩，嘿嘿',
 						replys:[
 							{
 								id:20,
-								username:'知秋',
-								replyto:'',
+								user:{
+									id:111,
+									username:'知秋'
+								},
+								replyto:null,
 								context:'怎么样兄弟，这个路线靠谱吗？我也打算去耍两天'
 							},
 							{
 								id:21,
-								username:'知秋',
-								replyto:'',
+								user:{
+									id:21,
+									username:'知秋'
+								},
+								replyto:null,
 								context:'怎么样兄弟，这个路线靠谱吗？我也打算去耍两天'
 							},
 							{
 								id:22,
-								username:'梦旅人',
-								replyto:'',
+								user:{
+									id:55,
+									username:'梦旅人'
+								},
+								replyto:{},
 								context:'怎么样兄弟，我也……[捂脸]'
 							},
 							{
 								id:23,
-								username:'知秋',
-								replyto:'',
+								user:{
+									id:66,
+									username:'知秋'
+								},
+								replyto:null,
 								context:'西湖国庆偶遇有木有'
 							},
 							{
 								id:24,
-								username:'阿扑吖',
-								replyto:'知秋',
+								user:{
+									id:2222,
+									username:'阿扑吖'
+								},
+								replyto:{
+									id:55,
+									username:'知秋'
+								},
 								context:'有！！我二号出发从武汉去杭州！！'
 							},
 							{
 								id:25,
-								username:'之乎者也',
-								replyto:'知秋',
+								user:{
+									id:888,
+									username:'之乎者也'
+								},
+								replyto:{
+									id:55,
+									username:'知秋'
+								},
 								context:'哎呀，巧了，我一号从合肥出发[爱]'
 							}
 						],
@@ -223,7 +283,6 @@
 				saveclicked:false,
 				likeclicked:false,
 				show:false,
-				textcounter:0,
 				comment:''
 			}
 		}
@@ -234,7 +293,7 @@
 	.number {
 		position: absolute;
 		bottom: 12rpx;
-		right: 150rpx;
+		right: 160rpx;
 	}
 	h1 {
 		font-size: 18px;
@@ -315,7 +374,7 @@
 		padding:0 10rpx;
 	}
 	.show{
-		filter: contrast(10%);
+		filter: contrast(50%);
 	}
 	.bigfoot{
 		border-top: 1px solid #E5E5E5;
@@ -340,10 +399,15 @@
 		margin: 15rpx 0;
 		padding: 10rpx;
 	}
-	.send{
+	.send, .cancel{
 		position: absolute;
 		bottom: 30rpx;
+	}
+	.send {
 		right: 30rpx;
+	}
+	.cancel{
+		left: 30rpx;
 	}
 	.date{
 		font-size: 12px;

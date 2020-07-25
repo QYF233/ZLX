@@ -29,7 +29,8 @@
 		{
 			"path":"pages/locations/locations",
 			"style":{
-				"navigationBarTitleText":"寻境"
+				"navigationBarTitleText":"寻境",
+				"enablePullDownRefresh":true
 			}
 		},
 		{

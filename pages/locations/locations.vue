@@ -36,6 +36,19 @@
 			textPhoto,
 			textOnly
 		},
+		onLoad: function (options) {
+			
+		},
+		onPullDownRefresh() {
+			uni.vibrateShort()
+			setTimeout(function () {
+				uni.stopPullDownRefresh({
+					success:function(){
+						console.log("refresh")
+					}
+				});
+			}, 300);
+		},
 		data() {
 			return {
 				articles:[

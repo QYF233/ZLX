@@ -33,7 +33,7 @@
 				</uni-transition>
 				<view class="replys" v-show="replys.length>0">
 					<template v-for="reply in replys">
-						<reply :key="reply.id" :id="reply.id" :username="reply.username" :context="reply.context" :replyto="reply.replyto"></reply>
+						<reply :key="reply.id" :id="reply.id" :username="reply.user.username" :context="reply.context" :replyto="reply.replyto"></reply>
 					</template>
 				</view>
 			</view>
