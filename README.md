@@ -28,3 +28,29 @@
 4.  王佳
 5.  傅成涛
 
+#### 项目结构说明
+
+home 首页
+
+food 寻吃
+
+hotel 寻住
+
+treasure 寻宝
+
+atmosphere 寻意
+
+locations 寻境
+
+city 城市列表
+
+painting 寻画
+
+play 寻玩
+
+poem 寻诗
+
+search 搜索页面
+
+me 关于
+

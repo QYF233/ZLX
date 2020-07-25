@@ -1,3 +1,4 @@
+<!-- 寻宝 -->
 <template>
 	<view>
 		<rotation-image></rotation-image>

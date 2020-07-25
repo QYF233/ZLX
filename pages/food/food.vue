@@ -1,3 +1,4 @@
+<!-- 寻吃 -->
 <template>
 	<view>
 		<header-banner :foods="foodsInBanner"></header-banner>

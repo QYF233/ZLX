@@ -1,3 +1,4 @@
+<!-- 寻住 -->
 <template>
 	<view>
 		<view class="status_bar">
