@@ -49,5 +49,34 @@
 </script>
 
 <style>
-	@import '../css/style.css';
+	.item-view {
+		margin:20rpx 0;
+		border-top: 1px #e5e5e5 solid;
+		background-color: #ffffff;
+		padding: 20rpx;
+		box-shadow: 0px 4px 4px #AAAAAA;
+	}
+	.image {
+		width: 200rpx;
+		height: 150rpx;
+		border-radius: 10rpx;
+		background-color: #e5e5e5;
+	}
+	.item-bottom {
+		margin-top: 5rpx;
+		display: flex;
+	}
+	.title {
+		font-weight: bold;
+		font-size: 16px;
+	}
+	.author {
+		font-size: 12px;
+		color: #b9b9b9;
+		margin-bottom: 10rpx;
+	}
+	.date{
+		font-size: 12px;
+		color: #b5b5b5;
+	}
 </style>
