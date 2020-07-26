@@ -2,7 +2,7 @@
 	<view>
 		<view class="container" :class="{show:show}" @tap="hideComment">
 			<view class="title">{{title}}</view>
-			<view class="author">{{author}}</view>
+			<view class="author">{{author.name}}</view>
 			<view class="date">{{date}}</view>
 			<view class="text" v-html="content"></view>
 			<view class="comments">
@@ -24,7 +24,7 @@
 		<view :class="{bigfoot:show,foot:!show}">
 			<view :class="[show?'bigsay':'']">
 				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" 
-				:value="comment" placeholder="说点什么..." @click="showComment" @input="input"/>
+				:value="text" placeholder="说点什么..." @click="showComment" @input="input"/>
 				<uni-transition
 				:mode-class="['slide-buttom','fade','zoom-in']" :duration="300"
 				:show="show">
@@ -179,7 +179,10 @@
 			return {
 				id:0,
 				title:'西湖最强游玩攻略',
-				author:'亦雨清晨',
+				author:{
+					id:555,
+					name:'亦雨清晨'
+				},
 				date:"2020-7-3",
 				content: '<p>西湖可以玩一整天，先走走断桥，然后去雷峰塔那，（雷峰塔可以坐电梯上去）下来后再坐船去三潭印月，（船票成人55，其中船票35岛的门票20，船票是包括来回的，上岛随便玩，然后可以选择东南西北四个方向坐船在回去，当然4个发现到达的地方不一样，可以去湖滨，少年宫等等地方）欣赏一元人民币的美，</p>'+
 				'<img src="https://pic3.zhimg.com/80/v2-85b809f2b0e41a8ec443a80f80f582cf_720w.jpg" style="width: 350px;margin: 10px auto;display: block;" alt="">'+
