@@ -4,7 +4,7 @@
 			<view class="title">{{title}}</view>
 			<view class="author">{{author}}</view>
 			<view class="date">{{date}}</view>
-			<view class="text" v-html="text"></view>
+			<view class="text" v-html="content"></view>
 			<view class="comments">
 				<h1>评论</h1>
 				<view class="comment" v-for="c in comments" :key="c.id">
@@ -86,6 +86,10 @@
 				this.show = false
 			},
 			send(){
+				if(this.text === ''){
+					return
+				}
+				let loginUser = uni.getStorageSync('user')
 				if(loginUser){
 					let date = new Date()
 					let time = date.getFullYear() + "-" + (date.getMonth()+1)
@@ -95,11 +99,11 @@
 						content:{
 							id:parseInt(Math.random()*10000+20),
 							user:{
-								id:123,
+								id:loginUser.id,
 								name:'林其龙',
 								icon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
 							},
-							context:this.comment,
+							context:this.text,
 							replys:[],
 							time: time
 						}
@@ -113,14 +117,13 @@
 				}
 			},
 			input(e){
-				this.comment = e.detail.value
+				this.text = e.detail.value
 			},
 			cancel(){
-				this.comment = ''
+				this.text = ''
 				this.hideComment()
 			},
 			updateComment(data){
-				console.log(data)
 				this.comments.push(data.content)
 			},
 			updateReply(data){
@@ -159,7 +162,7 @@
 		},
 		computed:{
 			counter(){
-				return this.comment.length
+				return this.text.length
 			}
 		},
 		onLoad(option) {
@@ -178,7 +181,7 @@
 				title:'西湖最强游玩攻略',
 				author:'亦雨清晨',
 				date:"2020-7-3",
-				text: '<p>西湖可以玩一整天，先走走断桥，然后去雷峰塔那，（雷峰塔可以坐电梯上去）下来后再坐船去三潭印月，（船票成人55，其中船票35岛的门票20，船票是包括来回的，上岛随便玩，然后可以选择东南西北四个方向坐船在回去，当然4个发现到达的地方不一样，可以去湖滨，少年宫等等地方）欣赏一元人民币的美，</p>'+
+				content: '<p>西湖可以玩一整天，先走走断桥，然后去雷峰塔那，（雷峰塔可以坐电梯上去）下来后再坐船去三潭印月，（船票成人55，其中船票35岛的门票20，船票是包括来回的，上岛随便玩，然后可以选择东南西北四个方向坐船在回去，当然4个发现到达的地方不一样，可以去湖滨，少年宫等等地方）欣赏一元人民币的美，</p>'+
 				'<img src="https://pic3.zhimg.com/80/v2-85b809f2b0e41a8ec443a80f80f582cf_720w.jpg" style="width: 350px;margin: 10px auto;display: block;" alt="">'+
 				'<p>然后选择杭饭的方向坐船到岳王（岳飞）庙逛逛，（成人票25）然后在往西湖方向走（很近最多8分钟就到了）先去最近的西泠印社（吴邪去过的地方免门票）</p>'+
 				'<img src="https://pic4.zhimg.com/80/v2-d574bd26e6324016896d06168dfa14f3_720w.jpg" style="width: 350px;margin: 10px auto;display: block;" alt="">'+
@@ -352,7 +355,7 @@
 				saveclicked:false,
 				likeclicked:false,
 				show:false,
-				comment:''
+				text:''
 			}
 		}
 	}

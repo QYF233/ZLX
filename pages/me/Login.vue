@@ -47,8 +47,7 @@
 						uni.setStorage({
 							key:'user',
 							data:{
-								id:123,
-								name:'林其龙'
+								id:123
 							}
 						})
 						uni.switchTab({
@@ -58,8 +57,7 @@
 							}
 						})
 					},500)	
-				}
-				
+				}	
 			}
 		}
 	}

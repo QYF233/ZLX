@@ -62,6 +62,9 @@
 				this.text = e.detail.value
 			},
 			send(){
+				if(this.text === '') {
+					return
+				}
 				let loginUser = uni.getStorageSync('user')
 				if(loginUser){
 					this.$emit("updateReply",{
@@ -69,7 +72,7 @@
 							id:parseInt(Math.random()*10000+20),
 							user:{
 								id:loginUser.id,
-								name:loginUser.name
+								name:'林其龙'
 							},
 							replyto:{
 								id:this.user.id,

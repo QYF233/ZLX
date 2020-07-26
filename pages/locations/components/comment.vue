@@ -28,7 +28,7 @@
 				:mode-class="['slide-right','fade','zoom-in']"
 				:show="show">
 					<view class="goreply">
-						<input type="text" class="replyinput" @blur="hideReply" :value="myreply"@input="input" :placeholder="placehoder">
+						<input type="text" class="replyinput" @blur="hideReply" :value="text"@input="input" :placeholder="placehoder">
 						<view class="replybtn" type="primary" @click="send">发表</view>
 					</view>
 				</uni-transition>
@@ -63,7 +63,7 @@
 		data(){
 			return {
 				show:false,
-				myreply:'',
+				text:'',
 				placehoder:''
 			}
 		},
@@ -81,6 +81,9 @@
 				this.show = false
 			},
 			send(){
+				if(this.text === ''){
+					return
+				}
 				let loginUser = uni.getStorageSync('user')
 				if(loginUser){
 					this.updateReply({
@@ -88,13 +91,13 @@
 							id:parseInt(Math.random()*10000+20),
 							user:{
 								id:loginUser.id,
-								name:loginUser.name
+								name:'林其龙'
 							},
 							replyto:null,
-							context:this.myreply,
+							context:this.text,
 						}
 					})
-					this.myreply = ''
+					this.text = ''
 				} else {
 					uni.showToast({
 						icon:'none',
@@ -103,7 +106,7 @@
 				}
 			},
 			input(e){
-				this.myreply = e.detail.value
+				this.text = e.detail.value
 			},
 			updateReply(data) {
 				data.target_id = this.id
