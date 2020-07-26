@@ -3,13 +3,13 @@
 		<view class="comment">
 			<view class="comment-left">
 				<view class="usericon">
-					<image :src="usericon" class="icon">
+					<image :src="user.icon" class="icon">
 				</view>
 			</view>
 			<view class="comment-right">
 				<view class="user">
 					<view class="username">
-						{{username}}
+						{{user.name}}
 					</view>
 				</view>
 				<view class="context">
@@ -20,7 +20,8 @@
 						{{time}}
 					</view>
 					<view class="button">
-						<view class="btn" @click="toggleReply">回复</view>
+						<view class="btn1" v-show="user.id === 123" @click="deleteComment">删除</view>
+						<view class="btn2" @click="toggleReply">回复</view>
 					</view>
 				</view>
 				<uni-transition
@@ -33,7 +34,10 @@
 				</uni-transition>
 				<view class="replys" v-show="replys.length>0">
 					<template v-for="reply in replys">
-						<reply @update="update" :key="reply.id" :id="reply.id" :username="reply.user.username" :context="reply.context" :replyto="reply.replyto"></reply>
+						<uni-transition :mode-class="['slide-bottom','fade','zoom-in']" :show="true">
+						<reply :dark="dark" @updateReply="updateReply" @deleteReply="deleteReply" :key="reply.id" 
+						:id="reply.id" :user="reply.user" :context="reply.context" :replyto="reply.replyto"></reply>
+						</uni-transition>
 					</template>
 				</view>
 			</view>
@@ -50,8 +54,7 @@
 		},
 		props:{
 			id:Number,
-			usericon:String,
-			username:String,
+			user:Object,
 			context:String,
 			replys:Array,
 			time:String,
@@ -65,7 +68,7 @@
 			}
 		},
 		beforeMount() {
-			this.placehoder = "回复给 " + this.username + ":"
+			this.placehoder = "回复给 " + this.user.name + ":"
 		},
 		methods:{
 			toggleReply(){
@@ -78,15 +81,40 @@
 				this.show = false
 			},
 			send(){
-				console.log(this.myreply+ ' ' + this.id)
-				this.myreply = ''
-				this.$emit("update",1)
+				let loginUser = uni.getStorageSync('user')
+				if(loginUser){
+					this.updateReply({
+						content:{
+							id:parseInt(Math.random()*10000+20),
+							user:{
+								id:loginUser.id,
+								name:loginUser.name
+							},
+							replyto:null,
+							context:this.myreply,
+						}
+					})
+					this.myreply = ''
+				} else {
+					uni.showToast({
+						icon:'none',
+						title:'您还没有登录'
+					})
+				}
 			},
 			input(e){
 				this.myreply = e.detail.value
 			},
-			update(date){
-				this.$emit("update",date)
+			updateReply(data) {
+				data.target_id = this.id
+				this.$emit('updateReply',data)
+			},
+			deleteReply(data) {
+				data.comment_id = this.id
+				this.$emit("deleteReply",data)
+			},
+			deleteComment(){
+				this.$emit('deleteComment',this.id)
 			}
 		}
 	}
@@ -132,13 +160,18 @@
 		color: #B5B5B5;
 		padding-top: 20rpx;
 	}
-	.btn{
+	.btn1,.btn2{
 		padding-top: 20rpx;
 		text-align: center;
 		line-height: 30rpx;
 		position: absolute;
-		right: 30rpx;
 		color: #007AFF;
+	}
+	.btn2 {
+		right: 30rpx;
+	}
+	.btn1 {
+		right: 100rpx;
 	}
 	.goreply{
 		background-color: #E5E5E5;

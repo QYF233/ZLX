@@ -45,8 +45,11 @@
 					this.load = true
 					setTimeout(()=>{
 						uni.setStorage({
-							key:'uId',
-							data:'123'
+							key:'user',
+							data:{
+								id:123,
+								name:'林其龙'
+							}
 						})
 						uni.switchTab({
 							url:'/pages/me/Me',

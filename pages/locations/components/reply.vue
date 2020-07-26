@@ -1,19 +1,24 @@
 <template>
 	<view>
 		<view class="reply" @click="toggleInput">
-			<text class="name">{{username}}</text>
+			<text class="name">{{user.name}}</text>
 			
-			<template v-if="replyto!==null"><text class="huifu">回复</text> <text class="name">{{replyto.username}}</text></template>
+			<template v-if="replyto!==null">
+				<text class="huifu">回复</text> <text class="name">{{replyto.name}}</text>
+			</template>
 			<text>:{{context}}</text>
-			
 		</view>
 		
 		<uni-transition 
 		:mode-class="['slide-right','fade','zoom-in']" :duration="300"
 		:show="show">
 			<view class="goreply">
-				<input type="text" class="replyinput" @blur="hideInput" :value="text" @input="input" :placeholder="placehoder">
+				<view class="delete_btn" @click="deleteReply" v-show="this.user.id === 123">删除</view>
+				<view class="input_box">
+					<input type="text" class="replyinput" @blur="hideInput" :value="text" @input="input" :placeholder="placehoder">
 				<view class="replybtn" @click="send">发表</view>
+				</view>
+				
 			</view>
 		</uni-transition>
 	</view>
@@ -25,7 +30,7 @@
 		name:"Reply",
 		props:{
 			id:Number,
-			username:String,
+			user:Object,
 			replyto:Object,
 			context:String,
 			dark:Boolean
@@ -37,11 +42,11 @@
 			return {
 				show:false,
 				text:'',
-				placehoder:''
+				placehoder:'',
 			}
 		},
 		beforeMount() {
-			this.placehoder = '回复给 ' + this.username + ":"
+			this.placehoder = '回复给 ' + this.user.name + ":"
 		},
 		methods:{
 			toggleInput(){
@@ -57,9 +62,34 @@
 				this.text = e.detail.value
 			},
 			send(){
-				console.log(this.text + ' ' + this.id)
-				this.text = '',
-				this.$emit("update",1)
+				let loginUser = uni.getStorageSync('user')
+				if(loginUser){
+					this.$emit("updateReply",{
+						content:{
+							id:parseInt(Math.random()*10000+20),
+							user:{
+								id:loginUser.id,
+								name:loginUser.name
+							},
+							replyto:{
+								id:this.user.id,
+								name:this.user.name
+							},
+							context:this.text
+						}
+					})
+					this.text = ''
+				} else {
+					uni.showToast({
+						icon:'none',
+						title:'您还没有登录'
+					})
+				}
+			},
+			deleteReply(){
+				this.$emit("deleteReply",{
+					reply_id:this.id
+				})
 			}
 		}
 	}
@@ -74,11 +104,12 @@
 	}
 	.goreply{
 		background-color: #E5E5E5;
-		display: flex;
-		padding: 0 10rpx;
+		padding: 10rpx 10rpx;
 		margin-top: 20rpx;
-		height: 70rpx;
 		border-radius: 10rpx;
+	}
+	.input_box{
+		display: flex;
 	}
 	.replyinput {
 		background-color: #FFFFFF;
@@ -105,5 +136,9 @@
 	}
 	.huifu{
 		color: #b5b5b5;
+	}
+	.delete_btn {
+		color: #007AFF;
+		margin: 5rpx;
 	}
 </style>

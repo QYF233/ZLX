@@ -32,9 +32,9 @@ export default {
 	},
 	onShow() {
 		try {
-		    const value = uni.getStorageSync('uId');
+		    const value = uni.getStorageSync('user');
 		    if (value) {
-		        this.userId = value
+		        this.userId = value.id
 		    }else{
 				this.userId = ''
 			}

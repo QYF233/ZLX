@@ -8,9 +8,11 @@
 			<view class="comments">
 				<h1>评论</h1>
 				<view class="comment" v-for="c in comments" :key="c.id">
-					<comment :id="c.id" :usericon="c.usericon"
-					:username="c.user.username" :context="c.context"
-					:replys="c.replys" :time="c.time" :dark="show" @update="update"></comment>
+					<uni-transition :show="true" :mode-class="['slide-buttom','fade','zoom-in']">
+						<comment :id="c.id" :user="c.user" :context="c.context"
+						:replys="c.replys" :time="c.time" :dark="show" @updateReply="updateReply"
+						@deleteReply="deleteReply" @deleteComment="deleteComment"></comment>
+					</uni-transition>
 				</view>
 			</view>
 			<view class="footer">
@@ -84,9 +86,31 @@
 				this.show = false
 			},
 			send(){
-				console.log(this.comment + ' ' + this.id)
-				this.comment = ''
-				this.hideComment()
+				if(loginUser){
+					let date = new Date()
+					let time = date.getFullYear() + "-" + (date.getMonth()+1)
+					+ '-' + date.getDate() + ' ' + date.getHours() + ':' + 
+					(date.getMinutes()<10? ('0'+date.getMinutes()) : (date.getMinutes()))
+					this.updateComment({
+						content:{
+							id:parseInt(Math.random()*10000+20),
+							user:{
+								id:123,
+								name:'林其龙',
+								icon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
+							},
+							context:this.comment,
+							replys:[],
+							time: time
+						}
+					})
+					this.cancel()
+				} else {
+					uni.showToast({
+						icon:'none',
+						title:'您还没有登录'
+					})
+				}
 			},
 			input(e){
 				this.comment = e.detail.value
@@ -95,8 +119,42 @@
 				this.comment = ''
 				this.hideComment()
 			},
-			update(data){
+			updateComment(data){
 				console.log(data)
+				this.comments.push(data.content)
+			},
+			updateReply(data){
+				for(let comment of this.comments){
+					if(comment.id === data.target_id){
+						comment.replys.push(data.content)
+						break
+					}
+				}
+			},
+			deleteReply(data){
+				for(let comment of this.comments){
+					if(comment.id === data.comment_id){
+						let index = 0
+						for(let reply of comment.replys){
+							if(reply.id === data.reply_id){
+								comment.replys.splice(index,1)
+								break
+							}
+							index++
+						}
+						break
+					}
+				}
+			},
+			deleteComment(data){
+				let index = 0
+				for(let comment of this.comments){
+					if(comment.id === data){
+						this.comments.splice(index,1)
+						break
+					}
+					index++
+				}
 			}
 		},
 		computed:{
@@ -135,10 +193,10 @@
 				comments:[
 					{
 						id:10,
-						usericon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
 						user:{
 							id:555,
-							username:'露露欧尼酱'
+							name:'露露欧尼酱',
+							icon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
 						},
 						context:'每次都要赞你', 
 						replys:[
@@ -146,7 +204,7 @@
 								id:100,
 								user:{
 									id:12,
-									username:'亦雨清晨'
+									name:'亦雨清晨'
 								},
 								replyto:null,
 								context:'谢谢',
@@ -156,10 +214,11 @@
 					},
 					{
 						id:11,
-						usericon:'https://pic4.zhimg.com/e2cc2b856_s.jpg',
+						
 						user:{
 							id:132,
-							username:'叽歪陈'
+							name:'叽歪陈',
+							icon:'https://pic4.zhimg.com/e2cc2b856_s.jpg',
 						},
 						context:'太粗略了，好多真的值得去的景点没提，河坊街什么的真的不值一提。龙井、茅家埠、梅家坞、九溪，这些不应该一个西湖就带过了。',
 						replys:[
@@ -167,7 +226,7 @@
 								id:100,
 								user:{
 									id:13,
-									username:'亦雨清晨'
+									name:'亦雨清晨'
 								},
 								replyto:null,
 								context:'好的吧 回头修改修改',
@@ -176,7 +235,7 @@
 								id:101,
 								user:{
 									id:14,
-									username:'你还怕大雨吗'
+									name:'你还怕大雨吗'
 								},
 								replyto:null,
 								context:'那杭州什么地方比较值得去呢',
@@ -186,10 +245,11 @@
 					},
 					{
 						id:12,
-						usericon:'https://pic1.zhimg.com/v2-1a5316c3a9945bf2377ea2c05d9a65a2_s.jpg',
+						
 						user:{
 							id:88879,
-							username:'起风了'
+							name:'起风了',
+							icon:'https://pic1.zhimg.com/v2-1a5316c3a9945bf2377ea2c05d9a65a2_s.jpg',
 						},
 						context:'表示在这一个月了，除了西湖没哪个值得去的。湿地上次进去刚好花期还不错。平时也没必要进去，边上有个不用钱的小湿地就很不错了。',
 						replys:[
@@ -197,7 +257,7 @@
 								id:100,
 								user:{
 									id:15,
-									username:'sniperelite'
+									name:'sniperelite'
 								},
 								replyto:null,
 								context:'杭州可不就看个西湖和湖边嘛。还有就是江边的六和塔那些去看看就成了。',
@@ -207,23 +267,21 @@
 					},
 					{
 						id:13,
-						usericon:'https://pic3.zhimg.com/v2-d6e979060d88563a7a066adb530964d8_s.jpg',
 						user:{
 							id:223156,
-							username:'Levi'
+							name:'Levi',
+							icon:'https://pic3.zhimg.com/v2-d6e979060d88563a7a066adb530964d8_s.jpg',
 						},
 						context:'上次去了西湖音乐喷泉，真的非常好看',
-						replys:[
-							
-						],
+						replys:[],
 						time:'2020-7-8 01:00'
 					},
 					{
 						id:14,
-						usericon:'https://pic4.zhimg.com/v2-85390b19224d589bc8f4b38414724c78_s.jpg',
 						user:{
 							id:777,
-							username:'小新'
+							name:'小新',
+							icon:'https://pic4.zhimg.com/v2-85390b19224d589bc8f4b38414724c78_s.jpg',
 						},
 						context:'这个规划个人感觉蛮靠谱的，过几天带爸妈去杭州两天打算照楼主的路线游玩，嘿嘿',
 						replys:[
@@ -231,7 +289,7 @@
 								id:20,
 								user:{
 									id:111,
-									username:'知秋'
+									name:'知秋'
 								},
 								replyto:null,
 								context:'怎么样兄弟，这个路线靠谱吗？我也打算去耍两天'
@@ -240,7 +298,7 @@
 								id:21,
 								user:{
 									id:21,
-									username:'知秋'
+									name:'知秋'
 								},
 								replyto:null,
 								context:'怎么样兄弟，这个路线靠谱吗？我也打算去耍两天'
@@ -249,16 +307,16 @@
 								id:22,
 								user:{
 									id:55,
-									username:'梦旅人'
+									name:'梦旅人'
 								},
-								replyto:{},
+								replyto:null,
 								context:'怎么样兄弟，我也……[捂脸]'
 							},
 							{
 								id:23,
 								user:{
 									id:66,
-									username:'知秋'
+									name:'知秋'
 								},
 								replyto:null,
 								context:'西湖国庆偶遇有木有'
@@ -267,11 +325,11 @@
 								id:24,
 								user:{
 									id:2222,
-									username:'阿扑吖'
+									name:'阿扑吖'
 								},
 								replyto:{
 									id:55,
-									username:'知秋'
+									name:'知秋'
 								},
 								context:'有！！我二号出发从武汉去杭州！！'
 							},
@@ -279,11 +337,11 @@
 								id:25,
 								user:{
 									id:888,
-									username:'之乎者也'
+									name:'之乎者也'
 								},
 								replyto:{
 									id:55,
-									username:'知秋'
+									name:'知秋'
 								},
 								context:'哎呀，巧了，我一号从合肥出发[爱]'
 							}
@@ -358,6 +416,7 @@
 	.save-like{
 		display: flex;
 		margin: 0 auto;
+		padding-left: 30rpx;
 	}
 	.save{
 		margin-right: 20rpx;
