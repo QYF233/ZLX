@@ -81,7 +81,8 @@
 		},{
 		    "path" : "pages/painting/painting",
 		    "style" : {
-				"navigationBarTitleText": "寻画"
+				"navigationBarTitleText": "寻画",
+				"navigationStyle":"custom"
 			}
 		},{
 		    "path" : "pages/poem/poem",

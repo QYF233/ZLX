@@ -2,7 +2,7 @@
 	<view>
 		<tourist-search></tourist-search>
 		<tourist-recommend></tourist-recommend>
-		<tourist-share :list="list" @click="choose"></tourist-share>
+		<waterfall-flow :list="list" @click="choose"></waterfall-flow>
 	</view>
 </template>
 
@@ -10,7 +10,7 @@
 import TouristSearch from './components/Search'
 import TouristRecommend from './components/Recommend'
 // 瀑布流组件
-import TouristShare from './components/Share';
+import WaterfallFlow from '@/components/nairenk-waterfall-flow/nairenk-waterfall-flow.vue';
 
 // 模拟 JSON 数据
 const data = require('../../common/json/data.json');
@@ -20,7 +20,7 @@ export default{
 	components: {
 		TouristSearch,
 		TouristRecommend,
-		TouristShare
+		WaterfallFlow
 	},
 	data() {
 		return {
@@ -54,7 +54,7 @@ export default{
 					this.list = this.list.concat(data.list.slice(this.start, this.end));
 					this.start = this.end;
 					uni.hideLoading();
-				}, 1000)
+				}, 300)
 			}
 		}
 	}
