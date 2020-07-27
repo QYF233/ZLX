@@ -11,7 +11,7 @@
 					<uni-transition :show="true" :mode-class="['slide-buttom','fade','zoom-in']">
 						<comment :id="c.id" :user="c.user" :context="c.context"
 						:replys="c.replys" :time="c.time" :dark="show" @updateReply="updateReply"
-						@deleteReply="deleteReply" @deleteComment="deleteComment"></comment>
+						@deleteReply="deleteReply" @deleteComment="deleteComment" :currentUserId="currentUserId"></comment>
 					</uni-transition>
 				</view>
 			</view>
@@ -66,7 +66,7 @@
 		methods:{
 			saveadd(){
 				if(this.saveclicked){
-					this.article.like--
+					this.article.save--
 				} else{
 					this.article.save++
 				}
@@ -90,8 +90,7 @@
 				if(this.text === ''){
 					return
 				}
-				let loginUser = uni.getStorageSync('user')
-				if(loginUser){
+				if(this.currentUserId!==0){
 					let date = new Date()
 					let time = date.getFullYear() + "-" + (date.getMonth()+1)
 					+ '-' + date.getDate() + ' ' + date.getHours() + ':' + 
@@ -100,7 +99,7 @@
 						content:{
 							id:parseInt(Math.random()*10000+20),
 							user:{
-								id:loginUser.id,
+								id:this.currentUserId,
 								name:'林其龙',
 								icon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
 							},
@@ -174,7 +173,11 @@
 			}
 			uni.setNavigationBarTitle({
 			　　title:t
-			})			
+			})
+			let loginUser = uni.getStorageSync('user')
+			if(loginUser){
+				this.currentUserId = loginUser.id
+			}
 		},
 		data() {
 			return {
@@ -182,7 +185,8 @@
 				saveclicked:false,
 				likeclicked:false,
 				show:false,
-				text:''
+				text:'',
+				currentUserId:0
 			}
 		}
 	}
@@ -313,5 +317,19 @@
 		font-size: 12px;
 		color: #B5B5B5;
 		margin-top: 20rpx;
+	}
+	.text >>> p{
+		margin: 1.4em 0;
+		font-size: 16px;
+	}
+	.text >>> img{
+		 width: 700rpx;
+		 margin: 1.4em auto;
+		 display: block;
+	}
+	.text >>> figcaption{
+		font-size: 14px;
+		color: #b5b5b5;
+		text-align: center;
 	}
 </style>

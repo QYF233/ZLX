@@ -20,7 +20,7 @@
 						{{time}}
 					</view>
 					<view class="button">
-						<view class="btn1" v-show="user.id === 123" @click="deleteComment">删除</view>
+						<view class="btn1" v-show="user.id === currentUserId" @click="deleteComment">删除</view>
 						<view class="btn2" @click="toggleReply">回复</view>
 					</view>
 				</view>
@@ -36,7 +36,8 @@
 					<template v-for="reply in replys">
 						<uni-transition :mode-class="['slide-bottom','fade','zoom-in']" :show="true">
 						<reply :dark="dark" @updateReply="updateReply" @deleteReply="deleteReply" :key="reply.id" 
-						:id="reply.id" :user="reply.user" :context="reply.context" :replyto="reply.replyto"></reply>
+						:id="reply.id" :user="reply.user" :context="reply.context" 
+						:replyto="reply.replyto" :currentUserId="currentUserId"></reply>
 						</uni-transition>
 					</template>
 				</view>
@@ -58,7 +59,8 @@
 			context:String,
 			replys:Array,
 			time:String,
-			dark:Boolean
+			dark:Boolean,
+			currentUserId:Number
 		},
 		data(){
 			return {
@@ -84,13 +86,12 @@
 				if(this.text === ''){
 					return
 				}
-				let loginUser = uni.getStorageSync('user')
-				if(loginUser){
+				if(this.currentUserId !== 0){
 					this.updateReply({
 						content:{
 							id:parseInt(Math.random()*10000+20),
 							user:{
-								id:loginUser.id,
+								id:this.currentUserId,
 								name:'林其龙'
 							},
 							replyto:null,

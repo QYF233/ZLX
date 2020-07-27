@@ -5,7 +5,7 @@
 			<!-- 盒子样式，自定义 -->
 			<view class="box">
 				<view class="pic">
-					<image class="image" mode="widthFix" :src="item.image" style="width: 100%; display: block;" ></image>
+					<image class="image" mode="widthFix" :src="item.image[0]" style="width: 100%; display: block;" ></image>
 				</view>
 				<view class="content">{{item.content}}</view>
 				<view class="user">

@@ -3,7 +3,16 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-		<waterfall-flow :list="list" @click="choose"></waterfall-flow>
+		<waterfall-flow :list="list" @click="gotoDetail"></waterfall-flow>
+		<view class="add" @click="post">
+			<uni-transition :show="addShow" :mode-class="['slide-bottom','fade','zoom-in']">
+				<view class="add_btn">
+					<view class="iconfont">
+						&#xe6cd;
+					</view>
+				</view>
+			</uni-transition>
+		</view>
 		
 	</view>
 	
@@ -22,7 +31,8 @@
 				start: 0,
 				end: 0,
 				list: [], // 列表
-				scrollTop:0
+				scrollTop:0,
+				addShow:true
 			}
 		},
 		onLoad() {
@@ -34,6 +44,7 @@
 		},
 		onPageScroll(e){
 			if(this.scrollTop - e.scrollTop > 10){
+				this.addShow = true
 				uni.showTabBar({
 					animation:true
 				})
@@ -43,15 +54,26 @@
 					uni.hideTabBar({
 						animation:true
 					})
+					this.addShow = false
 				}
 			}
 			this.scrollTop = e.scrollTop
 		},
 		methods: {
+			post(){
+				uni.chooseImage({
+					success(res) {
+						uni.navigateTo({
+							url:'/pages/painting/postPhoto?imgs=' + encodeURIComponent(JSON.stringify(res.tempFilePaths))
+						})
+					}
+				})
+			},
 			// 选中
-			choose(item) {
-				// item 返回选中 JSON 对象
-				console.log(item)
+			gotoDetail(item) {
+				uni.navigateTo({
+					url:'/pages/painting/Deatil?id=' + item.id
+				})
 			},
 			// 模拟加载数据
 			getList() {
@@ -82,5 +104,23 @@
 </script>
 
 <style>
-	
+	.add{
+		bottom: 200rpx;
+		position: fixed;
+		width: 80rpx;
+		left: 50%;
+		right: 50%;
+		margin-left: -40rpx;
+	}
+	.add_btn {
+		background-color: #007AFF;
+		border-radius: 50%;
+		height: 80rpx;
+		width: 80rpx;
+		margin: auto;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 80rpx;
+		font-size: 28px;
+	}
 </style>

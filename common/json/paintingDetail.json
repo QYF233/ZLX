@@ -1,0 +1,74 @@
+{
+	"detail":{
+		"id": 1,
+		"image": ["https://pic1.zhimg.com/80/v2-d4a54f94f3e1bbd60be3196853316940_720w.jpg","https://pic4.zhimg.com/80/v2-36d4491edc7943933a6ce230743cca40_720w.jpg"],
+		"content": "西湖是中国大陆主要的观赏性淡水湖泊之一，也是现今《世界遗产名录》中少数几个和中国唯一一个湖泊类文化遗产",
+		"user": {
+			"name": "nairenk",
+			"avatar": "https://pic4.zhimg.com/80/v2-e64412ee7c8584ffe4e69486012bd26d_qhd.jpg"
+		},
+		"date":"2020-7-4",
+		"comment":[
+			{
+				"id":10,
+				"user":{
+					"id":555,
+					"name":"露露欧尼酱",
+					"icon":"https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg"
+				},
+				"context":"每次都要赞你",
+				"time":"2020-8-8"
+			},
+			{
+				"id":11,
+				"user":{
+					"id":55,
+					"name":"尓姑娘的生活手札",
+					"icon":"https://pic2.zhimg.com/v2-2b7c8b82a426aa673476dcfbd932d4c8_s.jpg"
+				},
+				"context":"嗯，光影与时令很重要。",
+				"time":"2020-8-8"
+			},
+			{
+				"id":12,
+				"user":{
+					"id":54,
+					"name":"blue",
+					"icon":"https://pic3.zhimg.com/v2-ea1ac58a7b06e4bb9bb64ef2c23ea1a0_s.jpg"
+				},
+				"context":"第五张是水光涟滟晴方好 最后一张是山色空濛雨亦奇",
+				"time":"2020-8-8"
+			},
+			{
+				"id":13,
+				"user":{
+					"id":57,
+					"name":"大侠",
+					"icon":"https://pic2.zhimg.com/d97237a36aa9e027b275c34d43ab86ec_s.jpg"
+				},
+				"context":"华为吗",
+				"time":"2020-8-8"
+			},
+			{
+				"id":14,
+				"user":{
+					"id":53,
+					"name":"Kekai1978",
+					"icon":"https://pic4.zhimg.com/da8e974dc_s.jpg"
+				},
+				"context":"我觉得春天和阴雨天的自己更好看..",
+				"time":"2020-8-8"
+			},
+			{
+				"id":15,
+				"user":{
+					"id":52,
+					"name":"不秃头的刺猬",
+					"icon":"https://pic4.zhimg.com/v2-25e281701cf5394c4eec0c4b6bcaddaa_s.jpg"
+				},
+				"context":"现在雾霾天去也差不离了",
+				"time":"2020-8-8"
+			}
+		]
+	}
+}

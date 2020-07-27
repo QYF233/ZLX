@@ -119,6 +119,18 @@
 			"style":{
 				"navigationBarTitleText":"反馈"
 			}
+		},
+		{
+			"path":"pages/painting/postPhoto",
+			"style":{
+				"navigationBarTitleText":"上传旅图"
+			}
+		},
+		{
+			"path":"pages/painting/Deatil",
+			"style":{
+				"navigationBarTitleText":"内容详情"
+			}
 		}
     ],
 	"globalStyle": {

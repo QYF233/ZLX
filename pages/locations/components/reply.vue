@@ -13,7 +13,7 @@
 		:mode-class="['slide-right','fade','zoom-in']" :duration="300"
 		:show="show">
 			<view class="goreply">
-				<view class="delete_btn" @click="deleteReply" v-show="this.user.id === 123">删除</view>
+				<view class="delete_btn" @click="deleteReply" v-show="this.user.id === currentUserId">删除</view>
 				<view class="input_box">
 					<input type="text" class="replyinput" @blur="hideInput" :value="text" @input="input" :placeholder="placehoder">
 				<view class="replybtn" @click="send">发表</view>
@@ -33,7 +33,8 @@
 			user:Object,
 			replyto:Object,
 			context:String,
-			dark:Boolean
+			dark:Boolean,
+			currentUserId:Number
 		},
 		components:{
 			uniTransition
@@ -65,13 +66,12 @@
 				if(this.text === '') {
 					return
 				}
-				let loginUser = uni.getStorageSync('user')
-				if(loginUser){
+				if(this.currentUserId !== 0){
 					this.$emit("updateReply",{
 						content:{
 							id:parseInt(Math.random()*10000+20),
 							user:{
-								id:loginUser.id,
+								id:this.currentUserId,
 								name:'林其龙'
 							},
 							replyto:{
