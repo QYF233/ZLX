@@ -8,7 +8,8 @@
 			<home-location></home-location>
 			<home-icon></home-icon>
 			<h1>推荐</h1>
-			<wfalls-flow :list="list" ref="wfalls" @finishLoad="getLoadNum" @sendBack="choose"></wfalls-flow>
+			<!-- <wfalls-flow :list="list" ref="wfalls" @finishLoad="getLoadNum" @sendBack="choose" v-show="show"></wfalls-flow> -->
+			<waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow>
 		</view>
 	</view>
 </template>
@@ -19,8 +20,7 @@
 	import HomeLocation from './components/Location'
 	import HomeIcon from './components/Icon'
 	import HomeFind from './components/Find'
-	import WaterfallFlow from '@/components/nairenk-waterfall-flow/nairenk-waterfall-flow.vue';
-	import wfallsFlow from '@/components/wfalls-flow/wfalls-flow'
+	import WaterfallsFlow from '@/components/WaterfallsFlow/WaterfallsFlow.vue'
 	export default {
 		name: 'Home',
 		components: {
@@ -28,20 +28,14 @@
 			HomeLocation,
 			HomeIcon,
 			HomeFind,
-			WaterfallFlow,
-			wfallsFlow
+			WaterfallsFlow
 		},
 		data() {
 			return {
 				list:[],
-				isNewRenderDone:false
 			}
 		},
 		methods:{
-			getLoadNum(num){
-				!this.isNewRenderDone&&uni.hideLoading()
-				this.isNewRenderDone = true
-			},
 			choose(data){
 				uni.navigateTo({
 					url:data.url
@@ -51,24 +45,17 @@
 		onLoad() {
 			// 模拟首次加载列表数据
 			setTimeout(()=>{
-				this.list = data.list;
-				this.$refs.wfalls.init();
+				this.list = this.list.concat(data.list)
 			},200)
 		},
 		onReachBottom() {
-			// 加锁，避免在加载更多时用户频繁下拉导致的重复触发而渲染异常
-			if(!this.isNewRenderDone) return;   
-			this.isNewRenderDone = false
-			uni.showLoading({title:'正在加载更多'})
-			// 模拟分页请求 (加载更多)
+			uni.showLoading({
+				title:"正在加载"
+			})
 			setTimeout(()=>{
-				const nextData = JSON.parse(JSON.stringify(this.list.slice(0,10)))
-				this.list.push(...nextData);
-				setTimeout(()=>{
-					this.$refs.wfalls.handleViewRender();
-				},0)
+				this.list = this.list.concat(data.list)
 				uni.hideLoading()
-			},200)
+			},200) 
 		}
 	}
 </script>
@@ -84,5 +71,8 @@
 	h1 {
 		font-size: 18px;
 		margin-left: 20rpx;
+	}
+	.temp {
+		text-align: center;
 	}
 </style>

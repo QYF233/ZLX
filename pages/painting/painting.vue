@@ -3,7 +3,7 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-		<waterfall-flow :list="list" @click="gotoDetail"></waterfall-flow>
+		<waterfall-flow :wfList="list"  @itemTap="gotoDetail"></waterfall-flow>
 		<view class="add" @click="post">
 			<uni-transition :show="addShow" :mode-class="['slide-bottom','fade','zoom-in']">
 				<view class="add_btn">
@@ -27,20 +27,20 @@
 		},
 		data() {
 			return {
-				page: 1,
-				start: 0,
-				end: 0,
 				list: [], // 列表
 				scrollTop:0,
 				addShow:true
 			}
 		},
 		onLoad() {
-			this.getList();
+			setTimeout(()=>{
+				this.list = this.list.concat(data.list)
+			})
 		},
 		onReachBottom() {
-			this.page++;
-			this.getList();
+			setTimeout(()=>{
+				this.list = this.list.concat(data.list)
+			}) 
 		},
 		onPageScroll(e){
 			if(this.scrollTop - e.scrollTop > 10){
@@ -75,30 +75,6 @@
 					url:'/pages/painting/Detail?id=' + item.id
 				})
 			},
-			// 模拟加载数据
-			getList() {
-				if (this.list.length < data.list.length) {
-					uni.showLoading({
-						title: '加载中...'
-					})
-					setTimeout(() => {
-						this.end = this.page * 30; 
-						this.list = this.list.concat(data.list.slice(this.start, this.end));
-						this.start = this.end;
-						// uni.hideLoading();
-					})
-				}else{
-					uni.showLoading({
-						title: '加载中...'
-					})
-					setTimeout(() => {
-						uni.showToast({
-							icon:'none',
-							title:'没有更多了'
-						})
-					})
-				}
-			}
 		}
 	}
 </script>

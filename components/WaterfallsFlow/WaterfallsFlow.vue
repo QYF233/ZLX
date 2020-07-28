@@ -3,7 +3,7 @@
 		<!--    left    -->
 		<view>
 			<view id="left" v-if="leftList.length">
-				<view v-for="(item,index) in leftList" :key="index"
+				<view v-for="(item,index) in leftList" :key="index" 
 				class="wf-item"  @tap="itemTap(item)">
 					<WaterfallsFlowItem :item="item" />
 				</view>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-	import WaterfallsFlowItem from './WaterfallsFlowItem.vue'
+	import WaterfallsFlowItem from '../WaterfallsFlowItem/WaterfallsFlowItem.vue'
 	
 	export default {
 		components:{
