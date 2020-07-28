@@ -24,10 +24,11 @@
 		<h1>评论</h1>
 		<view class="input">
 			<input type="text" value="" class="commentinput" @input="inputHander" :value="input" placeholder="谈谈你的看法吧"/>
-			<view class="send_btn">发送</view>
+			<view class="send_btn" @click="send">发送</view>
 		</view>
 		<view class="comment">
-			<comment :currentUserId="currentUserId" :comment="comment" v-for="comment in detail.comment" :key="comment.id"></comment>
+			<comment @deleteComment="deleteComment" 
+			:currentUserId="currentUserId" :comment="comment" v-for="comment in detail.comment" :key="comment.id"></comment>
 		</view>
 		<view class="foot">
 			<view class="foot-left"> </view>
@@ -46,14 +47,27 @@
 		},
 		data(){
 			return {
+				id:0,
 				detail:{},
 				currentUserId:0,
 				input:''
 			}
 		},
 		methods:{
+			send(){
+				this.detail.comment.push({
+					id:parseInt(Math.random()*10000+20),
+					"user":{
+						"id":this.currentUserId,
+						"name":"林其龙",
+						"icon":"https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg"
+					},
+					"context":this.input,
+					"time":"2020-8-8"
+				})
+				this.input = ''
+			},
 			previewImage(index) {
-				console.log(12)
 				uni.previewImage({
 					urls:this.detail.image,
 					current:index,
@@ -62,11 +76,20 @@
 				})
 			},
 			inputHander(e){
-				console.log(e)
 				this.input = e.detail.value
+			},
+			deleteComment(id){
+				let index = 0
+				for(let c of this.detail.comment) {
+					if(c.id === id){
+						this.detail.comment.splice(index,1)
+					}
+					index++
+				}
 			}
 		},
 		onLoad(e) {
+			this.id = e.id
 			this.detail = data.detail
 			let loginUser = uni.getStorageSync('user')
 			if(loginUser){

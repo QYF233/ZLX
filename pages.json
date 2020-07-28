@@ -4,7 +4,10 @@
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"navigationStyle":"custom"
+				"navigationStyle":"custom",
+				"app-plus":{
+					"scrollIndicator":"none"
+				}
 			}
 		},
         {
@@ -22,13 +25,13 @@
 		{
 		    "path" : "pages/tourist/tourist",
 		    "style" : {
-				"navigationBarTitleText": "寻游"
+				"navigationBarTitleText": "寻境"
 			}
 		},
 		{
 			"path":"pages/locations/locations",
 			"style":{
-				"navigationBarTitleText":"寻境",
+				"navigationBarTitleText":"寻游",
 				"enablePullDownRefresh":true
 			}
 		},
@@ -82,7 +85,10 @@
 		    "path" : "pages/painting/painting",
 		    "style" : {
 				"navigationBarTitleText": "寻画",
-				"navigationStyle":"custom"
+				"navigationStyle":"custom",
+				"app-plus":{
+					"scrollIndicator":"none"
+				}
 			}
 		},{
 		    "path" : "pages/poem/poem",
@@ -127,7 +133,7 @@
 			}
 		},
 		{
-			"path":"pages/painting/Deatil",
+			"path":"pages/painting/Detail",
 			"style":{
 				"navigationBarTitleText":"内容详情"
 			}

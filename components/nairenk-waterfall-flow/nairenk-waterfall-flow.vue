@@ -56,7 +56,8 @@
 									dataArray = data;
 									resolve()
 								}).exec();
-							}, 520) // 针对图片 mode="widthFix" 尺寸改变时的延迟
+								uni.hideLoading()
+							},520) // 针对图片 mode="widthFix" 尺寸改变时的延迟
 						})
 						for (let i = mark; i < len; i++) {
 							if (i < 2) {

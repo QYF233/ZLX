@@ -28,12 +28,12 @@
 				  icon: '\ue61d',
 				  color: '#00aaff',
 				  name: '寻游',
-				  url: '/pages/tourist/tourist'
+				  url: '/pages/locations/locations'
 				},{
 				  icon: '\ue608',
 				  color: '#55ff7f',
 				  name: '寻境',
-				  url: '/pages/locations/locations'
+				  url: '/pages/tourist/tourist'
 				},{
 				  icon: '\ue62e',
 				  color: '#7c7cb9',

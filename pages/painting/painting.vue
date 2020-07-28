@@ -72,7 +72,7 @@
 			// 选中
 			gotoDetail(item) {
 				uni.navigateTo({
-					url:'/pages/painting/Deatil?id=' + item.id
+					url:'/pages/painting/Detail?id=' + item.id
 				})
 			},
 			// 模拟加载数据
@@ -82,11 +82,11 @@
 						title: '加载中...'
 					})
 					setTimeout(() => {
-						this.end = this.page * 10;
+						this.end = this.page * 30; 
 						this.list = this.list.concat(data.list.slice(this.start, this.end));
 						this.start = this.end;
-						uni.hideLoading();
-					},300)
+						// uni.hideLoading();
+					})
 				}else{
 					uni.showLoading({
 						title: '加载中...'
@@ -96,7 +96,7 @@
 							icon:'none',
 							title:'没有更多了'
 						})
-					},300)
+					})
 				}
 			}
 		}
@@ -105,7 +105,7 @@
 
 <style>
 	.add{
-		bottom: 200rpx;
+		bottom: 20rpx;
 		position: fixed;
 		width: 80rpx;
 		left: 50%;

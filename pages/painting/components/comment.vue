@@ -17,6 +17,9 @@
 			<view class="context">
 				{{comment.context}}
 			</view>
+			<view class="del_btn" @click="deleteComment" v-show="currentUserId === comment.user.id">
+				删除
+			</view>
 		</view>
 	</view>
 </template>
@@ -27,6 +30,11 @@
 		props:{
 			comment:Object,
 			currentUserId:Number
+		},
+		methods:{
+			deleteComment(){
+				this.$emit('deleteComment',this.comment.id)
+			}
 		}
 	}
 </script>
@@ -58,5 +66,8 @@
 		font-size: 12px;
 		color: #B5B5B5;
 		margin-top: 10rpx;
+	}
+	.del_btn {
+		color: #007AFF;
 	}
 </style>
