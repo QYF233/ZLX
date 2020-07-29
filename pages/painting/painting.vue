@@ -33,14 +33,10 @@
 			}
 		},
 		onLoad() {
-			setTimeout(()=>{
-				this.list = this.list.concat(data.list)
-			})
+			this.loadData()
 		},
 		onReachBottom() {
-			setTimeout(()=>{
-				this.list = this.list.concat(data.list)
-			}) 
+			this.loadData()
 		},
 		onPageScroll(e){
 			if(this.scrollTop - e.scrollTop > 10){
@@ -60,6 +56,15 @@
 			this.scrollTop = e.scrollTop
 		},
 		methods: {
+			loadData(){
+				uni.showLoading({
+					title:"正在加载"
+				})
+				setTimeout(()=>{
+					this.list = this.list.concat(data.list)
+					uni.hideLoading()
+				},200)
+			},
 			post(){
 				uni.chooseImage({
 					success(res) {

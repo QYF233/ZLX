@@ -61,12 +61,19 @@
 </script>
 
 <style scoped>
+	page{
+		background-color: #FFFFFF;
+	}
 	.content {
 		display: flex;
 		flex-direction: column;
 		background: url('~@/static/image/xihu2.png');
 		background-repeat: no-repeat;
 		background-size: contain;
+		/* height:300px;
+		box-sizing:border-box;
+		background:no-repeat center top / 100% 100%;
+		background-image:linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1)), url('~@/static/image/xihu.jpg') */
 	}
 	h1 {
 		font-size: 18px;
