@@ -30,7 +30,7 @@
 
 <style scoped>
 	.wf-item-page{
-		background-color: #f9f9f9;
+		background-color: #FFFFFF;
 		border-radius: 10rpx;/* 修改背景，新增圆角 */
 	}
 	.image{

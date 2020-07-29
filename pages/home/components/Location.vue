@@ -1,5 +1,5 @@
 <template>
-	<view class="location solid-bottom ">
+	<view class="location">
 		<view class="flex justify-between">
 			<view class="left" @click="getLocation">
 				<view class="up flex">
@@ -8,7 +8,7 @@
 				</view>
 				<view class="temp">
 					<text class="iconfont lg temp-icon">&#xe646;</text>
-					<template v-if="low!=''&&high!=''">{{wetherType}} <text class="low">{{low}}</text>~<text class="hight">{{high}}</text></template>
+					<template v-if="low!=''&&high!=''">{{weatherType}} <text class="low">{{low}}</text>~<text class="hight">{{high}}</text></template>
 					<text v-else>正在获取天气...</text>
 				</view>
 			</view>
@@ -25,56 +25,25 @@
 <script>
 	export default {
 		name: 'HomeLocation',
+		props:{
+			city:String,
+			low:String,
+			high:String,
+			weatherType:String
+		},
 		data() {
 			return {
-				city: '',
-				low: '',
-				high: '',
-				wetherType: ''
 			}
 		},
 		methods:{
 			gotoLunBo() {
 				uni.navigateTo({
-					url: "/pages/city/city"
+					url: "/pages/home/cityList?city=" + this.city
 				})
 			},
 			getLocation(){
-				this.city = '正在定位...'
-				this.high = ''
-				this.low = ''
-				setTimeout(()=>{
-					uni.getLocation({
-						geocode: true,
-						type: 'gcj02',
-						success: (res) => {
-							if (res.address) {
-								this.city = res.address.city
-								uni.request({
-									url: 'http://wthrcdn.etouch.cn/weather_mini',
-									data: {
-										city: this.city
-									},
-									success: (result) => {
-										if (result.statusCode === 200) {
-											let data = result.data.data
-											let wether = data.forecast
-											let today = wether[0]
-											this.low = today.low.split(' ')[1]
-											this.high = today.high.split(' ')[1]
-											this.wetherType = today.type
-										}
-									}
-								})
-							}
-						}
-					})
-				},300)
-				
+				this.$emit("getLocation")
 			}
-		},
-		beforeMount () {
-			this.getLocation()
 		}
 	}
 </script>

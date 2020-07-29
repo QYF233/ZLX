@@ -132,6 +132,12 @@
 			"style":{
 				"navigationBarTitleText":"内容详情"
 			}
+		},
+		{
+			"path":"pages/home/cityList",
+			"style":{
+				"navigationBarTitleText":"城市列表"
+			}
 		}
     ],
 	"globalStyle": {
