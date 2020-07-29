@@ -96,11 +96,6 @@
 				"navigationBarTitleText": "寻诗"
 			}
 		},{
-		    "path" : "pages/treasure/treasure",
-		    "style" : {
-				"navigationBarTitleText": "寻宝"
-			}
-		},{
 			"path":"pages/me/Login",
 			"style":{
 				"navigationBarTitleText":"用户登录"
