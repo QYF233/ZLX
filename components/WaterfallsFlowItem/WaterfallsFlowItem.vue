@@ -1,5 +1,5 @@
 <template>
-	<view class="wf-item-page">
+	<view class="wf-item-page"> 
 		<image class="image" :src="item.image" mode="widthFix"></image>
 		<h1 v-if="item.title">
 			{{item.title}}
@@ -30,7 +30,8 @@
 
 <style scoped>
 	.wf-item-page{
-		background-color: #FFFFFF;
+		background-color: #f9f9f9;
+		border-radius: 10rpx;/* 修改背景，新增圆角 */
 	}
 	.image{
 		width: 100%;

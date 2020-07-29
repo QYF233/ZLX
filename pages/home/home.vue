@@ -7,7 +7,7 @@
 			<home-header></home-header>
 			<home-location></home-location>
 			<home-icon></home-icon>
-			<h1>推荐</h1>
+			<h1>发现浙里</h1>
 			<!-- <wfalls-flow :list="list" ref="wfalls" @finishLoad="getLoadNum" @sendBack="choose" v-show="show"></wfalls-flow> -->
 			<waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow>
 		</view>
@@ -67,7 +67,7 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		background: url('~@/static/image/xihu2.png');
+		background: url('~@/static/image/ningbo.png');
 		background-repeat: no-repeat;
 		background-size: contain;
 		/* height:300px;

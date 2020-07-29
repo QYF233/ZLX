@@ -95,8 +95,7 @@
 		    "style" : {
 				"navigationBarTitleText": "寻诗"
 			}
-		},
-		{
+		},{
 			"path":"pages/me/Login",
 			"style":{
 				"navigationBarTitleText":"用户登录"
