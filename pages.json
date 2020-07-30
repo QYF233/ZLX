@@ -86,6 +86,7 @@
 		    "style" : {
 				"navigationBarTitleText": "寻画",
 				"navigationStyle":"custom",
+				"enablePullDownRefresh":true,
 				"app-plus":{
 					"scrollIndicator":"none"
 				}

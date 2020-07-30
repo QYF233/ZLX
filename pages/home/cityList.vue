@@ -43,6 +43,7 @@
 					key:"city",
 					data:city
 				})
+				uni.$emit('homeLoadList',city)
 				uni.navigateBack({
 					delta:1
 				})
