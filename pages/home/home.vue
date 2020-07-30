@@ -35,20 +35,48 @@
 				list:[],
 				weatherType:'',
 				cityid:0,
-				lastcityid:0, //改变城市之前的城市id 用于根据城市id获取瀑布流内容
 				cityname:'正在定位...',
 				citybackgroundImage:'',
 				low:'',
 				high:''
 			}
 		},
+		onLoad() {
+			uni.$on('homeLoadList',this.homeLoadList)		//监听城市改变
+			let city = uni.getStorageSync("city")
+			if(city){
+				this.cityid = city.id
+				this.cityname = city.name
+				this.citybackgroundImage = city.backgroundImage
+				this.getWeather()
+				this.loadList()
+			 } else {
+				 this.getLocation()
+			 }
+		},
 		methods:{
-			getList(){
+			loadList(){
+				this.list = []
+				setTimeout(()=>{
+					this.list = this.list.concat(data.list)
+				},200)
+			},
+			homeLoadList(city){
+				if(city.name !== this.cityname){
+					this.cityname = city.name
+					this.cityid = city.id
+					this.citybackgroundImage = city.backgroundImage
+					this.loadList()
+				}
+			},
+			appendList(){
+				uni.showLoading({
+					title:"正在加载"
+				})
 				setTimeout(()=>{
 					this.list = this.list.concat(data.list)
 					uni.hideLoading()
 				},200)
-				console.log("getList")
 			},
 			choose(data){
 				uni.navigateTo({
@@ -66,29 +94,29 @@
 				}
 			},
 			getLocation(){
-				uni.removeStorageSync("city")
 				this.cityname = '正在定位...'
 				this.high = ''
 				this.low = ''
-				setTimeout(()=>{
-					uni.getLocation({
-						geocode: true,
-						type: 'gcj02',
-						success: (res) => {
-							if (res.address) {
-								let cityName = res.address.city
-								this.getCityObject(cityName)
-								this.getWeather()
-								if(this.cityid !== this.lastcityid){ //城市改变 重新加载瀑布流
-									this.getList()
-									this.lastcityid = this.cityid
-								}
+				uni.getLocation({
+					geocode: true,
+					type: 'gcj02',
+					success: (res) => {
+						if (res.address) {
+							let cityName = res.address.city
+							this.getCityObject(cityName)
+							this.getWeather()
+							if (uni.getStorageSync('city')){
+								this.loadList()
+								uni.removeStorageSync('city')
 							}
+							if(this.list.length === 0){
+								this.loadList()
+							}
+							
 						}
-					})
-				},300)
-			},
-			
+					}
+				})
+			},			
 			getWeather(){
 				uni.request({
 					url: 'http://wthrcdn.etouch.cn/weather_mini',
@@ -109,25 +137,26 @@
 			}
 		},
 		onShow(){
-			let city = uni.getStorageSync("city")
-			if(city){
-				this.cityid = city.id
-				this.cityname = city.name
-				this.citybackgroundImage = city.backgroundImage
-				this.getWeather()
-				if(this.cityid !== this.lastcityid){  //第一次onShow时一定为true
-					this.getList()
-					this.lastcityid = this.cityid
-				}
-			}else if(this.cityid===0){
-				this.getLocation()
-			}
+			// let city = uni.getStorageSync("city")
+			// if(city){
+			// 	this.cityid = city.id
+			// 	this.cityname = city.name
+			// 	this.citybackgroundImage = city.backgroundImage
+			// 	this.getWeather()
+			// 	if(this.cityid !== this.lastcityid){  //第一次onShow时一定为true
+			// 		this.loadList()
+			// 		this.lastcityid = this.cityid
+			// 	}
+			// }else if(this.cityid===0){
+			// 	this.getLocation()
+			// }
 		},
 		onReachBottom() {
-			uni.showLoading({
-				title:"正在加载" 
-			})
-			this.getList()
+			// uni.showLoading({
+			// 	title:"正在加载" 
+			// })
+			
+			this.appendList()
 		}
 	}
 </script>

@@ -36,7 +36,7 @@
 			this.loadData()
 		},
 		onReachBottom() {
-			this.loadData()
+			this.appendList()
 		},
 		onPageScroll(e){
 			if(this.scrollTop - e.scrollTop > 10){
@@ -55,8 +55,29 @@
 			}
 			this.scrollTop = e.scrollTop
 		},
+		onPullDownRefresh() {
+			uni.vibrateShort()
+			this.loadData()
+			setTimeout(function () {
+				uni.stopPullDownRefresh({
+					success:function(){
+						uni.showToast({
+							title:'刷新成功',
+							icon:'none',
+							position:'bottom'
+						})
+					}
+				});
+			}, 300);
+		},
 		methods: {
 			loadData(){
+				this.list = []
+				setTimeout(()=>{
+					this.list = this.list.concat(data.list)
+				})
+			},
+			appendList(){
 				uni.showLoading({
 					title:"正在加载"
 				})
