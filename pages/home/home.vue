@@ -136,7 +136,7 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		background: url('@/static/image/ningbo.png');
+		background: url('@/static/image/wenzhou.png');
 		background-repeat: no-repeat;
 		background-size: contain;
 	}
