@@ -106,8 +106,11 @@
 							let cityName = res.address.city
 							this.getCityObject(cityName)
 							this.getWeather()
-							if (uni.getStorageSync('city')){
-								this.loadList()
+							let storegeCity = uni.getStorageSync('city')
+							if (storegeCity){
+								if(storegeCity.name !== this.cityname){
+									this.loadList()
+								}
 								uni.removeStorageSync('city')
 							}
 							if(this.list.length === 0){
@@ -136,26 +139,7 @@
 				})
 			}
 		},
-		onShow(){
-			// let city = uni.getStorageSync("city")
-			// if(city){
-			// 	this.cityid = city.id
-			// 	this.cityname = city.name
-			// 	this.citybackgroundImage = city.backgroundImage
-			// 	this.getWeather()
-			// 	if(this.cityid !== this.lastcityid){  //第一次onShow时一定为true
-			// 		this.loadList()
-			// 		this.lastcityid = this.cityid
-			// 	}
-			// }else if(this.cityid===0){
-			// 	this.getLocation()
-			// }
-		},
 		onReachBottom() {
-			// uni.showLoading({
-			// 	title:"正在加载" 
-			// })
-			
 			this.appendList()
 		}
 	}
