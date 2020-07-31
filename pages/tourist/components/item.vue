@@ -1,5 +1,5 @@
 <template>
-	<view class="place_item">
+	<view class="place_item" @click="toDetail">
 		<div class="img_container">
 			<image src="https://tr-osdcp.qunarzz.com/tr-osd-tr-manager/img/c20f0a91f43c6c7fc761249aab729390.jpg_r_800x800x70_24694821.jpg" mode="widthFix" class="img"></image>
 			</div>
@@ -17,6 +17,13 @@
 		name:"Item",
 		props:{
 			location:Object
+		},
+		methods:{
+			toDetail(){
+				uni.navigateTo({
+					url:'/pages/tourist/Deatil'
+				})
+			}
 		}
 	}
 </script>

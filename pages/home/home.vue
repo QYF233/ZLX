@@ -66,6 +66,7 @@
 					this.cityname = city.name
 					this.cityid = city.id
 					this.citybackgroundImage = city.backgroundImage
+					this.getWeather()
 					this.loadList()
 				}
 			},
@@ -112,7 +113,6 @@
 							if(this.list.length === 0){
 								this.loadList()
 							}
-							
 						}
 					}
 				})

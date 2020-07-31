@@ -139,6 +139,13 @@
 			"style":{
 				"navigationBarTitleText":"城市列表"
 			}
+		},
+		{
+			"path":"pages/tourist/Deatil",
+			"style":{
+				"navigationBarTitleText":"景点详情",
+				"navigationStyle":"custom"
+			}
 		}
     ],
 	"globalStyle": {
