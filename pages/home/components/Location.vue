@@ -1,7 +1,7 @@
 <template>
 	<view class="location">
 		<view class="flex justify-between">
-			<view class="left" @click="getLocation">
+			<view class="left">
 				<view class="up flex">
 					<view class="city">{{city}}</view>
 					<text class="cuIcon-rounddown"  @click.stop="gotoLunBo"></text>
@@ -40,9 +40,6 @@
 				uni.navigateTo({
 					url: "/pages/home/cityList?city=" + this.city
 				})
-			},
-			getLocation(){
-				this.$emit("getLocation")
 			}
 		}
 	}

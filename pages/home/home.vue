@@ -5,8 +5,11 @@
 				<!-- 这里是状态栏 -->
 			</view>
 			<home-header></home-header>
-			<home-location :city="cityname" :weatherType="weatherType" :low="low" :high="high" @getLocation="getLocation"></home-location>
+			<home-location :city="cityname" :weatherType="weatherType" :low="low" :high="high"></home-location>
 			<home-icon></home-icon>
+			<view v-if="currentCity !== cityname && currentCity!==''" class="switch">
+				当前定位显示你在“{{currentCity}}”<view class="switch_btn" @click="switchToCurrentCity">切换</view>
+			</view>				
 			<h1>发现浙里</h1>
 			<waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow>
 		</view>
@@ -38,11 +41,13 @@
 				cityname:'正在定位...',
 				citybackgroundImage:'',
 				low:'',
-				high:''
+				high:'',
+				currentCity:''
 			}
 		},
 		onLoad() {
 			uni.$on('homeLoadList',this.homeLoadList)		//监听城市改变
+			this.getLocation()
 			let city = uni.getStorageSync("city")
 			if(city){
 				this.cityid = city.id
@@ -50,9 +55,7 @@
 				this.citybackgroundImage = city.backgroundImage
 				this.getWeather()
 				this.loadList()
-			 } else {
-				 this.getLocation()
-			 }
+			 } 
 		},
 		methods:{
 			loadList(){
@@ -60,6 +63,11 @@
 				setTimeout(()=>{
 					this.list = this.list.concat(data.list)
 				},200)
+			},
+			switchToCurrentCity(){
+				this.getCityObject(this.currentCity)
+				this.getWeather()
+				this.loadList()
 			},
 			homeLoadList(city){
 				if(city.name !== this.cityname){
@@ -87,9 +95,18 @@
 			getCityObject(cityName){
 				for (let city of cityList){
 					if(city.name === cityName){
+						let c = {
+							id:city.id,
+							name:city.name,
+							backgroundImage:city.backgroundImage
+						}
+						uni.setStorage({
+							key:'city',
+							data:c
+						})
 						this.cityname = city.name
 						this.cityid = city.id
-						this.citybackgroundImage = city.backgroundImage
+						this.citybackgroundImage = city.backgroundImage						
 						break
 					}
 				}
@@ -104,16 +121,11 @@
 					success: (res) => {
 						if (res.address) {
 							let cityName = res.address.city
-							this.getCityObject(cityName)
-							this.getWeather()
-							let storegeCity = uni.getStorageSync('city')
-							if (storegeCity){
-								if(storegeCity.name !== this.cityname){
-									this.loadList()
-								}
-								uni.removeStorageSync('city')
-							}
-							if(this.list.length === 0){
+							this.currentCity = cityName
+							let storageCity = uni.getStorageSync('city')
+							if(!storageCity) {
+								this.getCityObject(cityName)
+								this.getWeather()
 								this.loadList()
 							}
 						}
@@ -159,5 +171,28 @@
 	}
 	.temp {
 		text-align: center;
+	}
+	.switch {
+		font-size: 16px;
+		color: #FFFFFF;
+		background-color: rgba(0,0,0,0.2);
+		margin: 0 20rpx;
+		border-radius: 10rpx;
+		display: flex;
+		height: 70rpx;
+		line-height: 70rpx;
+		padding: 0 10rpx;
+		position: relative;
+	}
+	.switch_btn {
+		position: absolute;
+		right: 30rpx;
+		background-color: #007AFF;
+		width: 100rpx;
+		text-align: center;
+		border-radius: 5px;
+		height: 50rpx;
+		line-height: 50rpx;
+		margin: 5px 0;
 	}
 </style>
