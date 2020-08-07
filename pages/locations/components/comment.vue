@@ -36,8 +36,8 @@
 					<template v-for="reply in replys">
 						<uni-transition :mode-class="['slide-bottom','fade','zoom-in']" :show="true">
 						<reply :dark="dark" @updateReply="updateReply" @deleteReply="deleteReply" :key="reply.id" 
-						:id="reply.id" :user="reply.user" :context="reply.context" 
-						:replyto="reply.replyto" :currentUserId="currentUserId"></reply>
+						:id="reply.id" :user="reply.user" :context="reply.content"
+						:replyto="reply.replyTo" :currentUserId="currentUserId"></reply>
 						</uni-transition>
 					</template>
 				</view>
@@ -77,7 +77,6 @@
 				if(!this.dark){
 					this.show = !this.show
 				}
-				
 			},
 			hideReply(){
 				this.show = false
@@ -94,8 +93,8 @@
 								id:this.currentUserId,
 								name:'林其龙'
 							},
-							replyto:null,
-							context:this.text,
+							replyTo:null,
+							content:this.text,
 						}
 					})
 					this.text = ''

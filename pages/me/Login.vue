@@ -43,20 +43,18 @@
 					})
 				}else{
 					this.load = true
-					setTimeout(()=>{
-						uni.setStorage({
-							key:'user',
-							data:{
-								id:123
-							}
-						})
-						uni.switchTab({
-							url:'/pages/me/Me',
-							success() {
-								this.load = false
-							}
-						})
-					},500)	
+					uni.setStorage({
+						key:'user',
+						data:{
+							id:123
+						}
+					})
+					uni.switchTab({
+						url:'/pages/me/Me',
+						success() {
+							this.load = false
+						}
+					})	
 				}	
 			}
 		}

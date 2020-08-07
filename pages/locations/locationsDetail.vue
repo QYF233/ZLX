@@ -9,7 +9,7 @@
 				<h1>评论</h1>
 				<view class="comment" v-for="c in article.comments" :key="c.id">
 					<uni-transition :show="true" :mode-class="['slide-buttom','fade','zoom-in']">
-						<comment :id="c.id" :user="c.user" :context="c.context"
+						<comment :id="c.id" :user="c.user" :context="c.content"
 						:replys="c.replys" :time="c.time" :dark="show" @updateReply="updateReply"
 						@deleteReply="deleteReply" @deleteComment="deleteComment" :currentUserId="currentUserId"></comment>
 					</uni-transition>
@@ -41,13 +41,13 @@
 					<view class="iconfont">
 						&#xe90d;
 					</view>
-					<text>&nbsp; {{article.save}}</text>
+					<text>&nbsp; {{article.saveNumber}}</text>
 				</view>
 				<view class="like" :class="{clicked:likeclicked}" @click="likeadd">
 					<view class="iconfont">
 						&#xe76a;
 					</view>
-					<text>&nbsp; {{article.like}}</text>
+					<text>&nbsp; {{article.likeNumber}}</text>
 				</view>
 			</view>
 			</uni-transition>
@@ -66,17 +66,17 @@
 		methods:{
 			saveadd(){
 				if(this.saveclicked){
-					this.article.save--
+					this.article.saveNumber--
 				} else{
-					this.article.save++
+					this.article.saveNumber++
 				}
 				this.saveclicked = !this.saveclicked
 			},
 			likeadd(){
 				if(this.likeclicked){
-					this.article.like--
+					this.article.likeNumber--
 				} else{
-					this.article.like++
+					this.article.likeNumber++
 				}
 				this.likeclicked = !this.likeclicked
 			},
@@ -165,19 +165,25 @@
 				return this.text.length
 			}
 		},
-		onLoad(option) {
-			this.article = data.article
-			let t = this.article.title
-			if (t.length>13){
-				t = t.substr(0,13)+'...'
-			}
-			uni.setNavigationBarTitle({
-			　　title:t
+		onLoad:function(option){
+			uni.request({
+				url:this.websiteUrl + 'article/getarticle/' + option.id,
+				success: (res) => {
+					this.article = res.data
+					let t = this.article.title
+					if (t.length>13){
+						t = t.substr(0,13)+'...'
+					}
+					uni.setNavigationBarTitle({
+					　　title:t
+					})
+				}
 			})
 			let loginUser = uni.getStorageSync('user')
 			if(loginUser){
 				this.currentUserId = loginUser.id
 			}
+			
 		},
 		data() {
 			return {

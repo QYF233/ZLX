@@ -37,7 +37,6 @@
 			return {
 				list:[],
 				weatherType:'',
-				cityid:0,
 				cityname:'正在定位...',
 				citybackgroundImage:'',
 				low:'',
@@ -50,7 +49,6 @@
 			this.getLocation()
 			let city = uni.getStorageSync("city")
 			if(city){
-				this.cityid = city.id
 				this.cityname = city.name
 				this.citybackgroundImage = city.backgroundImage
 				this.getWeather()
@@ -72,7 +70,6 @@
 			homeLoadList(city){
 				if(city.name !== this.cityname){
 					this.cityname = city.name
-					this.cityid = city.id
 					this.citybackgroundImage = city.backgroundImage
 					this.getWeather()
 					this.loadList()
@@ -96,7 +93,6 @@
 				for (let city of cityList){
 					if(city.name === cityName){
 						let c = {
-							id:city.id,
 							name:city.name,
 							backgroundImage:city.backgroundImage
 						}
@@ -105,7 +101,6 @@
 							data:c
 						})
 						this.cityname = city.name
-						this.cityid = city.id
 						this.citybackgroundImage = city.backgroundImage						
 						break
 					}
@@ -161,7 +156,6 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		background: url('@/static/image/logo.png');
 		background-repeat: no-repeat;
 		background-size: contain;
 	}

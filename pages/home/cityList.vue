@@ -1,6 +1,6 @@
 <template>
 	<view class="list">
-		<view class="city" v-for="city in list" :key="city.id" @click="choose(city.name)">
+		<view class="city" v-for="(city,index) in list" :key="index" @click="choose(city.name)">
 			<image :src="city.icon" mode="" class="icon"></image>
 			<view class="name">
 				{{city.name}}
@@ -22,28 +22,37 @@
 			}
 		},
 		onLoad(e) {
-			this.list = cityList
+			uni.request({
+				url:this.websiteUrl + 'city/listcity',
+				success: (res) => {
+					this.list = res.data
+				}
+			})
+			// this.list = cityList
 			this.currentCity = e.city
 		},
 		methods:{
 			getCityObject(cityName){
-				let res = {}
-				for (let city of cityList){
-					if(city.name === cityName){
-						res.name = city.name
-						res.id = city.id
-						res.backgroundImage = city.backgroundImage
-						return res
+				uni.request({
+					url:this.websiteUrl + 'city/getcity?name=' + cityName,
+					success: (res) => {
+						var city = {
+							id:res.data.id,
+							name:res.data.name,
+							icon:res.data.icon,
+							backgroundImage:res.data.backgroundPicture
+						}
+						uni.setStorage({
+							key:"city",
+							data:city
+						})
+						uni.$emit('homeLoadList',city)
 					}
-				}
+				})
 			},
 			choose(name){
-				let city = this.getCityObject(name)
-				uni.setStorage({
-					key:"city",
-					data:city
-				})
-				uni.$emit('homeLoadList',city)
+				this.getCityObject(name)
+				
 				uni.navigateBack({
 					delta:1
 				})

@@ -74,11 +74,11 @@
 								id:this.currentUserId,
 								name:'林其龙'
 							},
-							replyto:{
+							replyTo:{
 								id:this.user.id,
 								name:this.user.name
 							},
-							context:this.text
+							content:this.text
 						}
 					})
 					this.text = ''
