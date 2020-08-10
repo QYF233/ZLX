@@ -20,13 +20,7 @@ export default {
 			})
 		},
 		changeBg(){
-			uni.chooseImage({
-				count:1,
-				sizeType:['original'],
-				success(res) {
-					
-				}
-			})
+			this.$emit('changeBg')
 		}
 	}
 }

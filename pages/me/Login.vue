@@ -43,15 +43,37 @@
 					})
 				}else{
 					this.load = true
-					uni.setStorage({
-						key:'user',
+					uni.request({
+						url:this.websiteUrl + 'user/login',
+						method:'POST',
 						data:{
-							id:123
-						}
-					})
-					uni.switchTab({
-						url:'/pages/me/Me',
-						success() {
+							username:data.user,
+							password:data.password
+						},
+						header:{
+							'content-type':'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data == '') {
+								uni.showToast({
+									icon:'none',
+									title:'账号或密码错误，登录失败'
+								})
+								
+							} else {
+								uni.setStorage({
+									key:'user',
+									data:{
+										id:res.data.id,
+										name:res.data.name,
+										backgroundImage:res.data.backgroundPicture,
+										icon:res.data.icon
+									}
+								})
+								uni.switchTab({
+									url:'/pages/me/Me'
+								})
+							}
 							this.load = false
 						}
 					})	

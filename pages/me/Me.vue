@@ -7,7 +7,7 @@
 			</navigator>
 		</view>
 		<view  v-show="userId!==''">
-			<me-header :icon="icon" :username="username" :backgroundImg="backgroundImg"></me-header> 
+			<me-header :icon="icon" :username="username" :backgroundImg="backgroundImg" :id="userId" @changeBg="changeBg"></me-header> 
 			<options></options>
 		</view>
 	</view>
@@ -24,22 +24,65 @@ export default {
 	},
 	data() {
 		return {
-			icon:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595506331552&di=f900d1bd55ad21ca94215c21ee2d8dfc&imgtype=0&src=http%3A%2F%2Ftupian.qqw21.com%2Farticle%2FUploadPic%2F2020-6%2F2020617225141628.jpg',
-			username:'林其龙',
-			backgroundImg:'https://5b0988e595225.cdn.sohucs.com/images/20180711/e8a9f506059745e3863ba12d378d2e26.jpeg',
+			icon:'',
+			username:'',
+			backgroundImg:'',
 			userId:''
 		}
 	},
+	methods:{
+		changeBg(){
+			console.log(1)
+			uni.chooseImage({
+				count:1,
+				sizeType:['original'],
+				success:(res) => {
+					uni.uploadFile({
+						url:this.websiteUrl + 'user/changebg',
+						filePath:res.tempFilePaths[0],
+						formData:{
+							id:this.userId
+						},
+						name:'bg',
+						success: (res) => {
+							if(!res.data){
+								uni.showToast({
+									icon:'none',
+									title:'图片上传失败，请重试'
+								})
+							} else {
+								let user = uni.getStorageSync("user")
+								user.backgroundImage = res.data
+								this.backgroundImg = res.data
+								uni.setStorage({
+									key:'user',
+									data:user
+								})
+							}
+							
+						},
+						fail: () => {
+							if(res.data){
+								uni.showToast({
+									icon:'none',
+									title:'图片太大'
+								})
+							}
+						}
+					})
+				}
+			})
+		}
+	},
 	onShow() {
-		try {
-		    const value = uni.getStorageSync('user');
-		    if (value) {
-		        this.userId = value.id
-		    }else{
-				this.userId = ''
-			}
-		} catch (e) {
-		    // error
+		const value = uni.getStorageSync('user');
+		if (value) {
+			this.userId = value.id,
+			this.icon = value.icon,
+			this.username = value.name
+			this.backgroundImg = value.backgroundImage
+		}else{
+			this.userId = ''
 		}
 	}
 }

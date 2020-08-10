@@ -2,19 +2,19 @@
 	<view class="options">
 		<ul class="option-ul">
 			<li class="option-li">
-				<view class="iconfont">0</view> 
+				<view class="iconfont">&#xe60e;</view> 
 				<view class="li-button">评论</view>
 			</li>
 			<li class="option-li">
-				<view class="iconfont">0</view> 
+				<view class="iconfont">&#xe620;</view> 
 				<view class="li-button">回复</view>
 			</li>
 			<li class="option-li">
-				<view class="iconfont">0</view> 
+				<view class="iconfont">&#xe77a;</view> 
 				<view class="li-button">发表</view>
 			</li>
 			<li class="option-li">
-				<view class="iconfont">0</view>
+				<view class="iconfont">&#xe616;</view>
 				<view class="li-button">收藏</view>
 			</li>
 		</ul>

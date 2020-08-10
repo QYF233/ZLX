@@ -13,6 +13,7 @@
 				</view>
 			</view>
 			<input type="text" name="password" class="input" password="true" placeholder="输入密码"/>
+			<input type="text" name="repassword" class="input" password="true" placeholder="再次输入密码"/>
 			<button type="primary" form-type="submit">注册</button>
 		</form>
 	</view>
@@ -28,7 +29,75 @@
 		},
 		methods:{
 			goRegister(e){
-				console.log(e)
+				let data = e.detail.value
+				if(data.nickname.length<1) {
+					uni.showToast({
+						title:'昵称不能为空',
+						icon:'none',
+						position:'top'
+					})
+				} else if( !(/^1[3456789]\d{9}$/.test(data.user))
+				&& !(/^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/.test(data.user))){
+					uni.showToast({
+						title:'用户名不正确',
+						icon:'none',
+						position:'top'
+					})
+				}else if(data.verification_code.length<6) {
+					uni.showToast({
+						title:'验证码不正确',
+						icon:'none',
+						position:'top'
+					})
+				} else if(!(/^(?![A-Z]+$)(?![a-z]+$)(?!\d+$)(?![\W_]+$)\S{6,16}$/.test(data.password))){
+					uni.showToast({
+						title:'密码由6-21字母和数字组成，不能是纯数字或纯英文',
+						icon:'none',
+						position:'top'
+					})
+				} else if(data.password != data.repassword) {
+					uni.showToast({
+						title:'两次密码不一致',
+						icon:'none',
+						position:'top'
+					})
+				} else {
+					uni.request({
+						url:this.websiteUrl + 'user/isvalid?username=' + data.user,
+						success: (res) => {
+							if(res.data) {
+								uni.request({
+									url:this.websiteUrl + 'user/register',
+									header:{
+										'content-type':this.contentType
+									},
+									method:'POST',
+									data:{
+										name:data.nickname,
+										username:data.user,
+										password:data.password
+									},
+									success: (res) => {
+										uni.showToast({
+											title:'注册成功',
+											icon:'none',
+											position:'top'
+										})
+										uni.navigateTo({
+											url:'/pages/me/Login'
+										})
+									}
+								})
+							} else {
+								uni.showToast({
+									title:'电话号码或邮箱已存在',
+									icon:'none',
+									position:'top'
+								})
+							}
+						}
+					})
+				}
 			},
 			sendCode(){
 				this.disable = true

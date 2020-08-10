@@ -167,7 +167,7 @@
 		},
 		onLoad:function(option){
 			uni.request({
-				url:this.websiteUrl + 'article/getarticle/' + option.id,
+				url:this.websiteUrl + 'article/getarticle?id=' + option.id,
 				success: (res) => {
 					this.article = res.data
 					let t = this.article.title
