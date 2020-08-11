@@ -18,7 +18,6 @@
 
 <script>
 	const data = require('@/common/json/recommendData.json')
-	const cityList = require('@/common/json/citys.json').citys
 	import HomeHeader from './components/Header'
 	import HomeLocation from './components/Location'
 	import HomeIcon from './components/Icon'
@@ -64,7 +63,6 @@
 			},
 			switchToCurrentCity(){
 				this.getCityObject(this.currentCity)
-				this.getWeather()
 				this.loadList()
 			},
 			homeLoadList(city){
@@ -90,21 +88,22 @@
 				})
 			},
 			getCityObject(cityName){
-				for (let city of cityList){
-					if(city.name === cityName){
-						let c = {
-							name:city.name,
-							backgroundImage:city.backgroundImage
+				uni.request({
+					url:this.websiteUrl + 'city/getcity?name=' + cityName,
+					success: (res) => {
+						var city = {
+							name:res.data.name,
+							backgroundImage:res.data.backgroundPicture
 						}
 						uni.setStorage({
-							key:'city',
-							data:c
+							key:"city",
+							data:city
 						})
-						this.cityname = city.name
-						this.citybackgroundImage = city.backgroundImage						
-						break
+				 		this.cityname = city.name
+				 		this.citybackgroundImage = city.backgroundImage
+						this.getWeather()
 					}
-				}
+				})
 			},
 			getLocation(){
 				this.cityname = '正在定位...'
@@ -120,7 +119,6 @@
 							let storageCity = uni.getStorageSync('city')
 							if(!storageCity) {
 								this.getCityObject(cityName)
-								this.getWeather()
 								this.loadList()
 							}
 						}

@@ -13,7 +13,6 @@
 </template>
 
 <script>
-	const cityList = require('@/common/json/citys.json').citys
 	export default {
 		data(){
 			return {
@@ -37,9 +36,7 @@
 					url:this.websiteUrl + 'city/getcity?name=' + cityName,
 					success: (res) => {
 						var city = {
-							id:res.data.id,
 							name:res.data.name,
-							icon:res.data.icon,
 							backgroundImage:res.data.backgroundPicture
 						}
 						uni.setStorage({

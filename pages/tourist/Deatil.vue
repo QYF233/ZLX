@@ -6,6 +6,7 @@
 		<view class="detail">
 			<images :images="spot.images"></images>
 			<info :spot="spot"></info>
+			<detail-map></detail-map>
 		</view>
 		
 	</view>
@@ -14,19 +15,23 @@
 <script>
 	import Images from './components/images.vue'
 	import Info from './components/Info.vue'
+	import DetailMap from './components/map.vue'
 	const data = require('@/common/json/spotDetail.json')
 	export default{
 		components:{
 			Images,
-			Info
+			Info,
+			DetailMap
 		},
 		data() {
 			return {
-				spot:{}
+				spot:{},
+				
 			}
 		},
-		onLoad() {
+		onLoad(e) {
 			this.spot = data.spot
+			
 		}
 	}
 </script>

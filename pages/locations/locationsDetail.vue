@@ -1,5 +1,9 @@
 <template>
 	<view>
+		<view v-if="article == null">
+			正在加载...
+		</view>
+		<template v-if="article != null">
 		<view class="container" :class="{show:show}" @tap="hideComment">
 			<view class="title">{{article.title}}</view>
 			<view class="author">{{article.author.name}}</view>
@@ -25,17 +29,12 @@
 			<view :class="[show?'bigsay':'']">
 				<textarea type="text" :class="[show?'bigcommentinput':'commentinput']" 
 				:value="text" placeholder="说点什么..." @click="showComment" @input="input"/>
-				<uni-transition
-				:mode-class="['slide-buttom','fade','zoom-in']" :duration="300"
-				:show="show">
+				<view v-show="show">
 					<button class="cancel" size="mini" type="warn" @click="cancel">取消</button>
 					<button class="send" size="mini" type="primary" @click="send">发表</button>
 					<view class="number">{{counter}}/140</view>
-				</uni-transition>
+				</view>
 			</view>
-			<uni-transition
-			:mode-class="['slide-top','fade','zoom-in']" :duration="300"
-			:show="!show">
 			<view class="save-like" v-show="!show">
 				<view class="save" :class="{clicked:saveclicked}" @click="saveadd">
 					<view class="iconfont">
@@ -50,8 +49,8 @@
 					<text>&nbsp; {{article.likeNumber}}</text>
 				</view>
 			</view>
-			</uni-transition>
 		</view>
+		</template>
 	</view>
 </template>
 
@@ -64,6 +63,13 @@
 		},
 		methods:{
 			saveadd(){
+				if (this.currentUserId === 0) {
+					uni.showToast({
+						icon:'none',
+						title:'你还没有登录'
+					})
+					return
+				}
 				if(this.saveclicked){
 					uni.request({
 						url:this.websiteUrl + 'collection/delete',
@@ -91,6 +97,13 @@
 				this.saveclicked = !this.saveclicked
 			},
 			likeadd(){
+				if (this.currentUserId === 0) {
+					uni.showToast({
+						icon:'none',
+						title:'你还没有登录'
+					})
+					return
+				}
 				if(this.likeclicked){
 					uni.request({
 						url:this.websiteUrl + 'article/dislike',
@@ -257,7 +270,7 @@
 				this.currentUserId = loginUser.id
 			}
 			uni.request({
-				url:this.websiteUrl + 'article/getarticle?id=' + option.id + '&userid=' + loginUser.id,
+				url:this.websiteUrl + 'article/getarticle?id=' + option.id + '&userid=' + this.currentUserId,
 				success: (res) => {
 					this.article = res.data
 					this.saveclicked = res.data.saved
@@ -273,7 +286,7 @@
 		},
 		data() {
 			return {
-				article:{},
+				article:null,
 				saveclicked:false,
 				likeclicked:false,
 				show:false,

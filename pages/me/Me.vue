@@ -32,10 +32,10 @@ export default {
 	},
 	methods:{
 		changeBg(){
-			console.log(1)
+			
 			uni.chooseImage({
 				count:1,
-				sizeType:['original'],
+				sizeType:['compressed'],
 				success:(res) => {
 					uni.uploadFile({
 						url:this.websiteUrl + 'user/changebg',

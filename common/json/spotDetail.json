@@ -12,6 +12,8 @@
 		"score":4.6,
 		"commentCount":65536,
 		"tags":"杭州之美的代言人",
-		"openTime":"全年 全天开放"
+		"openTime":"全年 全天开放",
+		"longitude":30.244,
+		"latitude":120.146
 	}
 }

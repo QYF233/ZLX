@@ -21,7 +21,7 @@
 		methods:{
 			toDetail(){
 				uni.navigateTo({
-					url:'/pages/tourist/Deatil'
+					url:'/pages/tourist/Deatil?id=1'
 				})
 			}
 		}
