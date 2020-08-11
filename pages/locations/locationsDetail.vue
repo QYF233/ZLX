@@ -56,7 +56,6 @@
 </template>
 
 <script>
-	const data = require('../../common/json/locationsDetail.json');
 	import Comment from './components/comment.vue'
 	export default {
 		name:"locationsDetail",
@@ -66,17 +65,52 @@
 		methods:{
 			saveadd(){
 				if(this.saveclicked){
-					this.article.saveNumber--
+					uni.request({
+						url:this.websiteUrl + 'collection/delete',
+						data:{
+							userId:this.currentUserId,
+							articleId:this.article.id
+						},
+						success: () => {
+							this.article.saveNumber--
+						}
+					})
+					
 				} else{
-					this.article.saveNumber++
+					uni.request({
+						url:this.websiteUrl + 'collection/insert',
+						data:{
+							userId:this.currentUserId,
+							articleId:this.article.id
+						},
+						success: () => {
+							this.article.saveNumber++
+						}
+					})
 				}
 				this.saveclicked = !this.saveclicked
 			},
 			likeadd(){
 				if(this.likeclicked){
-					this.article.likeNumber--
+					uni.request({
+						url:this.websiteUrl + 'article/dislike',
+						data:{
+							id:this.article.id
+						},
+						success: () => {
+							this.article.likeNumber--
+						}
+					})
 				} else{
-					this.article.likeNumber++
+					uni.request({
+						url:this.websiteUrl + 'article/like',
+						data:{
+							id:this.article.id
+						},
+						success: () => {
+							this.article.likeNumber++
+						}
+					})
 				}
 				this.likeclicked = !this.likeclicked
 			},
@@ -91,23 +125,35 @@
 					return
 				}
 				if(this.currentUserId!==0){
-					let date = new Date()
-					let time = date.getFullYear() + "-" + (date.getMonth()+1)
-					+ '-' + date.getDate() + ' ' + date.getHours() + ':' + 
-					(date.getMinutes()<10? ('0'+date.getMinutes()) : (date.getMinutes()))
-					this.updateComment({
-						content:{
-							id:parseInt(Math.random()*10000+20),
-							user:{
-								id:this.currentUserId,
-								name:'林其龙',
-								icon:'https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg',
-							},
-							context:this.text,
-							replys:[],
-							time: time
+					uni.request({
+						url:this.websiteUrl + 'comment/insert',
+						method:'POST',
+						header:{
+							'content-type':this.contentType
+						},
+						data:{
+							userId:this.currentUserId,
+							targetId:this.article.id,
+							content:this.text,
+							modular:1
+						},
+						success: (res) => {
+							this.updateComment({
+								content:{
+									id:res.data.id,
+									user:{
+										id:res.data.user.id,
+										name:res.data.user.name,
+										icon:res.data.user.icon,
+									},
+									content:res.data.content,
+									replys:[],
+									time: res.data.time
+								}
+							})
 						}
 					})
+					
 					this.cancel()
 				} else {
 					uni.showToast({
@@ -127,37 +173,77 @@
 				this.article.comments.push(data.content)
 			},
 			updateReply(data){
-				for(let comment of this.article.comments){
-					if(comment.id === data.target_id){
-						comment.replys.push(data.content)
-						break
-					}
+				let send = {
+					userId:data.content.user,
+					commentId:data.target_id,
+					content:data.content.content
 				}
+				if(data.content.replyTo){
+					send.replyToId = data.content.replyTo
+				}
+				uni.request({
+					url:this.websiteUrl + 'reply/insert',
+					header:{
+						'content-type':this.contentType
+					},
+					method:'POST',
+					data:send,
+					success: (res) => {
+						let reply = {
+							id:res.data.id,
+							user:{
+								id:res.data.user.id,
+								name:res.data.user.name
+							},
+							replyTo:res.data.replyTo,
+							content:res.data.content,
+						}
+						for(let comment of this.article.comments){
+							if(comment.id === data.target_id){
+								comment.replys.push(reply)
+								break
+							}
+						}
+					}
+				})
+				
 			},
 			deleteReply(data){
-				for(let comment of this.article.comments){
-					if(comment.id === data.comment_id){
+				uni.request({
+					url:this.websiteUrl + 'reply/delete?id=' + data.reply_id,
+					success: () => {
+						for(let comment of this.article.comments){
+							if(comment.id === data.comment_id){
+								let index = 0
+								for(let reply of comment.replys){
+									if(reply.id === data.reply_id){
+										comment.replys.splice(index,1)
+										break
+									}
+									index++
+								}
+								break
+							}
+						}
+					}
+				})
+				
+			},
+			deleteComment(data){
+				uni.request({
+					url:this.websiteUrl + 'comment/delete?id=' + data,
+					success: () => {
 						let index = 0
-						for(let reply of comment.replys){
-							if(reply.id === data.reply_id){
-								comment.replys.splice(index,1)
+						for(let comment of this.article.comments){
+							if(comment.id === data){
+								this.article.comments.splice(index,1)
 								break
 							}
 							index++
 						}
-						break
 					}
-				}
-			},
-			deleteComment(data){
-				let index = 0
-				for(let comment of this.article.comments){
-					if(comment.id === data){
-						this.article.comments.splice(index,1)
-						break
-					}
-					index++
-				}
+				})
+				
 			}
 		},
 		computed:{
@@ -166,10 +252,15 @@
 			}
 		},
 		onLoad:function(option){
+			let loginUser = uni.getStorageSync('user')
+			if(loginUser){
+				this.currentUserId = loginUser.id
+			}
 			uni.request({
-				url:this.websiteUrl + 'article/getarticle?id=' + option.id,
+				url:this.websiteUrl + 'article/getarticle?id=' + option.id + '&userid=' + loginUser.id,
 				success: (res) => {
 					this.article = res.data
+					this.saveclicked = res.data.saved
 					let t = this.article.title
 					if (t.length>13){
 						t = t.substr(0,13)+'...'
@@ -178,12 +269,7 @@
 					　　title:t
 					})
 				}
-			})
-			let loginUser = uni.getStorageSync('user')
-			if(loginUser){
-				this.currentUserId = loginUser.id
-			}
-			
+			})	
 		},
 		data() {
 			return {

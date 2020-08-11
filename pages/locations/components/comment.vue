@@ -88,11 +88,7 @@
 				if(this.currentUserId !== 0){
 					this.updateReply({
 						content:{
-							id:parseInt(Math.random()*10000+20),
-							user:{
-								id:this.currentUserId,
-								name:'林其龙'
-							},
+							user:this.currentUserId,
 							replyTo:null,
 							content:this.text,
 						}
