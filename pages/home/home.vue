@@ -92,6 +92,7 @@
 					url:this.websiteUrl + 'city/getcity?name=' + cityName,
 					success: (res) => {
 						var city = {
+							id:res.data.id,
 							name:res.data.name,
 							backgroundImage:res.data.backgroundPicture
 						}

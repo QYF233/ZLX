@@ -2,20 +2,20 @@
 	<view class="detail">
 		<view class="user">
 			<view class="usericon">
-				<image :src="detail.user.avatar" mode="" class="icon"></image>
+				<image :src="detail.postUser.icon" mode="" class="icon"></image>
 				<view class="name">
-					{{detail.user.name}}
+					{{detail.postUser.name}}
 					<view class="date">
 						{{detail.date}}
 					</view>
 				</view>
 			</view>
 		</view>
-		<view class="imgs" :class="detail.image.length<4? 'oneLine':detail.image.length<7?'twoLine':'threeLine'">
+		<view class="imgs" :class="detail.images.length<4? 'oneLine':detail.images.length<7?'twoLine':'threeLine'">
 			<view class="img_container">
 				<view :style="'background-image:url('+ item +')'" 
-				:class="detail.image.length<4? 'divOne':detail.image.length<7?'divTwo':'divThree'"
-				v-for="(item,index) in detail.image" :key="index" @click="previewImage(index)" class="img"></view>
+				:class="detail.images.length<4? 'divOne':detail.images.length<7?'divTwo':'divThree'"
+				v-for="(item,index) in detail.images" :key="index" @click="previewImage(index)" class="img"></view>
 			</view>
 		</view>
 		<view class="content">
@@ -39,7 +39,6 @@
 </template>
 
 <script>
-	const data = require('@/common/json/paintingDetail.json');
 	import Comment from './components/comment.vue'
 	export default{
 		components:{
@@ -55,24 +54,38 @@
 		},
 		methods:{
 			send(){
-				this.detail.comment.push({
-					id:parseInt(Math.random()*10000+20),
-					"user":{
-						"id":this.currentUserId,
-						"name":"林其龙",
-						"icon":"https://pic4.zhimg.com/v2-2474d44c9fc5a2370eb248a6080fb480_s.jpg"
+				if(this.currentUserId === 0) {
+					uni.showToast({
+						icon:'none',
+						title:'您还没有登录'
+					})
+					return
+				}
+				uni.request({
+					url:this.websiteUrl + 'comment/insert',
+					method:'POST',
+					header:{
+						'content-Type':this.contentType
 					},
-					"context":this.input,
-					"time":"2020-8-8"
+					data:{
+						content:this.input,
+						modular:2,
+						targetId:this.detail.id,
+						userId:this.currentUserId
+					},
+					success: (res) => {
+						console.log(res.data)
+						this.detail.comment.push(res.data)
+						this.input = ''
+					}
 				})
-				this.input = ''
+				
 			},
 			previewImage(index) {
 				uni.previewImage({
-					urls:this.detail.image,
+					urls:this.detail.images,
 					current:index,
-					indicator:'number',
-					longPressActions:{}
+					indicator:'number'
 				})
 			},
 			inputHander(e){
@@ -90,10 +103,15 @@
 		},
 		onLoad(e) {
 			this.id = e.id
-			this.detail = data.detail
+			uni.request({
+				url:this.websiteUrl + 'photo/getphoto?id=' + e.id,
+				success: (res) => {
+					this.detail = res.data
+				}
+			})
 			let loginUser = uni.getStorageSync('user')
 			if(loginUser){
-				this.currentUserId = loginUser.id
+				this.currentUserId = loginUser.id 
 			}
 		}
 	}

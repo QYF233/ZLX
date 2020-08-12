@@ -6,7 +6,8 @@
 		<view class="detail">
 			<images :images="spot.images"></images>
 			<info :spot="spot"></info>
-			<detail-map></detail-map>
+			<detail-map :targetlatitude="spot.latitude" :targetlongitude="spot.longitude"
+						:currentlatitude="currentlatitude" :currentlongitude="currentlongitude"></detail-map>
 		</view>
 		
 	</view>
@@ -16,7 +17,6 @@
 	import Images from './components/images.vue'
 	import Info from './components/Info.vue'
 	import DetailMap from './components/map.vue'
-	const data = require('@/common/json/spotDetail.json')
 	export default{
 		components:{
 			Images,
@@ -26,12 +26,26 @@
 		data() {
 			return {
 				spot:{},
-				
+				currentlongitude:0, //经度
+				currentlatitude:0,	//纬度
 			}
 		},
 		onLoad(e) {
-			this.spot = data.spot
-			
+			uni.request({
+				url:this.websiteUrl + '/spot/getspot?id=' + e.id,
+				success: (res) => {
+					this.spot = res.data
+				}
+			})
+			this.currentlatitude = 30.209759
+			this.currentlongitude = 120.230426
+			uni.getLocation({
+				type:'gcj02',
+				success: (res) => {
+					this.currentlatitude = res.latitude
+					this.currentlongitude = res.longitude
+				}
+			})
 		}
 	}
 </script>

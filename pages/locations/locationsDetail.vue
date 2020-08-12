@@ -166,7 +166,6 @@
 							})
 						}
 					})
-					
 					this.cancel()
 				} else {
 					uni.showToast({
@@ -272,15 +271,19 @@
 			uni.request({
 				url:this.websiteUrl + 'article/getarticle?id=' + option.id + '&userid=' + this.currentUserId,
 				success: (res) => {
-					this.article = res.data
-					this.saveclicked = res.data.saved
-					let t = this.article.title
-					if (t.length>13){
-						t = t.substr(0,13)+'...'
+					console.log(res)
+					if(res.statusCode === 200) {
+						this.article = res.data
+						this.saveclicked = res.data.saved
+						let t = this.article.title
+						if (t.length>13){
+							t = t.substr(0,13)+'...'
+						}
+						uni.setNavigationBarTitle({
+						　　title:t
+						})
 					}
-					uni.setNavigationBarTitle({
-					　　title:t
-					})
+					
 				}
 			})	
 		},

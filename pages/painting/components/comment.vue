@@ -15,7 +15,7 @@
 				</view>
 			</view>
 			<view class="context">
-				{{comment.context}}
+				{{comment.content}}
 			</view>
 			<view class="del_btn" @click="deleteComment" v-show="currentUserId === comment.user.id">
 				删除

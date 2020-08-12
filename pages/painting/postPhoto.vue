@@ -38,6 +38,28 @@
 			},
 			send(){
 				//上传到后端,并返回到前一个页面
+				let files = []
+				for (let i of this.imgs) {
+					let f = {
+						name:'photo',
+						uri:i
+					}
+					files.push(f)
+				}
+				console.log(files)
+				let loginUser = uni.getStorageSync('user').id
+				uni.uploadFile({
+					url:this.websiteUrl + 'photo/insert',
+					files:files,
+					name:'photo',
+					formData:{
+						content:this.text,
+						postUser:loginUser
+					},
+					success: (res) => {
+						console.log(res)
+					}
+				})
 				this.cancel()
 			},
 			previewImage(index) {
@@ -56,6 +78,7 @@
 		},
 		onLoad(e) {
 			this.imgs = this.imgs.concat(JSON.parse(decodeURIComponent(e.imgs)))
+			console.log(this.imgs)
 		}
 	}
 </script>

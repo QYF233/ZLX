@@ -33,7 +33,7 @@
 		padding: 10rpx;
 	}
 	.content {
-		font-size: 32rpx;
+		font-size: 28rpx;
 		padding: 20rpx 10rpx 0 10rpx;
 		color: #333;
 	}

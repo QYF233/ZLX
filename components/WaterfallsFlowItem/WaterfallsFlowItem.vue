@@ -39,7 +39,7 @@
 	}
 	.desc{
 		padding :16rpx;
-		font-size: 16px
+		font-size: 14px
 	}
 	.user{
 		display: flex;

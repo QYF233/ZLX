@@ -1,9 +1,9 @@
 <template>
 	<view class="map-container">
 		<view class="distance">
-			<text class="iconfont" style="margin-right: 5px;">&#xe622;</text>距离您1000km
+			<text class="iconfont" style="margin-right: 5px;">&#xe622;</text>距离您{{getDistance}}km
 		</view>
-		<map class="map" :latitude="latitude" :longitude="longitude" :markers="covers" scale="12">
+		<map class="map" :latitude="targetlatitude" :longitude="targetlongitude" :markers="getCovers" scale="12" show-location="true">
 		</map>
 		
 	</view>
@@ -16,21 +16,43 @@
 			currentlongitude:Number,
 			currentlatitude:Number,
 			targetlongitude:Number,
-			targetlatitude:Number,
-			// covers:Array
+			targetlatitude:Number
 		},
 		data() {
 			return {
-				id:0, // 使用 marker点击事件 需要填写id
-				title: 'map',
 				latitude: 30.244,
 				longitude: 120.146, 
-				covers: [{
+				
+			}
+		},
+		computed:{
+			getCovers() {
+				let covers = []
+				covers.push({
 					id:1,
-					latitude: 30.244, 
-					longitude: 120.146, 
-					iconPath:'../../static/image/locationicon.png',
-				}]
+					latitude: this.targetlatitude, 
+					longitude: this.targetlongitude,
+					iconPath:'../../static/image/locationicon1.png'
+				})
+				covers.push({
+					id:2,
+					latitude: this.currentlatitude, 
+					longitude: this.currentlongitude,
+					iconPath:'../../static/image/locationicon.png'	
+				})
+				return covers
+			},
+			getDistance() {
+				var radLat1 = this.targetlatitude*Math.PI / 180.0; 
+				var radLat2 = this.currentlatitude*Math.PI / 180.0; 
+				var a = radLat1 - radLat2; 
+				var b = this.targetlongitude*Math.PI / 180.0 - this.currentlongitude*Math.PI / 180.0; 
+				var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) 
+				+ Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2))); 
+				s = s *6378.137 ;// EARTH_RADIUS; 
+				s = Math.round(s * 10000) / 10000;
+				return Math.round(s * 100) / 100;
+				
 			}
 		}
 	}
@@ -44,7 +66,7 @@
 	}
 	.map {
 		width: 100%;
-		height: 400px;
+		height: 350px;
 	}
 	.distance { 
 		line-height: 40px;

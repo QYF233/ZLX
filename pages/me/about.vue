@@ -1,7 +1,7 @@
 <template>
 	<view class="about">
 		<view class="logo">
-			<image src="../../static/image/logo.png" class="logo-icon"></image>
+			<image :src="this.websiteUrl + 'logo.png'" class="logo-icon"></image>
 			<view class="version">v1.0.0</view>
 		</view>
 		<view class="group">© 杭州职业技术学院 软件技术</view>

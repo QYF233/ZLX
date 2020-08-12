@@ -87,7 +87,16 @@
 				},200)
 			},
 			post(){
+				let loginUser = uni.getStorageSync('user')
+				if(!loginUser) {
+					uni.showToast({
+						icon:'none',
+						title:'您还没有登录'
+					})
+					return
+				}
 				uni.chooseImage({
+					sizeType:['compressed'],
 					success(res) {
 						uni.navigateTo({
 							url:'/pages/painting/postPhoto?imgs=' + encodeURIComponent(JSON.stringify(res.tempFilePaths))
@@ -107,7 +116,7 @@
 
 <style>
 	.add{
-		bottom: 20rpx;
+		bottom: 80rpx;
 		position: fixed;
 		width: 80rpx;
 		left: 50%;
