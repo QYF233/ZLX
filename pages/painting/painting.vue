@@ -29,7 +29,9 @@
 			return {
 				list: [], // 列表
 				scrollTop:0,
-				addShow:true
+				addShow:true,
+				page:1,
+				pages:0
 			}
 		},
 		onLoad() {
@@ -74,15 +76,34 @@
 			loadData(){
 				this.list = []
 				setTimeout(()=>{
-					this.list = this.list.concat(data.list)
+					uni.request({
+						url:this.websiteUrl + 'photo/list',
+						success: (res) => {
+							this.pages = res.data.pages
+							this.list = this.list.concat(res.data.list)
+						}
+					})
 				})
 			},
 			appendList(){
 				uni.showLoading({
 					title:"正在加载"
 				})
+				this.page++
+				if(this.page > this.pages) {
+					uni.showToast({
+						icon:'none',
+						title:'没有更多了'
+					})
+					return
+				}
 				setTimeout(()=>{
-					this.list = this.list.concat(data.list)
+					uni.request({
+						url:this.websiteUrl + 'photo/list?page=' + this.page,
+						success: (res) => {
+							this.list = this.list.concat(res.data.list)
+						}
+					})
 					uni.hideLoading()
 				},200)
 			},

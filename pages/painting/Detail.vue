@@ -92,6 +92,9 @@
 				this.input = e.detail.value
 			},
 			deleteComment(id){
+				uni.request({
+					url:this.websiteUrl + 'comment/delete?id=' + id
+				})
 				let index = 0
 				for(let c of this.detail.comment) {
 					if(c.id === id){
@@ -154,6 +157,7 @@
 	.usericon {
 		display: flex;
 		line-height: 30rpx;
+		position: relative;
 	}
 	.icon {
 		width: 60rpx;
@@ -219,5 +223,10 @@
 		width: 20%;
 		border-top: 1px solid #c5c5c5;
 		margin: 10rpx 10rpx;
+	}
+	.del_btn{
+		position: absolute;
+		right: 20rpx;
+		color: #007AFF;
 	}
 </style>

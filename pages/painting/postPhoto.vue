@@ -39,9 +39,10 @@
 			send(){
 				//上传到后端,并返回到前一个页面
 				let files = []
+				let a=0
 				for (let i of this.imgs) {
 					let f = {
-						name:'photo',
+						name:'image' + a++,
 						uri:i
 					}
 					files.push(f)
@@ -54,13 +55,14 @@
 					name:'photo',
 					formData:{
 						content:this.text,
-						postUser:loginUser
+						postUser:loginUser,
+						size:this.imgs.length
 					},
 					success: (res) => {
-						console.log(res)
+						this.cancel()
 					}
 				})
-				this.cancel()
+				
 			},
 			previewImage(index) {
 				uni.previewImage({
@@ -78,7 +80,6 @@
 		},
 		onLoad(e) {
 			this.imgs = this.imgs.concat(JSON.parse(decodeURIComponent(e.imgs)))
-			console.log(this.imgs)
 		}
 	}
 </script>

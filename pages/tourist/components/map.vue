@@ -52,7 +52,6 @@
 				s = s *6378.137 ;// EARTH_RADIUS; 
 				s = Math.round(s * 10000) / 10000;
 				return Math.round(s * 100) / 100;
-				
 			}
 		}
 	}

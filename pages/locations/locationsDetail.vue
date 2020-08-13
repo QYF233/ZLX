@@ -271,7 +271,6 @@
 			uni.request({
 				url:this.websiteUrl + 'article/getarticle?id=' + option.id + '&userid=' + this.currentUserId,
 				success: (res) => {
-					console.log(res)
 					if(res.statusCode === 200) {
 						this.article = res.data
 						this.saveclicked = res.data.saved

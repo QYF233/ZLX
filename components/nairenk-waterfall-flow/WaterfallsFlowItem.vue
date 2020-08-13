@@ -1,13 +1,13 @@
 <template>
 	<view class="wf-item-page">
 			<view class="pic">
-				<image class="image" mode="widthFix" :src="item.image[0]" style="width: 100%; display: block;" ></image>
+				<image class="image" mode="widthFix" :src="item.images[0]" style="width: 100%; display: block;" ></image>
 			</view>
 			<view class="content">{{item.content}}</view>
 			<view class="user">
 			<image style="width: 40upx; height: 40upx; border-radius: 50%; margin-right: 10upx;" 
-				:src="item.user.avatar"></image>
-			<text class="name">{{item.user.name}}</text>
+				:src="item.postUser.icon"></image>
+			<text class="name">{{item.postUser.name}}</text>
 		</view>
 	</view>
 </template>
