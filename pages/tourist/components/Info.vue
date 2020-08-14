@@ -2,7 +2,7 @@
 	<view class="info">
 		<view class="top">
 			<view class="left">
-				<h1>{{spot.name}}</h1>
+				<h1>{{spot.title}}</h1>
 				<text class="tags">“{{spot.tags}}”</text>
 			</view>
 			<view class="right">

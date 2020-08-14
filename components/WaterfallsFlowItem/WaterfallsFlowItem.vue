@@ -1,13 +1,13 @@
 <template>
-	<view class="wf-item-page"> 
-		<image class="image" :src="item.image" mode="widthFix"></image>
+	<view class="wf-item-page">
+		<image class="image" :src="item.image" mode="widthFix" v-if="item.image != null"></image>
 		<h1 v-if="item.title">
 			{{item.title}}
 		</h1>
 		<view class="desc">{{item.content}}</view>
 		<view class="user" v-if="item.user">
 			<view class="user_icon">
-				<image :src="item.user.avatar" class="icon"></image>
+				<image :src="item.user.icon" class="icon"></image>
 			</view>
 			{{item.user.name}}
 		</view>
@@ -54,7 +54,7 @@
 		margin-right: 5rpx;
 	}	
 	h1{
-		font-size: 18px;
+		font-size: 15px;
 		margin: 0 20rpx;
 	}
 	.type {

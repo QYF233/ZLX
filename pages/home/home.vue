@@ -40,7 +40,9 @@
 				citybackgroundImage:'',
 				low:'',
 				high:'',
-				currentCity:''
+				currentCity:'',
+				page:1,
+				pages:0
 			}
 		},
 		onLoad() {
@@ -58,8 +60,14 @@
 			loadList(){
 				this.list = []
 				setTimeout(()=>{
-					this.list = this.list.concat(data.list)
-				},200)
+					uni.request({
+						url:this.websiteUrl + 'home/list',
+						success: (res) => {
+							this.pages = res.data.pages
+							this.list = this.list.concat(res.data.list)
+						}
+					})
+				})
 			},
 			switchToCurrentCity(){
 				this.getCityObject(this.currentCity)
@@ -77,10 +85,25 @@
 				uni.showLoading({
 					title:"正在加载"
 				})
-				setTimeout(()=>{
-					this.list = this.list.concat(data.list)
+				if(this.page == this.pages) {
 					uni.hideLoading()
-				},200)
+					uni.showToast({
+						icon:'none',
+						title:'没有更多了'
+					})
+					return 
+				}
+				this.page++
+				setTimeout(()=>{
+					uni.request({
+						url:this.websiteUrl + 'home/list?page=' + this.page,
+						success: (res) => {
+							this.list = this.list.concat(res.data.list)
+							uni.hideLoading()
+						}
+					})
+					
+				})
 			},
 			choose(data){
 				uni.navigateTo({
