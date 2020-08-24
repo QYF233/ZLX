@@ -18,7 +18,7 @@
 				  icon: '\ue60b',
 				  color: '#e2c326',
 				  name: '寻吃',
-				  url: '/pages/food/food'				
+				  url: '/pages/food/index'				
 				},{
 				  icon: '\ue609',
 				  color: '#5555ff',

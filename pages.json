@@ -146,6 +146,12 @@
 				"navigationBarTitleText":"景点详情",
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path":"pages/food/index",
+			"style":{
+				"navigationBarTitleText":"美食列表"
+			}
 		}
     ],
 	"globalStyle": {
