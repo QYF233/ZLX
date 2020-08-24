@@ -152,6 +152,12 @@
 			"style":{
 				"navigationBarTitleText":"美食列表"
 			}
+		},
+		{
+			"path":"pages/food/demo",
+			"style":{
+				"navigationBarTitleText":"美食列表(示例)"
+			}
 		}
     ],
 	"globalStyle": {

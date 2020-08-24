@@ -5,8 +5,7 @@ let data = [{
 			"foodName": "西湖醋鱼",
 			"pic": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2960574450,3670405073&fm=26&gp=0.jpg",
 			"introduce": "西湖醋鱼，别名为叔嫂传珍，宋嫂鱼，是浙江省杭州市的一道传统地方风味名菜，属于浙菜系。"
-		},
-		{
+		},{
 			"foodName": "杭州东坡肉",
 			"pic": "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=567520358,1031776147&fm=26&gp=0.jpg",
 			"introduce": "杭州东坡肉是一道色香味俱全的传统名肴，属于浙菜系。东坡肉是以苏东坡的名字命名的菜肴。"

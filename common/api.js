@@ -7,11 +7,7 @@ export const myRequest = (options) => {
 			method: options.method || 'GET',
 			data: options.data || {},
 			success: (res) => {
-				if (res.data.status !== 0) {
-					return uni.showToast({
-						title: '获取数据失败'
-					})
-				}
+				// console.log(res)
 				resolve(res)
 			},
 			fail: (err) => {
