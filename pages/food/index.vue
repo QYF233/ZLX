@@ -4,11 +4,14 @@
 			<a href="#/pages/food/demo">demo</a>
 		</view>
 		<view class="list-box">
-			<view v-for="(item,index) in photoList" 
+			<view 
+			v-for="(item,index) in photoList" 
 			:key="index" 
 			:class="{'active':true}" 
 			:data-index="index" 
-			@tap="previewPhoto">
+			@tap="openDetail($event)" 
+			:data-detail="index"
+			>
 				<image :src="item.pic[0]" mode="aspectFill" lazy-load="true"></image>
 				<view>{{item.foodName}}</view>
 			</view>
@@ -19,10 +22,6 @@
 
 <script>
 	export default {
-		name: 'Food',
-		props: {
-			city: String
-		},
 		data() {
 			return {
 				foodsPic: [],
@@ -41,14 +40,16 @@
 			this.getPhoto();
 		},
 		methods: {
+			
+			
 			/* 获取当前城市的picList */
 			async getData() {
-				const res = await this.$myRequest({
+				const res1 = await this.$myRequest({
 					url: '/food/getlist'
 				})
-				for (var i = 0; i < res.data.list.length; i++) {
-					if (res.data.list[i].city == "1") {
-						this.foodsPic.push(res.data.list[i])
+				for (var i = 0; i < res1.data.list.length; i++) {
+					if (res1.data.list[i].city == "1") {
+						this.foodsPic.push(res1.data.list[i])
 					}
 				}
 			},
@@ -71,19 +72,20 @@
 					/* 无真实图片请求接口，由 setTimeout 模拟异步过程 */
 					setTimeout(() => {
 						/* 拼接图片路径字符串 */
-						let list=[];
-						for(let i=0;i<this.foodsPic.length;i++){
-							list.push(this.foodsPic[(this.page-1)*this.rows+i])
+						let list = [];
+						for (let i = 0; i < this.foodsPic.length; i++) {
+							list.push(this.foodsPic[(this.page - 1) * this.rows + i])
 						}
-						success(list);
 						console.log(list);
+						success(list);
+
 					}, 1000);
 				}).then((res) => {
 					if (this.page == 1) {
 						uni.hideLoading();
 					}
 					this.photoList = [...this.photoList, ...res];
-					this.showImages();
+					// this.showImages();
 				})
 			},
 			/* 显示照片 */
@@ -100,7 +102,7 @@
 						this.isGet = true;
 					}
 				}
-				
+
 				let interval = setInterval(() => {
 					show();
 				}, 1000);
@@ -112,11 +114,18 @@
 				let list = this.photoList.map((item, index) => {
 					return item.pic[0];
 				});
-
 				uni.previewImage({
-					current: list[index], /* 传 Number H5 端出现不兼容 */
+					current: list[index],
+					/* 传 Number H5 端出现不兼容 */
 					urls: list
 				});
+			},
+			openDetail(e) {
+				let index = e.currentTarget.dataset.detail;
+				console.log("点击"+index);
+				uni.navigateTo({
+					url:"detail?id="+index,
+				})
 			}
 		}
 	}
