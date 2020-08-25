@@ -10,6 +10,8 @@
 #### 软件架构
 软件架构说明
 
+#### 后台
+[https://gitee.com/xiongxinx/zlx_back](https://gitee.com/xiongxinx/zlx_back)
 
 #### 安装教程
 
@@ -19,6 +21,7 @@
 4.  git commit -m "" 提交到本地仓库
 5.  git push 上传到远程仓库
 
+#### 现使用了API，为了图片显示完全，请下载后台项目，使用idea运行。同时注入数据库。
 
 #### 参与贡献
 
@@ -53,4 +56,5 @@ poem 寻诗
 search 搜索页面
 
 me 关于
+
 

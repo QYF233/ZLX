@@ -102,7 +102,6 @@
 							uni.hideLoading()
 						}
 					})
-					
 				})
 			},
 			choose(data){

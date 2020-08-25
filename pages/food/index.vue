@@ -1,17 +1,15 @@
+<!-- 寻吃首页 -->
 <template>
 	<view>
 		<view>现在的问题，不显示动画效果，示例：
 			<a href="#/pages/food/demo">demo</a>
 		</view>
+		<view class="header">
+			{{this.currentCity.name}}
+		</view>
 		<view class="list-box">
-			<view 
-			v-for="(item,index) in photoList" 
-			:key="index" 
-			:class="{'active':true}" 
-			:data-index="index" 
-			@tap="openDetail($event)" 
-			:data-detail="index"
-			>
+			<view v-for="(item,index) in photoList" :key="index" :class="{'active':true}" :data-index="index" @tap="openDetail($event)"
+			 :data-detail="item.id">
 				<image :src="item.pic[0]" mode="aspectFill" lazy-load="true"></image>
 				<view>{{item.foodName}}</view>
 			</view>
@@ -29,7 +27,8 @@
 				rows: 10,
 				page: 1,
 				isGet: true,
-				loadTxt: ""
+				loadTxt: "",
+				currentCity:"",
 			}
 		},
 		onLoad() {
@@ -40,15 +39,15 @@
 			this.getPhoto();
 		},
 		methods: {
-			
-			
 			/* 获取当前城市的picList */
 			async getData() {
+				this.currentCity = uni.getStorageSync('city');
+				console.log("当前城市"+this.currentCity.name);
 				const res1 = await this.$myRequest({
 					url: '/food/getlist'
 				})
 				for (var i = 0; i < res1.data.list.length; i++) {
-					if (res1.data.list[i].city == "1") {
+					if (res1.data.list[i].city == this.currentCity.id) {
 						this.foodsPic.push(res1.data.list[i])
 					}
 				}
@@ -122,9 +121,9 @@
 			},
 			openDetail(e) {
 				let index = e.currentTarget.dataset.detail;
-				console.log("点击"+index);
+				console.log("点击" + index);
 				uni.navigateTo({
-					url:"detail?id="+index,
+					url: "detail?id=" + index,
 				})
 			}
 		}
@@ -134,6 +133,10 @@
 <style lang="scss">
 	page {
 		background-color: #eee;
+	}
+
+	.header {
+		font-size: 50upx;
 	}
 
 	.list-box {
