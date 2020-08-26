@@ -154,12 +154,6 @@
 			}
 		},
 		{
-			"path":"pages/food/demo",
-			"style":{
-				"navigationBarTitleText":"美食列表(示例)"
-			}
-		},
-		{
 			"path":"pages/food/detail",
 			"style":{
 				"navigationBarTitleText":"美食详情"

@@ -1,20 +1,18 @@
 <!-- 寻吃 -->
 <template>
 	<view class="container">
-		<!-- 提示 -->
-		<view>现在的问题，不显示动画效果，示例：
-			<a href="#/pages/food/demo">demo</a>
-		</view>
 		<!-- 城市名称 -->
 		<food-header :currentCity="currentCity"></food-header>
 		<!-- 美食列表 -->
 		<view class="list-box">
-			<view v-for="(item,index) in photoList" :key="index" :class="{'active':true}" :data-index="index" @tap="openDetail($event)"
+			<view v-for="(item,index) in photoList" :key="index" :class="{'active':item.active}" :data-index="index" @tap="openDetail($event)"
 			 :data-detail="item.id">
 				<image :src="item.pic[0]" mode="aspectFill" lazy-load="true"></image>
 				<view>{{item.foodName}}</view>
+
 			</view>
 		</view>
+		<view class="load">{{loadTxt}}</view>
 	</view>
 </template>
 
@@ -27,11 +25,12 @@
 			return {
 				foodsPic: [],
 				photoList: [],
-				rows: 10,
+				rows: 6,
 				page: 1,
 				isGet: true,
 				loadTxt: "",
 				currentCity: "",
+				flag: true,
 			}
 		},
 		components: {
@@ -57,18 +56,13 @@
 						this.foodsPic.push(res1.data.list[i])
 					}
 				}
-				console.log(this.foodsPic)
 			},
 			getPhoto() {
-
 				if (!this.isGet) {
-
 					return;
 				}
 				this.isGet = false;
-
 				new Promise((success, error) => {
-
 					/* 第一页弹出加载层 */
 					if (this.page == 1) {
 						uni.showLoading({
@@ -82,17 +76,18 @@
 					/* 无真实图片请求接口，由 setTimeout 模拟异步过程 */
 					setTimeout(() => {
 						/* 拼接图片路径字符串 */
-
 						let list = [];
-						for (let i = 0; i < this.foodsPic.length; i++) {
+						for (let i = 0; i < this.rows; i++) {
+							if (this.foodsPic[(this.page - 1) * this.rows + i] == null) {
+								break;
+							}
 							list.push(this.foodsPic[(this.page - 1) * this.rows + i])
 						}
-						console.log(list);
 						success(list);
 
 					}, 1000);
-				}).then((res) => {
 
+				}).then((res) => {
 					if (this.page == 1) {
 						uni.hideLoading();
 					}
@@ -105,24 +100,26 @@
 				let index = (this.page - 1) * this.rows;
 				let show = () => {
 					if (index < this.photoList.length) {
-						this.$set(this.photoList, "active", true);
+						this.$set(this.photoList[index], "active", true);
 						index++;
 					} else {
-						clearInterval(interval);
-						this.loadTxt = "上拉加载更多";
-						this.page++;
-						this.isGet = true;
+						if (this.photoList.length < this.foodsPic.length) {
+							clearInterval(interval);
+							this.loadTxt = "上拉加载更多";
+							this.page++;
+							this.isGet = true;
+						} else {
+							this.loadTxt = "没有更多了";
+						}
 					}
 				}
-
 				let interval = setInterval(() => {
 					show();
-				}, 1000);
+				}, 100);
 			},
 			/* 点击图片，跳转至详情 */
 			openDetail(e) {
 				let index = e.currentTarget.dataset.detail;
-				// console.log("点击" + index);
 				uni.navigateTo({
 					url: "detail?id=" + index,
 				})
