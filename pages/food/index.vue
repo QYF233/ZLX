@@ -1,9 +1,9 @@
 <!-- 寻吃首页 -->
 <template>
 	<view>
-		<view>现在的问题，不显示动画效果，示例：
+		<!-- <view>现在的问题，不显示动画效果，示例：
 			<a href="#/pages/food/demo">demo</a>
-		</view>
+		</view> -->
 		<view class="header">
 			{{this.currentCity.name}}
 		</view>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+	/* 过度动画 */
+	import uniTransition from "@/components/uni-transition/uni-transition.vue"
 	export default {
 		data() {
 			return {
@@ -31,6 +33,7 @@
 				currentCity:"",
 			}
 		},
+		components: {uniTransition},
 		onLoad() {
 			this.getData();
 			this.getPhoto();
@@ -54,11 +57,15 @@
 			},
 			/* 获取照片 */
 			getPhoto() {
+				
 				if (!this.isGet) {
+					
 					return;
 				}
 				this.isGet = false;
+				
 				new Promise((success, error) => {
+					
 					/* 第一页弹出加载层 */
 					if (this.page == 1) {
 						uni.showLoading({
@@ -68,9 +75,11 @@
 					} else {
 						this.loadTxt = "正在加载中";
 					}
+					
 					/* 无真实图片请求接口，由 setTimeout 模拟异步过程 */
 					setTimeout(() => {
 						/* 拼接图片路径字符串 */
+						
 						let list = [];
 						for (let i = 0; i < this.foodsPic.length; i++) {
 							list.push(this.foodsPic[(this.page - 1) * this.rows + i])
@@ -80,11 +89,12 @@
 
 					}, 1000);
 				}).then((res) => {
+					
 					if (this.page == 1) {
 						uni.hideLoading();
 					}
 					this.photoList = [...this.photoList, ...res];
-					// this.showImages();
+					this.showImages();
 				})
 			},
 			/* 显示照片 */
@@ -106,22 +116,10 @@
 					show();
 				}, 1000);
 			},
-			/* 预览照片 */
-			/* 暂时点击图片只显示图片。以后修改：点击图片进入美食详情页面 */
-			previewPhoto(e) {
-				let index = e.currentTarget.dataset.index;
-				let list = this.photoList.map((item, index) => {
-					return item.pic[0];
-				});
-				uni.previewImage({
-					current: list[index],
-					/* 传 Number H5 端出现不兼容 */
-					urls: list
-				});
-			},
+			/* 点击图片，跳转至详情 */
 			openDetail(e) {
 				let index = e.currentTarget.dataset.detail;
-				console.log("点击" + index);
+				// console.log("点击" + index);
 				uni.navigateTo({
 					url: "detail?id=" + index,
 				})

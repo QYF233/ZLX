@@ -1,64 +1,185 @@
 <!-- 寻吃 -->
 <template>
 	<view class="container">
-		<header-banner :foods="foodsInBanner"></header-banner>
-		<food-image></food-image>
-		<view class="more">更多</view>
+		<!-- 提示 -->
+		<view>现在的问题，不显示动画效果，示例：
+			<a href="#/pages/food/demo">demo</a>
+		</view>
+		<!-- 城市名称 -->
+		<food-header :currentCity="currentCity"></food-header>
+		<!-- 美食列表 -->
+		<view class="list-box">
+			<view v-for="(item,index) in photoList" :key="index" :class="{'active':true}" :data-index="index" @tap="openDetail($event)"
+			 :data-detail="item.id">
+				<image :src="item.pic[0]" mode="aspectFill" lazy-load="true"></image>
+				<view>{{item.foodName}}</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
-	import HeaderBanner from './components/HeaderBanner.vue'
-	import FoodImage from './components/Body.vue'
+	import foodHeader from './components/Header.vue'
+	import foodList from './components/FoodList.vue'
 	export default {
-		name:'food',
-		components:{
-			HeaderBanner,
-			FoodImage
-		},
+		name: 'food',
 		data() {
 			return {
-				foodsInBanner:[
-					{
-						id:1,
-						url:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1194064447,3680178733&fm=26&gp=0.jpg'
-					},
-					{
-						id:2,
-						url:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2705769963,4281957781&fm=26&gp=0.jpg'
-					},
-					{
-						id:3,
-						url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595685284347&di=9547ccff715f2e8b430b83a3ffe7b511&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn10%2F244%2Fw640h404%2F20180402%2F4247-fyssmme6064947.jpg'
-					},
-					{
-						id:4,
-						url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595686095288&di=86425faaeaaa335b3121242f12ca78e3&imgtype=0&src=http%3A%2F%2Fccm.ddcdn.com%2Ftourism%2FYK%2FJS%2F1291605856EgrIFcnA.jpg'
-					},
-					{
-						id:5,
-						url:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2671291707,213654660&fm=26&gp=0.jpg'
-					}
-				],
-				foodInList:[
-					
-				]
+				foodsPic: [],
+				photoList: [],
+				rows: 10,
+				page: 1,
+				isGet: true,
+				loadTxt: "",
+				currentCity: "",
 			}
 		},
+		components: {
+			foodHeader,
+			foodList,
+		},
+		onLoad() {
+			this.getData();
+			this.getPhoto();
+		},
+		onReachBottom() {
+			this.getPhoto();
+		},
 		methods: {
-			
+			async getData() {
+				this.currentCity = uni.getStorageSync('city');
+				console.log("当前城市" + this.currentCity.name);
+				const res1 = await this.$myRequest({
+					url: '/food/getlist'
+				})
+				for (var i = 0; i < res1.data.list.length; i++) {
+					if (res1.data.list[i].city == this.currentCity.id) {
+						this.foodsPic.push(res1.data.list[i])
+					}
+				}
+				console.log(this.foodsPic)
+			},
+			getPhoto() {
+
+				if (!this.isGet) {
+
+					return;
+				}
+				this.isGet = false;
+
+				new Promise((success, error) => {
+
+					/* 第一页弹出加载层 */
+					if (this.page == 1) {
+						uni.showLoading({
+							title: '加载中',
+							mask: true
+						})
+					} else {
+						this.loadTxt = "正在加载中";
+					}
+
+					/* 无真实图片请求接口，由 setTimeout 模拟异步过程 */
+					setTimeout(() => {
+						/* 拼接图片路径字符串 */
+
+						let list = [];
+						for (let i = 0; i < this.foodsPic.length; i++) {
+							list.push(this.foodsPic[(this.page - 1) * this.rows + i])
+						}
+						console.log(list);
+						success(list);
+
+					}, 1000);
+				}).then((res) => {
+
+					if (this.page == 1) {
+						uni.hideLoading();
+					}
+					this.photoList = [...this.photoList, ...res];
+					this.showImages();
+				})
+			},
+			/* 显示照片 */
+			showImages() {
+				let index = (this.page - 1) * this.rows;
+				let show = () => {
+					if (index < this.photoList.length) {
+						this.$set(this.photoList, "active", true);
+						index++;
+					} else {
+						clearInterval(interval);
+						this.loadTxt = "上拉加载更多";
+						this.page++;
+						this.isGet = true;
+					}
+				}
+
+				let interval = setInterval(() => {
+					show();
+				}, 1000);
+			},
+			/* 点击图片，跳转至详情 */
+			openDetail(e) {
+				let index = e.currentTarget.dataset.detail;
+				// console.log("点击" + index);
+				uni.navigateTo({
+					url: "detail?id=" + index,
+				})
+			}
 		}
 	}
 </script>
 
-<style>
-.more{
-	text-align: right;
-	margin-right:75rpx;
-	margin-bottom:50rpx;
-	color:orange;
-}
-.container {
-	padding: 0 20rpx;
-}
+<style lang="scss">
+	page {
+		background-color: #eee;
+	}
+
+	.header {
+		font-size: 50upx;
+	}
+
+	.list-box {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-start;
+		align-content: flex-start;
+		padding: 20upx 20upx 0 20upx;
+		line-height: 30upx;
+		font-size: 28upx;
+		color: #333;
+
+		&>view {
+			background-color: #fff;
+			width: 345upx;
+			padding: 20upx;
+			margin-bottom: 20upx;
+			box-sizing: border-box;
+			opacity: 0;
+			transform: translateY(40upx);
+			transition: all 0.3s ease-in-out 0s;
+
+			&.active {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		image {
+			width: 100%;
+			height: 300upx;
+			margin-bottom: 10upx;
+		}
+	}
+
+	.load {
+		line-height: 80upx;
+		text-align: center;
+		font-size: 24upx;
+		color: #999;
+		padding-bottom: 20rpx;
+	}
 </style>

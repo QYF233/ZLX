@@ -164,7 +164,14 @@
 			"style":{
 				"navigationBarTitleText":"美食详情"
 			}
+		},
+		{
+			"path":"pages/food/components/FoodList",
+			"style":{
+				"navigationBarTitleText":"美食详情"
+			}
 		}
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
