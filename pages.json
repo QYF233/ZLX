@@ -25,7 +25,7 @@
 		{
 		    "path" : "pages/tourist/tourist",
 		    "style" : {
-				"navigationBarTitleText": "寻境"
+				"navigationBarTitleText": "寻景"
 			}
 		},
 		{
@@ -82,10 +82,9 @@
 				"navigationBarTitleText": "寻意"
 			}
 		},{
-		    "path" : "pages/painting/painting",
+		    "path" : "pages/photo/photo",
 		    "style" : {
-				"navigationBarTitleText": "寻画",
-				"navigationStyle":"custom",
+				"navigationBarTitleText": "看旅拍",
 				"enablePullDownRefresh":true,
 				"app-plus":{
 					"scrollIndicator":"none"
@@ -148,24 +147,29 @@
 			}
 		},
 		{
-			"path":"pages/food/index",
-			"style":{
-				"navigationBarTitleText":"美食列表"
-			}
-		},
-		{
 			"path":"pages/food/detail",
 			"style":{
 				"navigationBarTitleText":"美食详情"
 			}
 		},
 		{
-			"path":"pages/food/components/FoodList",
+			"path":"pages/vr/index",
 			"style":{
-				"navigationBarTitleText":"美食详情"
+				"navigationBarTitleText":"全景VR"
+			}
+		},
+		{
+			"path":"pages/vr/vr",
+			"style":{
+				"navigationBarTitleText":"全景VR"
+			}
+		},
+		{
+			"path":"pages/painting/painting",
+			"style":{
+				"navigationBarTitleText":"寻画"
 			}
 		}
-		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -192,8 +196,8 @@
 			{
 				"iconPath":"static/tabbar/tabbar-category-gray.png",
 				"selectedIconPath":"static/tabbar/tabbar-category-blue.png",
-				"pagePath":"pages/painting/painting",
-				"text":"旅拍"
+				"pagePath":"pages/poem/poem",
+				"text":"诗路"
 			},
 			{
 				"iconPath":"static/tabbar/tabbar-my-gray.png",

@@ -3,7 +3,8 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-		<waterfall-flow :wfList="list"  @itemTap="gotoDetail"></waterfall-flow>
+		寻画
+		<!-- <waterfall-flow :wfList="list"  @itemTap="gotoDetail"></waterfall-flow>
 		<view class="add" @click="post">
 			<uni-transition :show="addShow" :mode-class="['slide-bottom','fade','zoom-in']">
 				<view class="add_btn">
@@ -12,8 +13,7 @@
 					</view>
 				</view>
 			</uni-transition>
-		</view>
-		
+		</view> -->
 	</view>
 	
 </template>

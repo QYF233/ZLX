@@ -13,7 +13,7 @@
 				</view>
 			</view>
 			<view class="right">
-				<button class="cu-btn round bg-cyan">
+				<button class="cu-btn round bg-cyan" @tap="gotoPainting">
 					<text class="cuIcon-camera"></text>
 					<text class="text">看旅图</text>
 				</button>
@@ -39,6 +39,11 @@
 			gotoLunBo() {
 				uni.navigateTo({
 					url: "/pages/home/cityList?city=" + this.city
+				})
+			},
+			gotoPainting() {
+				uni.navigateTo({
+					url: "/pages/photo/photo",
 				})
 			}
 		}

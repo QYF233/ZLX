@@ -20,11 +20,6 @@
 				  name: '寻吃',
 				  url: '/pages/food/food'				
 				},{
-				  icon: '\ue609',
-				  color: '#5555ff',
-				  name: '寻住',
-				  url: '/pages/hotel/hotel'
-				},{
 				  icon: '\ue61d',
 				  color: '#00aaff',
 				  name: '寻游',
@@ -32,7 +27,7 @@
 				},{
 				  icon: '\ue608',
 				  color: '#55ff7f',
-				  name: '寻境',
+				  name: '寻景',
 				  url: '/pages/tourist/tourist'
 				},{
 				  icon: '\ue62e',
@@ -49,6 +44,16 @@
 				  color: '#ffaa00',
 				  name: '寻宝',
 				  url: '/pages/treasure/treasure'
+				},{
+				  icon: '\ue608',
+				  color: '#55ff7f',
+				  name: '寻(山水)画',
+				  url: '/pages/painting/painting'
+				},{
+				  icon: '\ue608',
+				  color: '#55ff7f',
+				  name: '寻境(vr)',
+				  url: '/pages/vr/index'
 				}]
 			}
 		},

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Pano2VR project file  -->
+<pano2vrconfig rev="17956" version="6.1.8">
+  <panorama>
+    <id>node1</id>
+    <input>
+      <patch/>
+      <type>auto</type>
+      <filename>I:/大疆视频/宝龙/DJI_0159.JPG</filename>
+      <videotype>equi</videotype>
+      <levelpitch>0</levelpitch>
+      <levelroll>0</levelroll>
+    </input>
+    <viewingparameter>
+      <pan/>
+      <tilt/>
+      <fov/>
+      <flyinstart/>
+      <pannorth>0</pannorth>
+    </viewingparameter>
+    <userdata>
+      <capturedatetime>1970-01-01T00:00:00</capturedatetime>
+      <latitude>30.313505</latitude>
+      <longitude>120.382262</longitude>
+      <altitude>105</altitude>
+      <title>default</title>
+      <datetime>1970/1/1 0:00</datetime>
+      <tags>宝龙</tags>
+    </userdata>
+    <floorplans/>
+    <hotspots/>
+    <output>
+      <placeidcache>{"entries":[]}</placeidcache>
+      <htmlcss>
+        <html>
+          <enabled>1</enabled>
+          <filename>C:/Users/kiko/OneDrive/桌面/vr/index.html</filename>
+          <values>
+            <value id="css"></value>
+            <value id="gginfo">false</value>
+            <value id="htmltitle">$(upt)</value>
+            <value id="jsxml">false</value>
+            <value id="parseanchor">false</value>
+          </values>
+        </html>
+        <facequality/>
+        <transition/>
+        <autorotate/>
+        <soundstransition/>
+        <flyintransition/>
+        <hotspottext/>
+        <hotspotstyle/>
+        <webvr/>
+        <tilesize>2048</tilesize>
+        <filename>C:/Users/kiko/OneDrive/桌面/vr/pano.xml</filename>
+        <skinfile>cardboard.ggsk</skinfile>
+      </htmlcss>
+    </output>
+    <streetview/>
+    <streetviewproject/>
+    <sounds/>
+    <animation>
+      <title>Animation01</title>
+    </animation>
+  </panorama>
+</pano2vrconfig>
