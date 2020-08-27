@@ -194,8 +194,8 @@
 				"text":"首页"
 			},
 			{
-				"iconPath":"static/tabbar/tabbar-category-gray.png",
-				"selectedIconPath":"static/tabbar/tabbar-category-blue.png",
+				"iconPath":"static/tabbar/tabbar-sing1.svg",
+				"selectedIconPath":"static/tabbar/tabbar-sing.svg",
 				"pagePath":"pages/poem/poem",
 				"text":"诗路"
 			},

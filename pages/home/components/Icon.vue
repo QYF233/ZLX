@@ -35,8 +35,8 @@
 				  name: '寻意',
 				  url: '/pages/atmosphere/atmosphere'
 				},{
-				  icon: '\ue631',
-				  color: '#ff5500',
+				  icon: '\ue65d',
+				  color: '#000000',
 				  name: '寻乐',
 				  url: '/pages/play/play'
 				},{
@@ -45,13 +45,13 @@
 				  name: '寻宝',
 				  url: '/pages/treasure/treasure'
 				},{
-				  icon: '\ue608',
-				  color: '#55ff7f',
+				  icon: '\ue613',
+				  color: '#ad1d1d',
 				  name: '寻(山水)画',
 				  url: '/pages/painting/painting'
 				},{
-				  icon: '\ue608',
-				  color: '#55ff7f',
+				  icon: '\ue67c',
+				  color: '#00aaff',
 				  name: '寻境(vr)',
 				  url: '/pages/vr/index'
 				}]
