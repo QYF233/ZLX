@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<web-view :webview-styles="webviewStyles" src="../../hybrid/html/index.html"></web-view>
+		 <web-view :webview-styles="webviewStyles" :src="url"></web-view>
 	</view>
 </template>
 
@@ -8,12 +8,17 @@
 	export default {
 		data() {
 			return {
+				url:"",
 				webviewStyles: {
 					progress: {
 						color: '#FF3333'
 					}
 				}
 			}
+		},
+		onLoad: function(option) {
+			console.log(option.url);
+			this.url = option.url;
 		}
 	}
 </script>

@@ -29,9 +29,9 @@
 		},
 		methods: {
 			showVR() {
-				console.log("clihihiohhooy");
+				console.log("this.options.url"+this.options.url);
 				uni.navigateTo({
-					url: "vr",
+					url: "vr?url="+this.options.url,
 				})
 			}
 		}
