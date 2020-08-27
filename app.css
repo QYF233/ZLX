@@ -2,12 +2,12 @@
 /* iconfont 需要加上https: */
 @font-face {
   font-family: 'iconfont';  /* project id 1897670 */
-  src: url('https://at.alicdn.com/t/font_1897670_l3jt8a9wujc.eot');
-  src: url('https://at.alicdn.com/t/font_1897670_l3jt8a9wujc.eot?#iefix') format('embedded-opentype'),
-  url('https://at.alicdn.com/t/font_1897670_l3jt8a9wujc.woff2') format('woff2'),
-  url('https://at.alicdn.com/t/font_1897670_l3jt8a9wujc.woff') format('woff'),
-  url('https://at.alicdn.com/t/font_1897670_l3jt8a9wujc.ttf') format('truetype'),
-  url('https://at.alicdn.com/t/font_1897670_l3jt8a9wujc.svg#iconfont') format('svg');
+  src: url('https://at.alicdn.com/t/font_1897670_4rj3hzoxh6e.eot');
+  src: url('https://at.alicdn.com/t/font_1897670_4rj3hzoxh6e.eot?#iefix') format('embedded-opentype'),
+  url('https://at.alicdn.com/t/font_1897670_4rj3hzoxh6e.woff2') format('woff2'),
+  url('https://at.alicdn.com/t/font_1897670_4rj3hzoxh6e.woff') format('woff'),
+  url('https://at.alicdn.com/t/font_1897670_4rj3hzoxh6e.ttf') format('truetype'),
+  url('https://at.alicdn.com/t/font_1897670_4rj3hzoxh6e.svg#iconfont') format('svg');
 }
 * {
 	font-size: 14px;

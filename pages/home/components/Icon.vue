@@ -20,17 +20,17 @@
 				  name: '寻吃',
 				  url: '/pages/food/food'				
 				},{
-				  icon: '\ue61d',
+				  icon: '\ue608',
 				  color: '#00aaff',
 				  name: '寻游',
 				  url: '/pages/locations/locations'
 				},{
-				  icon: '\ue608',
+				  icon: '\ueb55',
 				  color: '#55ff7f',
 				  name: '寻景',
 				  url: '/pages/tourist/tourist'
 				},{
-				  icon: '\ue62e',
+				  icon: '\ue600',
 				  color: '#7c7cb9',
 				  name: '寻意',
 				  url: '/pages/atmosphere/atmosphere'
@@ -40,7 +40,7 @@
 				  name: '寻乐',
 				  url: '/pages/play/play'
 				},{
-				  icon: '\ue60d',
+				  icon: '\ueb57',
 				  color: '#ffaa00',
 				  name: '寻宝',
 				  url: '/pages/treasure/treasure'
