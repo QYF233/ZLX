@@ -9,7 +9,6 @@
 			 :data-detail="item.id">
 				<image :src="item.pic[0]" mode="aspectFill" lazy-load="true"></image>
 				<view>{{item.foodName}}</view>
-
 			</view>
 		</view>
 		<view class="load">{{loadTxt}}</view>

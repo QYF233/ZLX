@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view class="header">
-			<view class="title">
+			<view class="title"  align="left">
 				{{this.currentCity.name}}
 			</view>
-			<view class="other">
+			<view class="other" align="right">
 				<navigator url="otherCity" open-type="navigate">
 					<view class="otherCity">切换城市</view>
 				</navigator>
@@ -33,19 +33,20 @@
 
 <style lang="scss">
 	.header {
-		display: inline-block;
+		
 		margin: 20rpx 20rpx;
 		width: 100%;
 		height: 60rpx;	
 	}
 	.title {
-		float: left;
+		display: inline-block;
 		font-size: 50upx;
 		font-weight: bold;
+		width: 70%;
 	}
 	.other {
+		display: inline-block;
 		margin: 10rpx;
-		float: right;
 		margin-right: 40rpx;
 	}
 	.otherCity{

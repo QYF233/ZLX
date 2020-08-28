@@ -1,21 +1,15 @@
 <template>
 	<view>
 		<view class="uni-padding-wrap">
-			<view class="page-section swiper">
-				<view class="page-section-spacing">
-					<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-						<swiper-item>
-							<image src="../../../static/tsImage/ts1.jpg" mode="scaleToFill"></image>
-						</swiper-item>
-						<swiper-item>
-							<image src="../../../static/tsImage/ts2.jpg" mode="scaleToFill"></image>
-						</swiper-item>
-						<swiper-item>
-							<image src="../../../static/tsImage/ts3.jpg" mode="scaleToFill"></image>
-						</swiper-item>
-					</swiper>
-				</view>
-			</view>
+			<uni-swiper-dot :info="info" :current="current" mode="nav" field="content">
+				<swiper class="swiper-box" @change="change">
+					<swiper-item v-for="(item, index) in info" :key="index">
+						<view :class="item.colorClass" class="swiper-item">
+							<image class="image" :src="item.url" mode="aspectFill" />
+						</view>
+					</swiper-item>
+				</swiper>
+			</uni-swiper-dot>
 		</view>
 	</view>
 </template>
@@ -28,24 +22,31 @@
 		},
 		data() {
 			return {
-				indicatorDots: true,
-				autoplay: true,
-				interval: 2000,
-				duration: 500
+				info: [{
+						colorClass: 'uni-bg-red',
+						url: '/static/tsImage/ts1.jpg',
+						content: '内容 A'
+					},
+					{
+						colorClass: 'uni-bg-green',
+						url: '/static/tsImage/ts2.jpg',
+						content: '内容 B'
+					},
+					{
+						colorClass: 'uni-bg-blue',
+						url: '/static/tsImage/ts3.jpg',
+						content: '内容 C'
+					}
+				],
+				modeIndex: 3,
+				styleIndex: -1,
+				current: 0,
+				mode: 'nav',
 			}
 		},
 		methods: {
-			changeIndicatorDots(e) {
-				this.indicatorDots = !this.indicatorDots
-			},
-			changeAutoplay(e) {
-				this.autoplay = !this.autoplay
-			},
-			intervalChange(e) {
-				this.interval = e.target.value
-			},
-			durationChange(e) {
-				thid.duration = e.target.value
+			change(e) {
+				this.current = e.detail.current
 			}
 		}
 	}
