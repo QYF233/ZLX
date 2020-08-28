@@ -82,6 +82,11 @@
 				"navigationBarTitleText": "寻意"
 			}
 		},{
+		    "path" : "pages/atmosphere/detail",
+		    "style" : {
+				"navigationBarTitleText": "寻意详情"
+			}
+		},{
 		    "path" : "pages/photo/photo",
 		    "style" : {
 				"navigationBarTitleText": "看旅拍",
@@ -168,6 +173,12 @@
 			"path":"pages/painting/painting",
 			"style":{
 				"navigationBarTitleText":"寻画"
+			}
+		},
+		{
+			"path":"pages/food/otherCity",
+			"style":{
+				"navigationBarTitleText":"其他城市"
 			}
 		}
     ],

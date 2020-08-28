@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="content" :style="'background-image:url('+ citybackgroundImage +')'" >
+		<view class="content" :style="'background-image:url('+ citybackgroundImage +')'">
 			<view class="status_bar">
 				<!-- 这里是状态栏 -->
 			</view>
@@ -9,7 +9,7 @@
 			<home-icon></home-icon>
 			<view v-if="currentCity !== cityname && currentCity!==''" class="switch">
 				当前定位显示你在“{{currentCity}}”<view class="switch_btn" @click="switchToCurrentCity">切换</view>
-			</view>				
+			</view>
 			<h1>发现浙里</h1>
 			<waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow>
 		</view>
@@ -34,34 +34,34 @@
 		},
 		data() {
 			return {
-				list:[],
-				weatherType:'',
-				cityname:'正在定位...',
-				citybackgroundImage:'',
-				low:'',
-				high:'',
-				currentCity:'',
-				page:1,
-				pages:0
+				list: [],
+				weatherType: '',
+				cityname: '正在定位...',
+				citybackgroundImage: '',
+				low: '',
+				high: '',
+				currentCity: '',
+				page: 1,
+				pages: 0
 			}
 		},
 		onLoad() {
-			uni.$on('homeLoadList',this.homeLoadList)		//监听城市改变
+			uni.$on('homeLoadList', this.homeLoadList) //监听城市改变
 			this.getLocation()
 			let city = uni.getStorageSync("city")
-			if(city){
+			if (city) {
 				this.cityname = city.name
 				this.citybackgroundImage = city.backgroundImage
 				this.getWeather()
 				this.loadList()
-			 } 
+			}
 		},
-		methods:{
-			loadList(){
+		methods: {
+			loadList() {
 				this.list = []
-				setTimeout(()=>{
+				setTimeout(() => {
 					uni.request({
-						url:this.websiteUrl + 'home/list',
+						url: this.websiteUrl + 'home/list',
 						success: (res) => {
 							this.pages = res.data.pages
 							this.list = this.list.concat(res.data.list)
@@ -69,34 +69,34 @@
 					})
 				})
 			},
-			switchToCurrentCity(){
+			switchToCurrentCity() {
 				this.getCityObject(this.currentCity)
 				this.loadList()
 			},
-			homeLoadList(city){
-				if(city.name !== this.cityname){
+			homeLoadList(city) {
+				if (city.name !== this.cityname) {
 					this.cityname = city.name
 					this.citybackgroundImage = city.backgroundImage
 					this.getWeather()
 					this.loadList()
 				}
 			},
-			appendList(){
+			appendList() {
 				uni.showLoading({
-					title:"正在加载"
+					title: "正在加载"
 				})
-				if(this.page == this.pages) {
+				if (this.page == this.pages) {
 					uni.hideLoading()
 					uni.showToast({
-						icon:'none',
-						title:'没有更多了'
+						icon: 'none',
+						title: '没有更多了'
 					})
-					return 
+					return
 				}
 				this.page++
-				setTimeout(()=>{
+				setTimeout(() => {
 					uni.request({
-						url:this.websiteUrl + 'home/list?page=' + this.page,
+						url: this.websiteUrl + 'home/list?page=' + this.page,
 						success: (res) => {
 							this.list = this.list.concat(res.data.list)
 							uni.hideLoading()
@@ -104,31 +104,31 @@
 					})
 				})
 			},
-			choose(data){
+			choose(data) {
 				uni.navigateTo({
-					url:data.url
+					url: data.url
 				})
 			},
-			getCityObject(cityName){
+			getCityObject(cityName) {
 				uni.request({
-					url:this.websiteUrl + 'city/getcity?name=' + cityName,
+					url: this.websiteUrl + 'city/getcity?name=' + cityName,
 					success: (res) => {
 						var city = {
-							id:res.data.id,
-							name:res.data.name,
-							backgroundImage:res.data.backgroundPicture
+							id: res.data.id,
+							name: res.data.name,
+							backgroundImage: res.data.backgroundPicture
 						}
 						uni.setStorage({
-							key:"city",
-							data:city
+							key: "city",
+							data: city
 						})
-				 		this.cityname = city.name
-				 		this.citybackgroundImage = city.backgroundImage
+						this.cityname = city.name
+						this.citybackgroundImage = city.backgroundImage
 						this.getWeather()
 					}
 				})
 			},
-			getLocation(){
+			getLocation() {
 				this.cityname = '正在定位...'
 				this.high = ''
 				this.low = ''
@@ -140,22 +140,22 @@
 							let cityName = res.address.city
 							this.currentCity = cityName
 							let storageCity = uni.getStorageSync('city')
-							if(!storageCity) {
+							if (!storageCity) {
 								this.getCityObject(cityName)
 								this.loadList()
 							}
 						}
 					}
 				})
-			},			
-			getWeather(){
+			},
+			getWeather() {
 				uni.request({
 					url: 'http://wthrcdn.etouch.cn/weather_mini',
 					data: {
 						city: this.cityname
 					},
 					success: (result) => {
-						if (result.data.status===1000) {
+						if (result.data.status === 1000) {
 							let data = result.data.data
 							let wether = data.forecast
 							let today = wether[0]
@@ -180,17 +180,20 @@
 		background-repeat: no-repeat;
 		background-size: contain;
 	}
+
 	h1 {
 		font-size: 18px;
 		margin-left: 20rpx;
 	}
+
 	.temp {
 		text-align: center;
 	}
+
 	.switch {
 		font-size: 16px;
 		color: #FFFFFF;
-		background-color: rgba(0,0,0,0.2);
+		background-color: rgba(0, 0, 0, 0.2);
 		margin: 0 20rpx;
 		border-radius: 10rpx;
 		display: flex;
@@ -199,6 +202,7 @@
 		padding: 0 10rpx;
 		position: relative;
 	}
+
 	.switch_btn {
 		position: absolute;
 		right: 30rpx;
