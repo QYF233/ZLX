@@ -1,158 +1,51 @@
 <template>
-	<view class="painting">
-		<view class="status_bar">
-			<!-- 这里是状态栏 -->
-		</view>
-		寻画
-		<!-- <waterfall-flow :wfList="list"  @itemTap="gotoDetail"></waterfall-flow>
-		<view class="add" @click="post">
-			<uni-transition :show="addShow" :mode-class="['slide-bottom','fade','zoom-in']">
-				<view class="add_btn">
-					<view class="iconfont">
-						&#xe6cd;
-					</view>
-				</view>
-			</uni-transition>
-		</view> -->
+	<view>
+		<swiperImg 
+		:swiperList="swiperList" 
+		:indicatorDots="true" 
+		:autoplay="false" 
+		:interval="2000" 
+		:duration="500" />
 	</view>
-	
 </template>
-
 <script>
-	import WaterfallFlow from '@/components/nairenk-waterfall-flow/nairenk-waterfall-flow.vue';
-	const data = require('@/common/json/data.json');
+	import swiperImg from '@/components/swiper/swiper.vue'
 	export default {
 		components: {
-			WaterfallFlow
+			swiperImg
 		},
 		data() {
 			return {
-				list: [], // 列表
-				scrollTop:0,
-				addShow:true,
-				page:1,
-				pages:0
+				swiperList: [{
+						img: '/static/image/painting1.jpg',
+						title: '星空1',
+						content: '安静笼罩著夏夜巨大的星空,覆盖著整个地球,温柔地无声无息'
+					},
+					{
+						img: '/static/image/painting2.jpg',
+						title: '星空2',
+						content: '星星就像一盏盏小电灯,在空中闪烁'
+					},
+					{
+						img: '/static/sky03.jpg',
+						title: '星空3',
+						content: '我在星空的这一端,你在星空的那一端,相隔很远这很远。灿烂的永恒,无尽的遥远,再也无法相见..'
+					}, {
+						img: '/static/sky04.jpg',
+						title: '星空4',
+						content: '一切都如生命一般,在悄然地发生着变化,就如这黑夜一样,失去了光明,却得到了星空.'
+					},
+				],
 			}
-		},
-		onLoad() {
-			this.loadData()
-		},
-		onReachBottom() {
-			this.appendList()
-		},
-		onPageScroll(e){
-			if(this.scrollTop - e.scrollTop > 10){
-				this.addShow = true
-				uni.showTabBar({
-					animation:true
-				})
-			}		
-			if(e.scrollTop > 500){
-				if(e.scrollTop - this.scrollTop > 10){
-					uni.hideTabBar({
-						animation:true
-					})
-					this.addShow = false
-				}
-			}
-			this.scrollTop = e.scrollTop
-		},
-		onPullDownRefresh() {
-			uni.vibrateShort()
-			this.loadData()
-			setTimeout(function () {
-				uni.stopPullDownRefresh({
-					success:function(){
-						uni.showToast({
-							title:'刷新成功',
-							icon:'none',
-							position:'bottom'
-						})
-					}
-				});
-			}, 300);
 		},
 		methods: {
-			loadData(){
-				this.list = []
-				setTimeout(()=>{
-					uni.request({
-						url:this.websiteUrl + 'photo/list',
-						success: (res) => {
-							this.pages = res.data.pages
-							this.list = this.list.concat(res.data.list)
-						}
-					})
-				})
-			},
-			appendList(){
-				uni.showLoading({
-					title:"正在加载"
-				})
-				this.page++
-				if(this.page > this.pages) {
-					uni.showToast({
-						icon:'none',
-						title:'没有更多了'
-					})
-					return
-				}
-				setTimeout(()=>{
-					uni.request({
-						url:this.websiteUrl + 'photo/list?page=' + this.page,
-						success: (res) => {
-							this.list = this.list.concat(res.data.list)
-						}
-					})
-					uni.hideLoading()
-				},200)
-			},
-			post(){
-				let loginUser = uni.getStorageSync('user')
-				if(!loginUser) {
-					uni.showToast({
-						icon:'none',
-						title:'您还没有登录'
-					})
-					return
-				}
-				uni.chooseImage({
-					sizeType:['compressed'],
-					success(res) {
-						uni.navigateTo({
-							url:'/pages/painting/postPhoto?imgs=' + encodeURIComponent(JSON.stringify(res.tempFilePaths))
-						})
-					}
-				})
-			},
-			// 选中
-			gotoDetail(item) {
-				uni.navigateTo({
-					url:'/pages/painting/Detail?id=' + item.id
-				})
-			},
+
 		}
 	}
 </script>
 
+
+
 <style>
-	.add{
-		bottom: 80rpx;
-		position: fixed;
-		width: 80rpx;
-		left: 50%;
-		right: 50%;
-		margin-left: -40rpx;
-	}
-	.add_btn {
-		background-color: #007AFF;
-		border-radius: 50%;
-		height: 80rpx;
-		width: 80rpx;
-		margin: auto;
-		color: #FFFFFF;
-		text-align: center;
-		line-height: 80rpx;
-		font-size: 28px;
-	}
+
 </style>
