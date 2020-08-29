@@ -46,6 +46,11 @@
 			"style":{
 				"navigationBarTitleText":"寻宝"
 			}
+		},{
+			"path":"pages/treasure/detail",
+			"style":{
+				"navigationBarTitleText":"寻宝详情"
+			}
 		},
 		{
 			"path":"pages/me/Me",
