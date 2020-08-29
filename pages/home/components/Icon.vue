@@ -16,42 +16,42 @@
 			return {
 				iconListBig: [{
 				  icon: '\ue60b',
-				  color: '#e2c326',
+				  color: '#fbbd08',
 				  name: '寻吃',
 				  url: '/pages/food/food'				
 				},{
 				  icon: '\ue608',
-				  color: '#00aaff',
+				  color: '#0081ff',
 				  name: '寻游',
 				  url: '/pages/locations/locations'
 				},{
 				  icon: '\ueb55',
-				  color: '#55ff7f',
+				  color: '#39b54a',
 				  name: '寻景',
 				  url: '/pages/tourist/tourist'
 				},{
 				  icon: '\ue600',
-				  color: '#7c7cb9',
+				  color: '#6739b6',
 				  name: '寻意',
 				  url: '/pages/atmosphere/atmosphere'
 				},{
 				  icon: '\ue65d',
-				  color: '#000000',
+				  color: '#9c26b0',
 				  name: '寻乐',
 				  url: '/pages/play/play'
 				},{
 				  icon: '\ueb57',
-				  color: '#ffaa00',
+				  color: '#f37b1d',
 				  name: '寻宝',
 				  url: '/pages/treasure/treasure'
 				},{
-				  icon: '\ue613',
-				  color: '#ad1d1d',
+				  icon: '\ue802',
+				  color: '#8799a3',
 				  name: '寻(山水)画',
 				  url: '/pages/painting/painting'
 				},{
 				  icon: '\ue67c',
-				  color: '#00aaff',
+				  color: '#1cbbb4',
 				  name: '寻境(vr)',
 				  url: '/pages/vr/index'
 				}]

@@ -1,7 +1,13 @@
 <!-- 寻宝 -->
 <template>
 	<view>
-		<rotation-image></rotation-image>
+		<!-- <rotation-image></rotation-image> -->
+		<!-- <view class="cu-bar bg-white">
+			<view class="action">
+				<text class="cuIcon-titles text-green"></text>
+				<text class="text-xl text-bold">分类</text>
+			</view>
+		</view> -->
 		<treasure-image></treasure-image>
 	</view>
 </template>
