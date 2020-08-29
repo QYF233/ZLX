@@ -1,10 +1,11 @@
 <template>
 	<view>
-		<swiper class="swiper" acceleration="true" :autoplay="autoplay" :interval="interval" :duration="duration">
-			<swiper-item class="swiper-item" v-for="(item,index) of swiperList" :key="item.id">
-				<view class="">
+		<swiper class="swiper" acceleration="true" :autoplay="autoplay" :interval="interval" 
+		:duration="duration" @change="toTop"
+		 :style="{'height':scrollHeight+'px'}">
+			<swiper-item class="swiper-item" v-for="(item,index) of swiperList" :key="item.id" >
+				<view class="swiper-hei">
 					<image class="swiper-img" :src="item.img" mode="widthFix"></image>
-					<!-- <previewImage ref="previewImage" :imgs="item.img" :descs="item.content"></previewImage> -->
 					<view class="swiper-font">
 						<view class="title">
 							<!-- 标题 -->
@@ -25,11 +26,7 @@
 </template>
 
 <script>
-	import previewImage from '@/components/kxj-previewImage/kxj-previewImage.vue';
 	export default {
-		components: {
-			previewImage
-		}, //注册插件
 		props: {
 			indicatorDots: {
 				defalut: true,
@@ -45,16 +42,41 @@
 			},
 			swiperList: {}
 		},
-		onLoad() {
-
-		},
 		data() {
 			return {
-
+				scrollHeight: ""
 			}
 		},
+		mounted: function() {
+			this.toPic(this.swiperList[0].img);
+		},
 		methods: {
-
+			/* 将页面滚动到顶部 */
+			toTop() {
+				uni.pageScrollTo({
+					scrollTop: 0,
+					duration: 300
+				})
+				// console.log(data);
+				// this.toPic(data);
+				this.mounted()
+			},
+			mounted() {
+				// console.log(this);
+				let info = uni.createSelectorQuery().in(this).select('.swiper-hei').boundingClientRect();
+				info.exec(res => {
+					this.scrollHeight = res[0].height
+					console.log(this.scrollHeight)
+				})
+			},
+			toPic(data) {
+				let img_url = data;
+				let img = new Image();
+				img.src = img_url;
+				console.log('width:' + img.width + ', height:' + img.height);
+				this.scrollHeight = img.height+300
+				console.log(this.scrollHeight);
+			}
 		}
 	}
 </script>
@@ -66,7 +88,7 @@
 
 	.swiper {
 		width: 100%;
-		height: 1500rpx;
+		/* height: 1500rpx; */
 	}
 
 	.swiper-img {
@@ -100,7 +122,7 @@
 
 	}
 
-	/* .index :after{
+	.index :after {
 		overflow: hidden;
-	} */
+	}
 </style>
