@@ -120,7 +120,7 @@
 					sizeType:['compressed'],
 					success(res) {
 						uni.navigateTo({
-							url:'/pages/painting/postPhoto?imgs=' + encodeURIComponent(JSON.stringify(res.tempFilePaths))
+							url:'/pages/photo/postPhoto?imgs=' + encodeURIComponent(JSON.stringify(res.tempFilePaths))
 						})
 					}
 				})
@@ -128,7 +128,7 @@
 			// 选中
 			gotoDetail(item) {
 				uni.navigateTo({
-					url:'/pages/painting/Detail?id=' + item.id
+					url:'/pages/photo/Detail?id=' + item.id
 				})
 			},
 		}

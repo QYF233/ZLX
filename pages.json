@@ -132,13 +132,13 @@
 			}
 		},
 		{
-			"path":"pages/painting/postPhoto",
+			"path":"pages/photo/postPhoto",
 			"style":{
 				"navigationBarTitleText":"上传旅图"
 			}
 		},
 		{
-			"path":"pages/painting/Detail",
+			"path":"pages/photo/Detail",
 			"style":{
 				"navigationBarTitleText":"内容详情"
 			}

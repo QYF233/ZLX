@@ -1,7 +1,7 @@
 <template>
 	<view class="post">
 		<view class="top_input">
-			<textarea :value="text" placeholder="这一刻的想法" class="textarea" @input="input" auto-focus="true"/>
+			<textarea :value="text" placeholder="这一刻的想法" class="textarea" @input="input" auto-focus="true" />
 			<view class="counter">
 				{{counter}}/140
 			</view>
@@ -38,31 +38,72 @@
 			},
 			send(){
 				//上传到后端,并返回到前一个页面
-				let files = []
+				let flag = false;
+				let imageURL = "";
 				let a=0
 				for (let i of this.imgs) {
+					let image = [];
 					let f = {
-						name:'image' + a++,
+						name:'image',
 						uri:i
 					}
-					files.push(f)
-				}
-				console.log(files)
-				let loginUser = uni.getStorageSync('user').id
+					image.push(f)
 				uni.uploadFile({
+						url:'http://pan.kikohk.top/api/upload',
+						files:image,
+						formData:{
+							token:"0a5720cd20c9fcb79b953227de819793",
+						},
+						success: (res) => {
+							let dataJson = JSON.parse(res.data);
+							console.log(dataJson);
+							if(dataJson.code=="500"){
+								// alert("上传失败");
+								flag=false;
+							}else{
+								// alert("上传成功!");
+								flag=true;
+								console.log("URL:"+dataJson.data.url);
+								imageURL += dataJson.data.url+",";
+								console.log("imageURL:"+imageURL);
+							}
+							
+						}
+					});
+				}
+				/* uploadTask.onProgressUpdate((res) => {
+				            console.log('上传进度' + res.progress);
+				            console.log('已经上传的数据长度' + res.totalBytesSent);
+				            console.log('预期需要上传的数据总长度' + res.totalBytesExpectedToSend);
+				
+				            // 测试条件，取消上传任务。
+				            if (res.progress > 50) {
+				                uploadTask.abort();
+				            }
+				        }); */
+				console.log();
+				if(flag){
+					console.log("chengg");
+					this.insert(imageURL);
+				}
+			},
+			insert(imageURL){
+				imageURL=imageURL.substring(0,imageURL.length-1);
+				let loginUser = uni.getStorageSync('user').id
+				console.log("imageURL:"+imageURL);
+				/* uni.request({
 					url:this.websiteUrl + 'photo/insert',
-					files:files,
-					name:'photo',
-					formData:{
+					data:{
+						images:imageURL,
 						content:this.text,
 						postUser:loginUser,
-						size:this.imgs.length
+						date: new Date()
 					},
 					success: (res) => {
-						this.cancel()
+						console.log("end"+res);
 					}
-				})
-				
+				}) */
+				this.cancel()
 			},
 			previewImage(index) {
 				uni.previewImage({
