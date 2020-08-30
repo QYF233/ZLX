@@ -1,6 +1,9 @@
 <!-- 寻吃 -->
 <template>
 	<view class="container">
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<!-- 城市名称 -->
 		<food-header :currentCity="currentCity"></food-header>
 		<!-- 美食列表 -->

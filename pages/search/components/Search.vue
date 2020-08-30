@@ -3,7 +3,7 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-
+		
 		<view class="cu-bar search  bg-white">
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>

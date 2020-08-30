@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<view class="img-box">
 			<!-- <image class="poem" src="/static/image/poem2.jpg" mode="widthFix"></image> -->
 		</view>

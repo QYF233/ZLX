@@ -1,8 +1,11 @@
 <template>
 	<view class="container">
-		<li v-for="(item,index) in options">
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
+		<view v-for="(item,index) in options" :key="index">
 			<hm-news-card :options="item"></hm-news-card>
-		 </li>
+		 </view>
 	</view>
 </template>
 <script>

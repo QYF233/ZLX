@@ -1,6 +1,9 @@
 <!-- 寻境 -->
 <template>
 	<view>
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<view v-for="article in articles" :key="article.id">
 			<item :article="article"></item>
 		</view>

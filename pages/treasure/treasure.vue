@@ -1,6 +1,9 @@
 <!-- 寻宝 -->
 <template>
 	<view>
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<!-- <rotation-image></rotation-image> -->
 		<!-- <view class="cu-bar bg-white">
 			<view class="action">

@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<swiperImg 
 		:swiperList="swiperList" 
 		:indicatorDots="true" 

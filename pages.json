@@ -101,11 +101,6 @@
 				}
 			}
 		},{
-		    "path" : "pages/photo/test",
-		    "style" : {
-				"navigationBarTitleText": "测试"
-			}
-		},{
 		    "path" : "pages/poem/poem",
 		    "style" : {
 				"navigationBarTitleText": "寻诗"
@@ -221,8 +216,8 @@
 				"text":"首页"
 			},
 			{
-				"iconPath":"static/tabbar/tabbar-sing1.svg",
-				"selectedIconPath":"static/tabbar/tabbar-sing.svg",
+				"iconPath":"static/tabbar/poem.png",
+				"selectedIconPath":"static/tabbar/poem-blue.png",
 				"pagePath":"pages/poem/poem",
 				"text":"诗路"
 			},
