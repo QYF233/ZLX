@@ -24,7 +24,8 @@
 		data(){
 			return {
 				imgs:[],
-				text:''
+				text:'',
+				imageURL:""
 			}
 		},
 		methods:{
@@ -36,10 +37,10 @@
 					delta:1
 				})
 			},
-			send(){
+			async send(){
 				//上传到后端,并返回到前一个页面
 				let flag = false;
-				let imageURL = "";
+				this.imageURL="";
 				let a=0
 				for (let i of this.imgs) {
 					let image = [];
@@ -47,8 +48,19 @@
 						name:'image',
 						uri:i
 					}
-					image.push(f)
-				uni.uploadFile({
+					image.push(f);
+				 this.up(image)
+				
+					/* if(this.up(image)){
+						console.log("成功");
+						this.insert();
+					}else{
+						console.log("失败");
+					} */
+				}	
+			},
+			async up(image){
+			uni.uploadFile({
 						url:'http://pan.kikohk.top/api/upload',
 						files:image,
 						formData:{
@@ -58,43 +70,26 @@
 							let dataJson = JSON.parse(res.data);
 							console.log(dataJson);
 							if(dataJson.code=="500"){
-								// alert("上传失败");
-								flag=false;
+								console.log("上传失败");
+								return false;
 							}else{
-								// alert("上传成功!");
-								flag=true;
+								console.log("上传成功");
 								console.log("URL:"+dataJson.data.url);
-								imageURL += dataJson.data.url+",";
-								console.log("imageURL:"+imageURL);
+								this.imageURL += dataJson.data.url+",";
+								return true;
 							}
 							
 						}
 					});
-				}
-				/* uploadTask.onProgressUpdate((res) => {
-				            console.log('上传进度' + res.progress);
-				            console.log('已经上传的数据长度' + res.totalBytesSent);
-				            console.log('预期需要上传的数据总长度' + res.totalBytesExpectedToSend);
-				
-				            // 测试条件，取消上传任务。
-				            if (res.progress > 50) {
-				                uploadTask.abort();
-				            }
-				        }); */
-				console.log();
-				if(flag){
-					console.log("chengg");
-					this.insert(imageURL);
-				}
 			},
-			insert(imageURL){
-				imageURL=imageURL.substring(0,imageURL.length-1);
+			insert(){
+				// imageURL=imageURL.substring(0,imageURL.length-1);
 				let loginUser = uni.getStorageSync('user').id
-				console.log("imageURL:"+imageURL);
-				/* uni.request({
+				console.log("imageURL:"+this.imageURL);
+				uni.request({
 					url:this.websiteUrl + 'photo/insert',
 					data:{
-						images:imageURL,
+						images:this.imageURL,
 						content:this.text,
 						postUser:loginUser,
 						date: new Date()
@@ -102,7 +97,7 @@
 					success: (res) => {
 						console.log("end"+res);
 					}
-				}) */
+				})
 				this.cancel()
 			},
 			previewImage(index) {

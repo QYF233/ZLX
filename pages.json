@@ -101,6 +101,11 @@
 				}
 			}
 		},{
+		    "path" : "pages/photo/test",
+		    "style" : {
+				"navigationBarTitleText": "测试"
+			}
+		},{
 		    "path" : "pages/poem/poem",
 		    "style" : {
 				"navigationBarTitleText": "寻诗"
@@ -153,6 +158,12 @@
 			"path":"pages/tourist/Deatil",
 			"style":{
 				"navigationBarTitleText":"景点详情",
+				"navigationStyle":"custom"
+			}
+		},{
+			"path":"pages/tourist/Search",
+			"style":{
+				"navigationBarTitleText":"景点搜索",
 				"navigationStyle":"custom"
 			}
 		},

@@ -1,20 +1,23 @@
 <template>
 	<view class="places">
-		<t-header></t-header>
-		<item></item>
-		<item></item>
-		<item></item>
-		<item></item>
+		<tourist-search></tourist-search>
+		<tourist-header></tourist-header>
+		<tourist-item></tourist-item>
+		<tourist-item></tourist-item>
+		<tourist-item></tourist-item>
+		<tourist-item></tourist-item>
 	</view>
 </template>
 
 <script>
-	import Item from './components/item.vue'
-	import THeader from './components/Header.vue'
+	import TouristSearch from './components/Search'
+	import TouristHeader from './components/Header.vue'
+	import TouristItem from './components/item.vue'
 	export default{
 		components:{
-			Item,
-			THeader
+			TouristSearch,
+			TouristHeader,
+			TouristItem
 		}
 	}
 </script>
