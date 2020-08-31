@@ -1,12 +1,12 @@
 <template>
 	<view class="place_item" @click="toDetail">
 		<div class="img_container">
-			<image src="https://tr-osdcp.qunarzz.com/tr-osd-tr-manager/img/c20f0a91f43c6c7fc761249aab729390.jpg_r_800x800x70_24694821.jpg" mode="widthFix" class="img"></image>
+			<image :src="item.images[0]" class="img"></image>
 			</div>
 		<view class="msg">
-			<h1>花花岛</h1>
+			<h1>{{item.title}}</h1>
 			<view class="content">
-				国内最日系漫画小岛，媲美希腊的圣托里尼
+				{{item.tags}}
 			</view>
 		</view>
 	</view>
@@ -16,12 +16,12 @@
 	export default{
 		name:"Item",
 		props:{
-			location:Object
+			item:Object
 		},
 		methods:{
-			toDetail(){
+			toDetail(){ 
 				uni.navigateTo({
-					url:'/pages/tourist/Deatil?id=1'
+					url:'/pages/tourist/Deatil?id=' + this.item.id
 				})
 			}
 		}

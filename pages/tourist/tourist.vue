@@ -1,14 +1,8 @@
 <template>
 	<view class="places">
-		<view class="status_bar">
-			<!-- 这里是状态栏 -->
-		</view>
 		<tourist-search></tourist-search>
 		<tourist-header></tourist-header>
-		<tourist-item></tourist-item>
-		<tourist-item></tourist-item>
-		<tourist-item></tourist-item>
-		<tourist-item></tourist-item>
+		<tourist-item v-for="i in items" :key="i.id" :item="i"></tourist-item>
 	</view>
 </template>
 
@@ -17,10 +11,24 @@
 	import TouristHeader from './components/Header.vue'
 	import TouristItem from './components/item.vue'
 	export default{
+		data() {
+			return{
+				items:[]
+			}
+		},
 		components:{
 			TouristSearch,
 			TouristHeader,
 			TouristItem
+		},
+		onLoad() {
+			let cityid = uni.getStorageSync('city').id
+			uni.request({
+				url:this.websiteUrl + 'spot/list?cityid=' + cityid,
+				success: (res) => {
+					this.items = this.items.concat(res.data)
+				}
+			})
 		}
 	}
 </script>

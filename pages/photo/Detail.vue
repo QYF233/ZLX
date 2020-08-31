@@ -74,7 +74,6 @@
 						userId:this.currentUserId
 					},
 					success: (res) => {
-						console.log(res.data)
 						this.detail.comment.push(res.data)
 						this.input = ''
 					}

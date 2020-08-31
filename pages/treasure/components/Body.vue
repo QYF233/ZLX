@@ -60,7 +60,6 @@
 		},
 		methods: {
 			onClick($event) {
-				console.log($event);
 				uni.navigateTo({
 					url:"/pages/treasure/detail?id="+$event,
 				})

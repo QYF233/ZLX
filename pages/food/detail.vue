@@ -26,7 +26,6 @@
 			};
 		},
 		onLoad: function(option) {
-			console.log(option.id);
 			this.foodId = parseInt(option.id);
 			this.getData();
 		},

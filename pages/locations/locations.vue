@@ -1,9 +1,6 @@
 <!-- 寻境 -->
 <template>
 	<view>
-		<view class="status_bar">
-			<!-- 这里是状态栏 -->
-		</view>
 		<view v-for="article in articles" :key="article.id">
 			<item :article="article"></item>
 		</view>
@@ -16,7 +13,6 @@
 </template>
 
 <script>
-	const data = require('../../common/json/locationsItem.json');
 	import Item from './components/item.vue'
 	export default {
 		name:'Locations',
@@ -25,42 +21,64 @@
 		},
 		onPullDownRefresh() {
 			uni.vibrateShort()
-			setTimeout(function () {
-				uni.stopPullDownRefresh({
-					success:function(){
-						uni.showToast({
-							title:'刷新成功',
-							icon:'none',
-							position:'bottom'
-						})
-					}
-				});
-			}, 300);
+			uni.request({
+				url:this.websiteUrl + 'article/getlist?page=' + this.page,
+				success: (res) => {
+					this.pages = res.data.pages
+					this.articles = []
+					this.articles = this.articles.concat(res.data.list)
+				}
+			})
+			uni.stopPullDownRefresh({
+				success:function(){
+					uni.showToast({
+						title:'刷新成功',
+						icon:'none',
+						position:'bottom'
+					})
+				}
+			});
 		},
 		onReachBottom() {
-			uni.showLoading({
-				title: '加载中...'
-			})
-			setTimeout(()=>{
-				this.loadMore()
-				uni.hideLoading()
-			},500)
-			this.page++
-			
+			this.loadMore()
 		},
 		methods:{
 			loadMore(){
-				this.articles=this.articles.concat(data.articles)				
+				uni.showLoading({
+					title:"正在加载"
+				})
+				this.page++
+				if(this.page > this.pages) {
+					uni.showToast({
+						icon:'none',
+						title:'没有更多了'
+					})
+					return
+				}
+				uni.request({
+					url:this.websiteUrl + 'article/getlist?page=' + this.page,
+					success: (res) => {
+						this.list = this.list.concat(res.data.list)
+					}
+				})
+				uni.hideLoading()
 			}
 		},
 		data() {
 			return {
 				articles:[],
-				page:1
+				page:1,
+				pages:0
 			}
 		},
 		onLoad() {
-			this.articles = this.articles.concat(data.articles)
+			uni.request({
+				url:this.websiteUrl + 'article/getlist?page=' + this.page,
+				success: (res) => {
+					this.pages = res.data.pages
+					this.articles = this.articles.concat(res.data.list)
+				}
+			})
 		}
 	}
 </script>

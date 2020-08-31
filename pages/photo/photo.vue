@@ -1,8 +1,5 @@
 <template>
 	<view class="painting">
-		<view class="status_bar">
-			<!-- 这里是状态栏 -->
-		</view>
 		<waterfall-flow :wfList="list"  @itemTap="gotoDetail"></waterfall-flow>
 		<view class="add" @click="post">
 			<uni-transition :show="addShow" :mode-class="['slide-bottom','fade','zoom-in']">
@@ -20,7 +17,6 @@
 
 <script>
 	import WaterfallFlow from '@/components/nairenk-waterfall-flow/nairenk-waterfall-flow.vue';
-	const data = require('@/common/json/data.json');
 	export default {
 		components: {
 			WaterfallFlow

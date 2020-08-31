@@ -24,8 +24,7 @@
 		data(){
 			return {
 				imgs:[],
-				text:'',
-				imageURL:""
+				text:''
 			}
 		},
 		methods:{
@@ -37,68 +36,32 @@
 					delta:1
 				})
 			},
-			async send(){
+			send(){
 				//上传到后端,并返回到前一个页面
-				let flag = false;
-				this.imageURL="";
+				let files = []
 				let a=0
 				for (let i of this.imgs) {
-					let image = [];
 					let f = {
-						name:'image',
+						name:'image' + a++,
 						uri:i
 					}
-					image.push(f);
-				 this.up(image)
-				
-					/* if(this.up(image)){
-						console.log("成功");
-						this.insert();
-					}else{
-						console.log("失败");
-					} */
-				}	
-			},
-			async up(image){
-			uni.uploadFile({
-						url:'http://pan.kikohk.top/api/upload',
-						files:image,
-						formData:{
-							token:"0a5720cd20c9fcb79b953227de819793",
-						},
-						success: (res) => {
-							let dataJson = JSON.parse(res.data);
-							console.log(dataJson);
-							if(dataJson.code=="500"){
-								console.log("上传失败");
-								return false;
-							}else{
-								console.log("上传成功");
-								console.log("URL:"+dataJson.data.url);
-								this.imageURL += dataJson.data.url+",";
-								return true;
-							}
-							
-						}
-					});
-			},
-			insert(){
-				// imageURL=imageURL.substring(0,imageURL.length-1);
+					files.push(f)
+				}
 				let loginUser = uni.getStorageSync('user').id
-				console.log("imageURL:"+this.imageURL);
-				uni.request({
+				uni.uploadFile({
 					url:this.websiteUrl + 'photo/insert',
-					data:{
-						images:this.imageURL,
+					files:files,
+					name:'photo',
+					formData:{
 						content:this.text,
 						postUser:loginUser,
-						date: new Date()
+						size:this.imgs.length
 					},
 					success: (res) => {
-						console.log("end"+res);
+						this.cancel()
 					}
 				})
-				this.cancel()
+				
 			},
 			previewImage(index) {
 				uni.previewImage({

@@ -49,7 +49,6 @@
 		methods: {
 			async getData() {
 				this.currentCity = uni.getStorageSync('city');
-				console.log("当前城市" + this.currentCity.name);
 				const res1 = await this.$myRequest({
 					url: '/food/getlist'
 				})
@@ -87,7 +86,7 @@
 						}
 						success(list);
 
-					}, 1000);
+					}, 200);
 
 				}).then((res) => {
 					if (this.page == 1) {

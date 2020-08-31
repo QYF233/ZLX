@@ -8,8 +8,8 @@
 				<view class="author">{{article.author.name}}</view>
 				<view class="text">{{changeTextSize}}</view>
 			</view>
-			<view class="item-bottom-right" v-if="article.photo !== ''">
-				<image class="image" :src="article.photo"></image>
+			<view class="item-bottom-right" v-if="article.coverPicture !== null">
+				<image class="image" :src="article.coverPicture"></image>
 			</view>
 		</view>
 		<view class="date">{{article.date}}</view>
@@ -21,7 +21,7 @@
 		methods:{
 			todetail:function(){
 				uni.navigateTo({
-					url:'/pages/locations/locationsDetail?id=2',
+					url:'/pages/locations/locationsDetail?id=' + this.article.id,
 					animationType: 'slide-in-bottom',
 					animationDuration: 300
 				})
@@ -32,17 +32,17 @@
 		},
 		computed:{
 			changeTextSize(){
-				let text = this.text
-				if(this.article.photo===''){
-					if(this.article.text.length>100){
-						text = this.article.text.substr(0,100)+"..."
+				let text = this.article.content
+				if(this.article.coverPicture===null){
+					if(this.article.content.length>100){
+						text = text.substr(0,100)
 					}
-					return text
+					return text + '...'
 				}
-				if(this.article.text.length>50){
-					text = this.article.text.substr(0,50)+"..."
+				if(this.article.content.length>50){
+					text = text.substr(0,50)
 				}
-				return text
+				return text + '...'
 			}
 		}
 	}
