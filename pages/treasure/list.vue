@@ -1,10 +1,10 @@
 <template>
 	<view class="list">
-		<view class="item"  v-for="(item,index) in data" :key="index" v-if="classId==item.id">
+		<view class="item"  v-for="(item,index) in treasureList" :key="index" v-if="classId==item.classifyId">
 			<view class="title text-bold">
-				{{item.name}}
+				{{item.treasureName}}
 			</view>
-			<image class="pic" :src="item.pic" mode=""></image>
+			<image class="pic" :src="item.img[0]" mode="widthFix"></image>
 			<view class="place text-gray text-ABC">
 				{{item.place}}
 			</view>
@@ -21,39 +21,24 @@
 		data() {
 			return {
 				classId:"",
-				data:[
-					{
-						id:"1",
-						name:"浙江省博物馆",
-						place:"杭州市下城区西湖文化广场A区",
-						pic:"../../static/tsImage/1.jpg"
-					},
-					{
-						id:"1",
-						name:"杭州市博物馆",
-						place:"杭州市下城区西湖文化广场A区",
-						pic:"../../static/tsImage/1.jpg"
-					},
-					{
-						id:"2",
-						name:"杭州市科技馆",
-						place:"杭州市下城区西湖文化广场A区",
-						pic:"../../static/tsImage/1.jpg"
-					},
-					{
-						id:"2",
-						name:"浙江省科技馆",
-						place:"杭州市下城区西湖文化广场A区",
-						pic:"../../static/tsImage/1.jpg"
-					}
-				],
+				treasureList:[],
 			}
 		},onLoad: function(option) {
 			/* 分类id */
 			this.classId = parseInt(option.id);
+			this.getData()
 		},
 		methods:{
-			
+			async getData() {
+				const res1 = await this.$myRequest({
+					url: '/treasure/getlist'
+				})
+				for (var i = 0; i < res1.data.list.length; i++) {
+					
+					this.treasureList.push(res1.data.list[i])
+				}
+				console.log(this.treasureList[0].img);
+			},
 		}
 	}
 </script>

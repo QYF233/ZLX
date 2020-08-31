@@ -4,19 +4,19 @@
 			<!-- 这里是状态栏 -->
 		</view>
         <view class="banner" @click="goDetail(banner)">
-            <image class="banner-img" :src="banner.cover"></image>
-            <view class="banner-title">{{banner.title}}</view>
+            <image class="banner-img" :src="banner.images[0]"></image>
+            <view class="banner-title">{{banner.cityCultureName}}</view>
         </view>
         <view class="uni-list">
             <view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(value,key) in listData" :key="key"
                 @click="goDetail(value)">
                 <view class="uni-media-list">
-                    <image class="uni-media-list-logo" :src="value.cover"></image>
+                    <image class="uni-media-list-logo" :src="value.images[0]"></image>
                     <view class="uni-media-list-body">
-                        <view class="uni-media-list-text-top">{{value.title}}</view>
+                        <view class="uni-media-list-text-top">{{value.cityCultureName}}</view>
                         <view class="uni-media-list-text-bottom">
-                            <text>{{value.author_name}}</text>
-                            <text>{{value.published_at}}</text>
+                            <text>{{value.id}}</text>
+                            <text>{{value.addTime}}</text>		<text>{{value.images[0]}}</text>
                         </view>
                     </view>
                 </view>
@@ -26,8 +26,7 @@
 </template>
 
 <script>
-    var dateUtils = require('../../common/util.js').dateUtils;
-
+    var dateUtils = require('../../common/util.js').dateUtils; 
     export default {
         data() {
             return {
@@ -38,20 +37,34 @@
             }
         },
         onLoad() {
-            this.getBanner();
-            this.getList();
+            // this.getBanner();
+            // this.getList();
+			this.getData();
+			console.log(this.listData);
         },
-        onPullDownRefresh() {
-            this.reload = true;
-            this.last_id = "";
-            this.getBanner();
-            this.getList();
-        },
-        onReachBottom() {
-            this.getList();
-        },
+        // onPullDownRefresh() {
+            // this.reload = true;
+            // this.last_id = "";
+            // this.getBanner();
+            // this.getList();
+        // },
+        // onReachBottom() {
+            // this.getList();
+        // },
         methods: {
-            getBanner() {
+			async getData() {
+				const res = await this.$myRequest({
+					url: 'atmosphere/getlist'
+				})
+				console.log(res);
+				this.banner = res.data.list[0];
+				console.log(this.banner.images[0]);
+				for (var i = 1; i < res.data.list.length; i++) {
+					this.listData.push(res.data.list[i])
+				}
+				console.log(this.listData);
+			},
+            /* getBanner() {
                 let data = {
                     column: "id,post_id,title,author_name,cover,published_at" //需要的字段名
                 };
@@ -93,8 +106,8 @@
                         console.log('fail' + JSON.stringify(data));
                     }
                 })
-            },
-            goDetail: function(e) {
+            }, */
+           /* goDetail: function(e) {
                 // 				if (!/前|刚刚/.test(e.published_at)) {
                 // 					e.published_at = dateUtils.format(e.published_at);
                 // 				}
@@ -110,8 +123,8 @@
                     url: "detail?detailDate=" + encodeURIComponent(JSON.stringify(
                         detail))
                 })
-            },
-            setTime: function(items) {
+            }, */
+            /* setTime: function(items) {
                 var newItems = [];
                 items.forEach((e) => {
                     newItems.push({
@@ -124,7 +137,7 @@
                     });
                 });
                 return newItems;
-            }
+            } */
         },
     }
 </script>

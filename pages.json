@@ -47,6 +47,11 @@
 				"navigationBarTitleText":"寻宝"
 			}
 		},{
+			"path":"pages/treasure/list",
+			"style":{
+				"navigationBarTitleText":"寻宝列表"
+			}
+		},{
 			"path":"pages/treasure/detail",
 			"style":{
 				"navigationBarTitleText":"寻宝详情"

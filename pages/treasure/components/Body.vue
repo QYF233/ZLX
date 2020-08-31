@@ -48,12 +48,6 @@
 						name: '名人故居',
 						url: require('../../../static/tsImage/5.jpg'),
 						tip: 'Former residence of celebrities'
-					},
-					{
-						id: 6,
-						name: '手工艺品',
-						url: require('../../../static/tsImage/6.jpg'),
-						tip: 'Handicrafts'
 					}
 				],
 			}
@@ -61,7 +55,7 @@
 		methods: {
 			onClick($event) {
 				uni.navigateTo({
-					url:"/pages/treasure/detail?id="+$event,
+					url:"/pages/treasure/list?id="+$event,
 				})
 			}
 		}
