@@ -97,6 +97,16 @@
 				"navigationBarTitleText": "寻意详情"
 			}
 		},{
+		    "path" : "pages/atmosphereD/atmosphere",
+		    "style" : {
+				"navigationBarTitleText": "寻意"
+			}
+		},{
+		    "path" : "pages/atmosphereD/detail",
+		    "style" : {
+				"navigationBarTitleText": "寻意详情"
+			}
+		},{
 		    "path" : "pages/photo/photo",
 		    "style" : {
 				"navigationBarTitleText": "看旅拍",

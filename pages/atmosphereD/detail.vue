@@ -1,9 +1,8 @@
 <template>
     <view>
         <view class="banner">
-            <image class="banner-img" :src="banner.image"></image>
+            <image class="banner-img" :src="banner.cover"></image>
             <view class="banner-title">{{banner.title}}</view>
-			{{banner.image}}
         </view>
         <view class="article-meta">
             <text class="article-author">{{banner.author_name}}</text>
@@ -11,7 +10,7 @@
             <text class="article-time">{{banner.published_at}}</text>
         </view>
         <view class="article-content">
-            <rich-text :nodes="banner.describe"></rich-text>
+            <rich-text :nodes="htmlString"></rich-text>
         </view>
         <!-- #ifdef MP-WEIXIN -->
         <ad v-if="htmlString" unit-id="adunit-01b7a010bf53d74e"></ad>
@@ -41,7 +40,7 @@
             } catch (error) {
                 this.banner = JSON.parse(event.detailDate);
             }
-			console.log(this.banner);
+
             this.getDetail();
             uni.setNavigationBarTitle({
                 title: this.banner.title
@@ -49,18 +48,18 @@
         },
         methods: {
             getDetail() {
-                // uni.request({
-                //     url: 'https://unidemo.dcloud.net.cn/api/news/36kr/' + this.banner.post_id,
-                //     success: (data) => {
-                //         if (data.statusCode == 200) {
-                //             this.htmlString = data.data.content.replace(/\\/g, "").replace(/<img/g,
-                //                 "<img style=\"display:none;\"");
-                //         }
-                //     },
-                //     fail: () => {
-                //         console.log('fail');
-                //     }
-                // })
+                uni.request({
+                    url: 'https://unidemo.dcloud.net.cn/api/news/36kr/' + this.banner.post_id,
+                    success: (data) => {
+                        if (data.statusCode == 200) {
+                            this.htmlString = data.data.content.replace(/\\/g, "").replace(/<img/g,
+                                "<img style=\"display:none;\"");
+                        }
+                    },
+                    fail: () => {
+                        console.log('fail');
+                    }
+                })
             }
         }
     }

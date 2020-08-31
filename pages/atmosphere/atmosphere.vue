@@ -15,8 +15,8 @@
                     <view class="uni-media-list-body">
                         <view class="uni-media-list-text-top">{{value.cityCultureName}}</view>
                         <view class="uni-media-list-text-bottom">
-                            <text>{{value.id}}</text>
-                            <text>{{value.addTime}}</text>		<text>{{value.images[0]}}</text>
+                            <text>{{value.city.name}}</text>
+                            <text>{{value.time}}</text>
                         </view>
                     </view>
                 </view>
@@ -33,14 +33,13 @@
                 banner: {},
                 listData: [],
                 last_id: "",
-                reload: false
+                reload: false,
             }
         },
         onLoad() {
             // this.getBanner();
             // this.getList();
 			this.getData();
-			console.log(this.listData);
         },
         // onPullDownRefresh() {
             // this.reload = true;
@@ -64,6 +63,21 @@
 				}
 				console.log(this.listData);
 			},
+			 goDetail: function(e) {
+                let detail = {
+                    author_name: e.cityCultureName,
+                    image: e.images[0],
+                    id: e.id,
+                    post_id: e.id,
+                    published_at: e.time,
+                    title: e.title,
+					describe: e.describe
+                }
+                uni.navigateTo({
+                    url: "detail?detailDate=" + encodeURIComponent(JSON.stringify(
+                        detail))
+                })
+            },
             /* getBanner() {
                 let data = {
                     column: "id,post_id,title,author_name,cover,published_at" //需要的字段名
@@ -107,23 +121,7 @@
                     }
                 })
             }, */
-           /* goDetail: function(e) {
-                // 				if (!/前|刚刚/.test(e.published_at)) {
-                // 					e.published_at = dateUtils.format(e.published_at);
-                // 				}
-                let detail = {
-                    author_name: e.author_name,
-                    cover: e.cover,
-                    id: e.id,
-                    post_id: e.post_id,
-                    published_at: e.published_at,
-                    title: e.title
-                }
-                uni.navigateTo({
-                    url: "detail?detailDate=" + encodeURIComponent(JSON.stringify(
-                        detail))
-                })
-            }, */
+          
             /* setTime: function(items) {
                 var newItems = [];
                 items.forEach((e) => {
