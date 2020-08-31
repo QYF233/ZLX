@@ -47,12 +47,12 @@
 				},{
 				  icon: '\ue802',
 				  color: '#8799a3',
-				  name: '寻(山水)画',
+				  name: '寻画',
 				  url: '/pages/painting/painting'
 				},{
 				  icon: '\ue67c',
 				  color: '#1cbbb4',
-				  name: '寻境(vr)',
+				  name: '寻境',
 				  url: '/pages/vr/index'
 				}]
 			}

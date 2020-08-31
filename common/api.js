@@ -1,5 +1,5 @@
 const BASE_URL = "http://zlx.kikohk.top/"
-
+// const BASE_URL = "http://localhost:8080/"
 export const myRequest = (options) => {
 	return new Promise((resolve, reject) => {
 		uni.request({
