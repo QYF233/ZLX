@@ -3,8 +3,8 @@
 		<div class="container">
 			<div class="box">
 				<img class="img" :src="options.img" />
-				<span class="title">{{ options.title }}</span>
-				<span class="summary">{{ options.summary }}</span>
+				<span class="title">{{ options.vrName }}</span>
+				<span class="summary">{{ options.content }}</span>
 			</div>
 		</div>
 	</div>
