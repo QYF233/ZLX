@@ -55,24 +55,32 @@
 							'content-type': 'application/x-www-form-urlencoded'
 						},
 						success: (res) => {
-							if (res.data == '') {
+							if(res.statusCode !== 200){
+								if (res.data == '') {
+									uni.showToast({
+										icon: 'none',
+										title: '账号或密码错误，登录失败'
+									})
+
+								} else {
+									uni.setStorage({
+										key: 'user',
+										data: {
+											id: res.data.id,
+											name: res.data.name,
+											backgroundImage: res.data.backgroundPicture,
+											icon: res.data.icon
+										}
+									})
+									uni.switchTab({
+										url: '/pages/me/Me'
+									})
+								}
+								
+							} else {
 								uni.showToast({
 									icon: 'none',
-									title: '账号或密码错误，登录失败'
-								})
-
-							} else {
-								uni.setStorage({
-									key: 'user',
-									data: {
-										id: res.data.id,
-										name: res.data.name,
-										backgroundImage: res.data.backgroundPicture,
-										icon: res.data.icon
-									}
-								})
-								uni.switchTab({
-									url: '/pages/me/Me'
+									title: '服务器出错'
 								})
 							}
 							this.load = false
