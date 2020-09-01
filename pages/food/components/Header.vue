@@ -4,11 +4,6 @@
 			<view class="title"  align="left">
 				{{this.currentCity.name}}
 			</view>
-			<view class="other" align="right">
-				<navigator url="otherCity" open-type="navigate">
-					<view class="otherCity">切换城市</view>
-				</navigator>
-			</view>
 		</view>
 		<!-- 新增 -->
 		<!-- 点击进入选择城市界面（新的界面）选择完后回到美食主页 -->

@@ -64,7 +64,11 @@
 						url: this.websiteUrl + 'home/list',
 						success: (res) => {
 							this.pages = res.data.pages
-							this.list = this.list.concat(res.data.list)
+							let p = res.data.list
+							p.sort(function() {
+								return .5 - Math.random();
+							});
+							this.list = this.list.concat(p)
 						}
 					})
 				})
@@ -98,7 +102,11 @@
 					uni.request({
 						url: this.websiteUrl + 'home/list?page=' + this.page,
 						success: (res) => {
-							this.list = this.list.concat(res.data.list)
+							let p = res.data.list
+							p.sort(function() {
+								return .5 - Math.random();
+							});
+							this.list = this.list.concat(p)
 							uni.hideLoading()
 						}
 					})
