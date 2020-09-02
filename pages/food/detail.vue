@@ -32,7 +32,7 @@
 		methods: {
 			async getData() {
 				const res = await this.$myRequest({
-					url: '/food/getfood?id=' + this.foodId,
+					url: 'food/getfood?id=' + this.foodId,
 				})
 				this.imgList = res.data.pic;
 				this.introduce = res.data.introduce;

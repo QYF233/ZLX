@@ -65,7 +65,6 @@
                         }
                     },
                     fail: (data, code) => {
-                        console.log('fail' + JSON.stringify(data));
                     }
                 })
             },
@@ -90,7 +89,6 @@
                         }
                     },
                     fail: (data, code) => {
-                        console.log('fail' + JSON.stringify(data));
                     }
                 })
             },

@@ -50,7 +50,7 @@
 			async getData() {
 				this.currentCity = uni.getStorageSync('city');
 				const res1 = await this.$myRequest({
-					url: '/food/getlist'
+					url: 'food/getlist'
 				})
 				for (var i = 0; i < res1.data.list.length; i++) {
 					if (res1.data.list[i].city == this.currentCity.id) {

@@ -83,8 +83,8 @@
 											icon:'none',
 											position:'top'
 										})
-										uni.navigateTo({
-											url:'/pages/me/Login'
+										uni.navigateBack({
+											delta:1
 										})
 									}
 								})

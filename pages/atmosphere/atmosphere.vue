@@ -55,13 +55,10 @@
 				const res = await this.$myRequest({
 					url: 'atmosphere/getlist'
 				})
-				console.log(res);
 				this.banner = res.data.list[0];
-				console.log(this.banner.images[0]);
 				for (var i = 1; i < res.data.list.length; i++) {
 					this.listData.push(res.data.list[i])
 				}
-				console.log(this.listData);
 			},
 			 goDetail: function(e) {
                 let detail = {
