@@ -55,7 +55,8 @@
 							'content-type': 'application/x-www-form-urlencoded'
 						},
 						success: (res) => {
-							if(res.statusCode !== 200){
+							console.log(res.statusCode!==200)
+							if(res.statusCode === 200){
 								if (res.data == '') {
 									uni.showToast({
 										icon: 'none',
