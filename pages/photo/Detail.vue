@@ -201,6 +201,7 @@
 		float: left;
 		background-size: cover;
 		background-repeat: no-repeat;
+		background-color: #e5e5e5;
 	}
 	.divOne {
 		height: calc(94% / 1);

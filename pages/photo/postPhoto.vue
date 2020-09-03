@@ -24,7 +24,8 @@
 		data(){
 			return {
 				imgs:[],
-				text:''
+				text:'',
+				lock:true
 			}
 		},
 		methods:{
@@ -37,30 +38,37 @@
 				})
 			},
 			send(){
-				//上传到后端,并返回到前一个页面
-				let files = []
-				let a=0
-				for (let i of this.imgs) {
-					let f = {
-						name:'image' + a++,
-						uri:i
+				if(this.lock) {
+					this.lock = false
+					uni.showLoading({
+						title:"正在上传"
+					})
+					//上传到后端,并返回到前一个页面
+					let files = []
+					let a=0
+					for (let i of this.imgs) {
+						let f = {
+							name:'image' + a++,
+							uri:i
+						}
+						files.push(f)
 					}
-					files.push(f)
+					let loginUser = uni.getStorageSync('user').id
+					uni.uploadFile({
+						url:this.websiteUrl + 'photo/insert',
+						files:files,
+						name:'photo',
+						formData:{
+							content:this.text,
+							postUser:loginUser,
+							size:this.imgs.length
+						},
+						success: (res) => {
+							uni.hideLoading()
+							this.cancel()
+						}
+					})
 				}
-				let loginUser = uni.getStorageSync('user').id
-				uni.uploadFile({
-					url:this.websiteUrl + 'photo/insert',
-					files:files,
-					name:'photo',
-					formData:{
-						content:this.text,
-						postUser:loginUser,
-						size:this.imgs.length
-					},
-					success: (res) => {
-						this.cancel()
-					}
-				})
 				
 			},
 			previewImage(index) {
