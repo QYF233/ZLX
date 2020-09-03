@@ -12,7 +12,7 @@
 <script>
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.img-box{
 		height: 100%;
 		width: 100%;

@@ -91,7 +91,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.post {
 		padding: 20rpx;
 		height: 100%;

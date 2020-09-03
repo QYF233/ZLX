@@ -140,7 +140,7 @@
 	}
 </script>
 
-<style>
+<style  lang="stylus" scoped>
 	.add{
 		bottom: 80rpx;
 		position: fixed;

@@ -50,7 +50,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.detail{
 		position: relative;
 	}

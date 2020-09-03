@@ -92,7 +92,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.titleBg {
 		position: absolute;
 		width: 100px;

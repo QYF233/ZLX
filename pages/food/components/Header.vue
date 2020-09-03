@@ -26,7 +26,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style  lang="stylus" scoped>
 	.header {
 		
 		margin: 20rpx 20rpx;

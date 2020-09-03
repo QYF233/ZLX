@@ -105,7 +105,7 @@
 	}
 </script>
 
-<style>
+<style  lang="stylus" scoped>
 	.fixed {
 		position: fixed;
 		z-index: 99;

@@ -119,7 +119,7 @@
 	}
 </script>
 
-<style scoped>
+<style  lang="stylus" scoped>
 	.commentinput{
 		background-color: #E5E5E5;
 		margin: 20rpx;

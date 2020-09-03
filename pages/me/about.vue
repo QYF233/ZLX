@@ -13,7 +13,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	h1 {
 		font-size: 20px;
 	}

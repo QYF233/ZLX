@@ -91,7 +91,7 @@ export default {
 	}
 }
 </script>
-<style>
+<style lang="stylus" scoped>
 	.not-login{
 		width: 100%;
 		text-align: center;

@@ -43,7 +43,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	
 	.item {
 		/* margin: 20rpx 40rpx; */

@@ -137,7 +137,7 @@
     }
 </script>
 
-<style>
+<style lang="stylus" scoped>
     .banner {
         height: 360upx;
         overflow: hidden;
@@ -282,8 +282,8 @@
         line-height: 36upx;
         font-size: 30upx;
         height: 74upx;
-        font-size: 28upx;
         overflow: hidden;
+		
     }
 
     .uni-media-list-text-bottom {

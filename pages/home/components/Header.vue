@@ -36,7 +36,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.add {
 		color: #fff;
 	}

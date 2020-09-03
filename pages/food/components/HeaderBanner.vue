@@ -25,7 +25,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.img{
 		height:300rpx;
 		width: 100%;

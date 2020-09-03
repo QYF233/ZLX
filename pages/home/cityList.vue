@@ -59,7 +59,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.current {
 		position: absolute;
 		color: #FFFFFF;

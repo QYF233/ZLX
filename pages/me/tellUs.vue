@@ -53,7 +53,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
 	.tellus{
 		margin-top: 100rpx;
 	}

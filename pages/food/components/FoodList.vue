@@ -121,7 +121,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="stylus" scoped>
 	page {
 		background-color: #eee;
 	}

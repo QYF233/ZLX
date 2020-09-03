@@ -124,7 +124,7 @@
 	}
 </script>
 
-<style>
+<style  lang="stylus" scoped>
 	.title{
 		margin-bottom: 150rpx;
 		margin-top: 150rpx;

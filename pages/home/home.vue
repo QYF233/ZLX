@@ -181,7 +181,7 @@
 	}
 </script>
 
-<style scoped>
+<style  lang="stylus" scoped>
 	.content {
 		display: flex;
 		flex-direction: column;
