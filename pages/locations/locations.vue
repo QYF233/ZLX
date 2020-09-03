@@ -24,6 +24,7 @@
 			uni.request({
 				url:this.websiteUrl + 'article/getlist?page=' + this.page,
 				success: (res) => {
+					this.page = 1
 					this.pages = res.data.pages
 					this.articles = []
 					this.articles = this.articles.concat(res.data.list)

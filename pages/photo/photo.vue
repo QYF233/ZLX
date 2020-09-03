@@ -71,6 +71,7 @@
 		methods: {
 			loadData(){
 				this.list = []
+				this.page = 1
 				setTimeout(()=>{
 					uni.request({
 						url:this.websiteUrl + 'photo/list',
