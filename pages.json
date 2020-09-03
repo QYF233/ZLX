@@ -170,12 +170,6 @@
 				"navigationBarTitleText":"景点详情",
 				"navigationStyle":"custom"
 			}
-		},{
-			"path":"pages/tourist/Search",
-			"style":{
-				"navigationBarTitleText":"景点搜索",
-				"navigationStyle":"custom"
-			}
 		},
 		{
 			"path":"pages/food/detail",
