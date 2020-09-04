@@ -3,18 +3,17 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-		
 		<view class="cu-bar search  bg-white">
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>
-				<input focus @blur="InputBlur" @confirm="searchStart()" :adjust-position="false" type="text" placeholder="搜城市/酒店/景点/美食"
+				<input focus @blur="InputBlur" @confirm="searchStart()" :adjust-position="false" type="text" :placeholder="valueText"
 				 confirm-type="search" v-model.trim="searchText"></input>
 			</view>
 			<view class="action">
 				<button class="cu-btn bg-green shadow-blur round" @click="searchStart()">搜索</button>
 			</view>
 		</view>
-		<view :class="'s-' + theme" v-if="hList.length > 0">
+		<view :class="'s-' + theme" v-if="showHis && hList.length > 0">
 			<view class="header">
 				历史记录
 				<image src="/static/zy-search/delete.svg" mode="aspectFit" @click="delhistory"></image>
@@ -36,6 +35,10 @@
 	export default {
 		name: "zy-search",
 		props: {
+			valueText:{
+				type: String,
+				default: "搜城市/酒店/景点/美食"
+			},
 			isFocus: { //是否自动获取焦点
 				type: Boolean,
 				default: false
@@ -45,6 +48,10 @@
 				default: 'block'
 			},
 			showWant: { //是否展示推荐菜单
+				type: Boolean,
+				default: false
+			},
+			showHis: { //是否展示推荐菜单
 				type: Boolean,
 				default: false
 			},
@@ -67,6 +74,11 @@
 			};
 		},
 		methods: {
+			gotoLunBo(data) {
+				uni.navigateTo({
+					url: "/pages/search/searchPage?data="+data
+				})
+			},
 			searchStart: function() { //触发搜索
 				let _this = this;
 				if (_this.searchText == '') {
@@ -77,7 +89,8 @@
 					});
 				} else {
 					_this.$emit('getSearchText', _this.searchText);
-					uni.getStorage({
+					this.gotoLunBo(_this.searchText);
+					/* uni.getStorage({
 						key: 'search_cache',
 						success(res) {
 							let list = res.data;
@@ -112,7 +125,7 @@
 							});
 							_this.$emit('getSearchText', _this.searchText);
 						}
-					})
+					}) */
 				}
 			},
 			keywordsClick(item) { //关键词搜索与历史搜索

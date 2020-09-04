@@ -32,5 +32,7 @@
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
 	@import "app.css";/* 本项目css */
-
+	page {
+		background-color: #efeff4;
+	}
 </style>
