@@ -35,11 +35,19 @@
 				<view class="right">
 					<input type="text" class="special_input">
 				</view>
-				<!-- <view class="right">
-					<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-					　　<view class="uni-input">{{multiArray[0][multiIndex[0]]}} > {{multiArray[1][multiIndex[1]]}}</view>
-					</picker>
-				</view> -->
+				<!-- <picker mode="multiSelector" @bindchange="bindMultiPickerChange" @bindcolumnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
+					<view class="picker">
+						当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+					</view>
+				</picker> -->
+			</view>
+			<view class="option-100">
+				<view class="left">范围</view>
+				<picker mode="multiSelector" @change="bindMultiPickerChange" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
+					<view class="right">
+						{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+					</view>
+				</picker>
 			</view>
 			<view class="option-100">
 				<view class="left">开始时间</view>
@@ -84,96 +92,135 @@
 </template>
 
 <script>
-export default{
-	name: 'TouristSearch',
-	data() {
-		const currentDate = this.getDate({
-			format: true
-		})
-		const currentTime = this.getTime();
-		return {
-			types: ['亲子游', '蜜月游', '团建游', '毕业游'],
-			number: ['1人', '2-4人', '5-10人', '11-20人', '21-30人', '30-50人', '50人以上'],
-			preferences: ['娱乐', '美食', '参观'],
-			index_types: 0,
-			index_number: 0,
-			index_preferences: 0,
-			start_date: currentDate,
-			start_time: currentTime,
-			end_date: currentDate,
-			end_time: currentTime
-		}
-	},
-	computed: {
-		startDate() {
-			return this.getDate('start');
-		},
-		endDate() {
-			return this.getDate('end');
-		}
-	},
-	methods: {
-		bindTypesChange: function(e) {
-			this.index_types = e.target.value
-		},
-		bindNumberChange: function(e) {
-			this.index_number = e.target.value
-		},
-		bindPreferencesChange: function(e) {
-			this.index_preferences = e.target.value
-		},
-		bindStartDateChange: function(e) {
-			this.start_date = e.target.value
-		},
-		bindStartTimeChange: function(e) {
-			this.start_time = e.target.value
-		},
-		bindEndDateChange: function(e) {
-			this.end_date = e.target.value
-		},
-		bindEndTimeChange: function(e) {
-			this.end_time = e.target.value
-		},
-		getDate(type) {
-			const date = new Date();
-			let year = date.getFullYear();
-			let month = date.getMonth() + 1;
-			let day = date.getDate();
-
-			if (type === 'start') {
-				year = year - 60;
-			} else if (type === 'end') {
-				year = year + 2;
+	export default {
+		name: 'TouristSearch',
+		data() {
+			const currentDate = this.getDate({
+				format: true
+			})
+			const currentTime = this.getTime();
+			return {
+				types: ['亲子游', '蜜月游', '团建游', '毕业游'],
+				number: ['1人', '2-4人', '5-10人', '11-20人', '21-30人', '30-50人', '50人以上'],
+				preferences: ['娱乐', '美食', '参观'],
+				index_types: 0,
+				index_number: 0,
+				index_preferences: 0,
+				multiArray: [
+					['杭州市', '宁波市', '温州市', '嘉兴市', '湖州市', '绍兴市', '金华市', '衢州市', '舟山市', '台州市', '丽水市'],
+					['杭州市', '上城区', '下城区', '江干区', '拱墅区', '西湖区', '滨江区', '萧山区', '余杭区', '富阳区', '桐庐县', '淳安县', '建德市', '临安市']
+				],
+				city: [
+					['杭州市', '上城区', '下城区', '江干区', '拱墅区', '西湖区', '滨江区', '萧山区', '余杭区', '富阳区', '桐庐县', '淳安县', '建德市', '临安市'],
+					['宁波市', '海曙区', '江东区', '江北区', '北仑区', '镇海区', '鄞州区', '象山县', '宁海县', '余姚市', '慈溪市', '奉化市'],
+					['温州市', '鹿城区', '龙湾区', '瓯海区', '洞头区', '永嘉县', '平阳县', '苍南县', '文成县', '泰顺县', '瑞安市', '乐清市'],
+					['嘉兴市', '南湖区', '秀洲区', '嘉善县', '海盐县', '海宁市', '平湖市', '桐乡市'],
+					['湖州市', '吴兴区', '南浔区', '德清县', '长兴县', '安吉县'],
+					['绍兴市', '越城区', '柯桥区', '上虞区', '新昌县', '诸暨市', '嵊州市'],
+					['金华市', '婺城区', '金东区', '武义县', '浦江县', '磐安县', '兰溪市', '义乌市', '东阳市', '永康市'],
+					['衢州市', '柯城区', '衢江区', '常山县', '开化县', '龙游县', '江山市'],
+					['舟山市', '定海区', '普陀区', '岱山县', '嵊泗县'],
+					['台州市', '椒江区', '黄岩区', '路桥区', '玉环县', '三门县', '天台县', '仙居县', '温岭市', '临海市'],
+					['丽水市', '莲都区', '青田县', '缙云县', '遂昌县', '松阳县', '云和县', '庆元县', '景宁畲族自治县', '龙泉市']
+				],
+				multiIndex: [0, 0],
+				start_date: currentDate,
+				start_time: currentTime,
+				end_date: currentDate,
+				end_time: currentTime
 			}
-			month = month > 9 ? month : '0' + month;;
-			day = day > 9 ? day : '0' + day;
-			return `${year}-${month}-${day}`;
 		},
-		getTime(){
-			const date = new Date();
-			let hour = date.getHours();
-			let mninute = date.getMinutes();
-			hour = hour > 9 ? hour : '0' + hour;
-			mninute = mninute > 9 ? mninute : '0' + mninute;
-			return `${hour}:${mninute}`;
+		computed: {
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
+			}
 		},
-		formSubmit: function(e) {
-			console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-			var formdata = e.detail.value
-			uni.showModal({
-				content: '表单数据内容：' + JSON.stringify(formdata),
-				showCancel: false
-			});
-		},
-		formReset: function(e) {
-			this.index_types = 0;
-			this.index_number = 0;
-			this.index_preferences = 0;
-			this.start_date = this.end_date = this.getDate();
-			this.start_time = this.end_time = this.getTime();
+		methods: {
+			bindTypesChange: function(e) {
+				this.index_types = e.target.value
+			},
+			bindNumberChange: function(e) {
+				this.index_number = e.target.value
+			},
+			bindPreferencesChange: function(e) {
+				this.index_preferences = e.target.value
+			},
+			bindMultiPickerChange: function(e) {
+				this.multiIndex = e.detail.value
+			},
+			bindMultiPickerColumnChange: function(e) {
+				let multiArray = this.multiArray;
+				let multiIndex = this.multiIndex;
+				multiIndex[e.detail.column] = e.detail.value;
+				if(e.detail.column == 0){
+					multiIndex[1] = 0;
+					multiArray[1] = this.city[e.detail.value];
+				}
+				// switch(e.detail.column){
+				// 	case 0:
+				// 		this.multiArray[1] = this.city[e.detail.value];
+				// 		this.multiIndex = [e.detail.value, 0];
+				// 		break;
+				// 	case 1:
+				// 		this.multiIndex[1] = e.detail.value;
+				// 		break;
+				// }
+			},
+			bindStartDateChange: function(e) {
+				this.start_date = e.target.value
+			},
+			bindStartTimeChange: function(e) {
+				this.start_time = e.target.value
+			},
+			bindEndDateChange: function(e) {
+				this.end_date = e.target.value
+			},
+			bindEndTimeChange: function(e) {
+				this.end_time = e.target.value
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
+			getTime() {
+				const date = new Date();
+				let hour = date.getHours();
+				let mninute = date.getMinutes();
+				hour = hour > 9 ? hour : '0' + hour;
+				mninute = mninute > 9 ? mninute : '0' + mninute;
+				return `${hour}:${mninute}`;
+			},
+			formSubmit: function(e) {
+				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+				var formdata = e.detail.value
+				uni.showModal({
+					content: '表单数据内容：' + JSON.stringify(formdata),
+					showCancel: false
+				});
+			},
+			formReset: function(e) {
+				this.index_types = 0;
+				this.index_number = 0;
+				this.index_preferences = 0;
+				this.start_date = this.end_date = this.getDate();
+				this.start_time = this.end_time = this.getTime();
+			}
 		}
 	}
-}
 </script>
 
 <style lang="stylus" scoped>
@@ -206,7 +253,7 @@ export default{
 					float left;
 					border 2rpx solid #F37B1D;
 					border-radius 12rpx;
-					background-color #FFFFFF
+					background-color #FFFFFF;
 					width 60%;
 					height 56rpx;
 					line-height 56rpx;
@@ -215,14 +262,14 @@ export default{
 					float left;
 					border 2rpx solid #F37B1D;
 					border-radius 12rpx;
-					background-color #FFFFFF
+					background-color #FFFFFF;
 					width 60%+1rpx;
 					height 58rpx;
 					line-height 58rpx;
 					text-align center;
 		.option-100
 			float left;
-			width 100%
+			width 100%;
 			margin 10rpx 0;
 			.left
 				float left;
@@ -236,14 +283,14 @@ export default{
 				border 2rpx solid #F37B1D;
 				border-radius 12rpx;
 				padding 0 2rpx;
-				background-color #FFFFFF
+				background-color #FFFFFF;
 				width 62%;
 				height 56rpx;
 				line-height 56rpx;
 				text-align center;
 				.picker_date
 					float left;
-					width 60%
+					width 60%;
 				.picker_time
 					float left;
 					width 40%;
