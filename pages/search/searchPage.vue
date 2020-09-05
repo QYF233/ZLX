@@ -62,12 +62,12 @@
 						top1
 					</view>
 					<view class="bg-img-lg flex align-end justify-end" style="background-image: url(../../static/image/hangzhou.jpg);">
-							<view class="name padding-xs text-white">
+						<view class="name padding-xs text-white">
 							<view class="padding-xs text-lg text-bold">
 								鲁迅故里
 							</view>
 						</view>
-						
+
 					</view>
 				</view>
 				<view class="cu-item">
@@ -154,8 +154,7 @@
 				<!-- last-child选择器-->
 			</view>
 		</view>
-
-		推荐
+		<waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow>
 	</view>
 </template>
 <script>
@@ -163,24 +162,87 @@
 	import zySearch from './components/Search.vue'
 	import uniCard from '@/components/uni-card/uni-card.vue'
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
+	import WaterfallsFlow from '@/components/WaterfallsFlow/WaterfallsFlow.vue'
 	export default {
 		components: {
 			uniCard,
 			zySearch,
 			uniNavBar,
-			uniSearchBar
+			uniSearchBar,
+			WaterfallsFlow
 		},
 		data() {
 			return {
+				list: [],
 				data: '',
 				backPage: "/pages/search/search",
 			}
 		},
 		onLoad: function(option) {
 			this.data = option.data;
+			this.loadList()
 		},
 		methods: {
-
+			loadList() {
+				this.list = []
+				setTimeout(() => {
+					uni.request({
+						url: this.websiteUrl + 'home/list',
+						success: (res) => {
+							this.pages = res.data.pages
+							let p = res.data.list
+							p.sort(function() {
+								return .5 - Math.random();
+							});
+							this.list = this.list.concat(p)
+						}
+					})
+				})
+			},
+			switchToCurrentCity() {
+				this.getCityObject(this.currentCity)
+				this.loadList()
+			},
+			homeLoadList(city) {
+				if (city.name !== this.cityname) {
+					this.cityname = city.name
+					this.citybackgroundImage = city.backgroundImage
+					this.getWeather()
+					this.loadList()
+				}
+			},
+			appendList() {
+				uni.showLoading({
+					title: "正在加载"
+				})
+				if (this.page == this.pages) {
+					uni.hideLoading()
+					uni.showToast({
+						icon: 'none',
+						title: '没有更多了'
+					})
+					return
+				}
+				this.page++
+				setTimeout(() => {
+					uni.request({
+						url: this.websiteUrl + 'home/list?page=' + this.page,
+						success: (res) => {
+							let p = res.data.list
+							p.sort(function() {
+								return .5 - Math.random();
+							});
+							this.list = this.list.concat(p)
+							uni.hideLoading()
+						}
+					})
+				})
+			},
+			choose(data) {
+				uni.navigateTo({
+					url: data.url
+				})
+			},
 		}
 	}
 </script>
@@ -222,8 +284,9 @@
 			background-size: cover;
 			height: 300rpx;
 		}
-		.cu-item{
-			padding:0;
+
+		.cu-item {
+			padding: 0;
 		}
 	}
 
@@ -234,21 +297,24 @@
 			background-size: cover;
 			height: 200rpx;
 		}
-		.cu-item{
-			padding:0;
+
+		.cu-item {
+			padding: 0;
 		}
 	}
+
 	.cu-item {
 		position: relative;
-		
+
 	}
-	.name{
+
+	.name {
 		width: 100%;
 		text-align: right;
 		background-color: rgba($color: #000000, $alpha: 0.2);
 	}
 
-	
+
 
 	.tag {
 		z-index: 10;
