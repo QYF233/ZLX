@@ -21,7 +21,6 @@
 						</navigator>
 					</view>
 				</view>
-
 			</view>
 		</uni-card>
 		<view class="icon">
