@@ -31,19 +31,14 @@
 				</view>
 			</view>
 			<view class="option-50">
-				<view class="left">范围</view>
+				<view class="left">其他</view>
 				<view class="right">
 					<input type="text" class="special_input">
 				</view>
-				<!-- <picker mode="multiSelector" @bindchange="bindMultiPickerChange" @bindcolumnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
-					<view class="picker">
-						当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
-					</view>
-				</picker> -->
 			</view>
 			<view class="option-100">
 				<view class="left">范围</view>
-				<picker mode="multiSelector" @change="bindMultiPickerChange" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
+				<picker mode="multiSelector" @change="bindMultiPickerChange" @columnchange="bindMultiPickerColumnChange" @cancel="bindMultiPickerCancel" :value="multiIndex" :range="multiArray">
 					<view class="right">
 						{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
 					</view>
@@ -52,7 +47,8 @@
 			<view class="option-100">
 				<view class="left">开始时间</view>
 				<view class="right">
-					<view class="picker_date">
+					<biaofun-datetime-picker class="picker_datetime" :defaultValue="startDatetime"  :start="start_startDatetime" @change="startDatetimeChange"></biaofun-datetime-picker>
+					<!-- <view class="picker_date">
 						<picker mode="date" :value="start_date" :start="startDate" :end="endDate" @change="bindStartDateChange">
 							<view class="uni-input">{{start_date}}</view>
 						</picker>
@@ -61,13 +57,14 @@
 						<picker mode="time" :value="start_time" @change="bindStartTimeChange">
 							<view class="uni-input">{{start_time}}</view>
 						</picker>
-					</view>
+					</view> -->
 				</view>
 			</view>
 			<view class="option-100">
 				<view class="left">结束时间</view>
 				<view class="right">
-					<view class="picker_date">
+					<biaofun-datetime-picker class="picker_datetime" :defaultValue="endDatetime" :start="start_endDatetime" @change="endDatetimeChange"></biaofun-datetime-picker>
+					<!-- <view class="picker_date">
 						<picker mode="date" :value="end_date" :start="startDate" :end="endDate" @change="bindEndDateChange">
 							<view class="uni-input">{{end_date}}</view>
 						</picker>
@@ -76,7 +73,7 @@
 						<picker mode="time" :value="end_time" @change="bindEndTimeChange">
 							<view class="uni-input">{{end_time}}</view>
 						</picker>
-					</view>
+					</view> -->
 				</view>
 			</view>
 			<view class="option-100">
@@ -92,6 +89,8 @@
 </template>
 
 <script>
+	import biaofunDatetimePicker from '@/components/biaofun-datetime-picker/biaofun-datetime-picker.vue';
+	import MxDatePicker from "@/components/mx-datepicker/mx-datepicker.vue";
 	export default {
 		name: 'TouristSearch',
 		data() {
@@ -99,6 +98,7 @@
 				format: true
 			})
 			const currentTime = this.getTime();
+			const currentDatetime = this.getDatetime();
 			return {
 				types: ['亲子游', '蜜月游', '团建游', '毕业游'],
 				number: ['1人', '2-4人', '5-10人', '11-20人', '21-30人', '30-50人', '50人以上'],
@@ -124,19 +124,25 @@
 					['丽水市', '莲都区', '青田县', '缙云县', '遂昌县', '松阳县', '云和县', '庆元县', '景宁畲族自治县', '龙泉市']
 				],
 				multiIndex: [0, 0],
+				reMultiIndex: [0, 0],
 				start_date: currentDate,
 				start_time: currentTime,
 				end_date: currentDate,
-				end_time: currentTime
+				end_time: currentTime,
+				
+				startDatetime: currentDatetime,
+				endDatetime: currentDatetime,
+				start_startDatetime: currentDatetime,
+				start_endDatetime: currentDatetime,
 			}
 		},
 		computed: {
-			startDate() {
-				return this.getDate('start');
-			},
-			endDate() {
-				return this.getDate('end');
-			}
+				startDate() {
+					return this.getDate('start');
+				},
+				endDate() {
+					return this.getDate('end');
+				}
 		},
 		methods: {
 			bindTypesChange: function(e) {
@@ -149,25 +155,34 @@
 				this.index_preferences = e.target.value
 			},
 			bindMultiPickerChange: function(e) {
-				this.multiIndex = e.detail.value
+				this.reMultiIndex = this.multiIndex = e.detail.value
 			},
 			bindMultiPickerColumnChange: function(e) {
-				let multiArray = this.multiArray;
-				let multiIndex = this.multiIndex;
-				multiIndex[e.detail.column] = e.detail.value;
-				if(e.detail.column == 0){
-					multiIndex[1] = 0;
-					multiArray[1] = this.city[e.detail.value];
+				switch(e.detail.column){
+					case 0:
+						this.multiArray[1] = this.city[e.detail.value];
+						this.multiIndex = [e.detail.value, 0];
+						break;
+					case 1:
+						this.multiIndex = [this.multiIndex[0], e.detail.value];
+						break;
 				}
-				// switch(e.detail.column){
-				// 	case 0:
-				// 		this.multiArray[1] = this.city[e.detail.value];
-				// 		this.multiIndex = [e.detail.value, 0];
-				// 		break;
-				// 	case 1:
-				// 		this.multiIndex[1] = e.detail.value;
-				// 		break;
-				// }
+			},
+			bindMultiPickerCancel: function(e) {
+				this.multiArray[1] = this.city[this.reMultiIndex[0]];
+				this.multiIndex = this.reMultiIndex
+			},
+			startDatetimeChange: function(e) {
+				var temp = e.f1 + ' ' + e.hh + ':' + e.mm;
+				if(temp > this.endDatetime){
+					this.endDatetime = temp;
+				}
+			},
+			endDatetimeChange: function(e) {
+				var temp = e.f1 + ' ' + e.hh + ':' + e.mm;
+				if(temp < this.startDatetime){
+					this.startDatetime = temp;
+				}
 			},
 			bindStartDateChange: function(e) {
 				this.start_date = e.target.value
@@ -188,10 +203,11 @@
 				let day = date.getDate();
 
 				if (type === 'start') {
-					year = year - 60;
+					year = year - 2;
 				} else if (type === 'end') {
 					year = year + 2;
 				}
+				
 				month = month > 9 ? month : '0' + month;;
 				day = day > 9 ? day : '0' + day;
 				return `${year}-${month}-${day}`;
@@ -203,6 +219,21 @@
 				hour = hour > 9 ? hour : '0' + hour;
 				mninute = mninute > 9 ? mninute : '0' + mninute;
 				return `${hour}:${mninute}`;
+			},
+			getDatetime(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+				let hour = date.getHours();
+				let mninute = date.getMinutes();
+				
+				month = month > 9 ? month : '0' + month;;
+				day = day > 9 ? day : '0' + day;
+				hour = hour > 9 ? hour : '0' + hour;
+				mninute = mninute > 9 ? mninute : '0' + mninute;
+				
+				return `${year}-${month}-${day} ${hour}:${mninute}`;
 			},
 			formSubmit: function(e) {
 				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
@@ -288,6 +319,7 @@
 				height 56rpx;
 				line-height 56rpx;
 				text-align center;
+				// .picker_datetime
 				.picker_date
 					float left;
 					width 60%;
@@ -298,70 +330,4 @@
 				margin 10rpx 20rpx;
 			.button-upperPart
 				margin-bottom 15rpx;
-	// .content
-	// 	margin 4% 2% 4% 2%;
-	// 	padding 2% 1% 2% 1%
-	// 	background-color #FFFFFF;
-	// 	border-radius 20rpx;
-	// 	overflow auto;
-	// 	.title
-	// 		margin 1% 1% 2% 1%;
-	// 		padding 0 1% 1% 1%;
-	// 		border-bottom 2rpx solid #F37B1D;
-	// 		.font
-	// 			color #555555;
-	// 			font-size 32rpx;
-	// 	.option-50
-	// 		float left;
-	// 		width 50%
-	// 		margin 1% 0 1% 0;
-	// 		.left
-	// 			float left;
-	// 			display block;
-	// 			width 35%;
-	// 			height 50rpx;
-	// 			line-height 50rpx;
-	// 			text-align center;
-	// 		.right
-	// 			.input
-	// 				float left;
-	// 				border 2rpx solid #F37B1D;
-	// 				border-radius 12rpx;
-	// 				background-color #FFFFFF
-	// 				width 60%;
-	// 				height 46rpx;
-	// 				line-height 46rpx;
-	// 				text-align center;
-	// 	.option-100
-	// 		float left;
-	// 		width 100%
-	// 		margin 1% 0 1% 0;
-	// 		.left
-	// 			float left;
-	// 			display block;
-	// 			width 35%;
-	// 			height 50rpx;
-	// 			line-height 50rpx;
-	// 			text-align center;
-	// 		.right
-	// 			float left;
-	// 			border 2rpx solid #F37B1D;
-	// 			border-radius 12rpx;
-	// 			padding 0 2rpx;
-	// 			background-color #FFFFFF
-	// 			width 62%;
-	// 			height 46rpx;
-	// 			line-height 46rpx;
-	// 			text-align center;
-	// 			.picker_date
-	// 				float left;
-	// 				width 60%
-	// 			.picker_time
-	// 				float left;
-	// 				width 40%;
-	// 		.button
-	// 			// float right;
-	// 			margin-right 2%;
-	// 		.button-upperPart
-	// 			margin-bottom 2%;
 </style>
