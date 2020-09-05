@@ -76,12 +76,14 @@
 					</view> -->
 				</view>
 			</view>
-			<view class="option-100">
-				<view class="button button-upperPart">
-					<button style="background: #F37B1D; color: #FFFFFF;" form-type="submit" size="default">&nbsp;开始查询&nbsp;</button>
+			<view class="option-50">
+				<view class="button-box">
+					<button class="button-reset" form-type="reset">&nbsp;清空表单&nbsp;</button>
 				</view>
-				<view class="button">
-					<button style="background: #EFEFEF; color: #AAAAAA;" form-type="reset" size="default">&nbsp;清空表单&nbsp;</button>
+			</view>
+			<view class="option-50">
+				<view class="button-box">
+					<button class="button-search" form-type="submit">&nbsp;开始查询&nbsp;</button>
 				</view>
 			</view>
 		</form>
@@ -256,15 +258,15 @@
 
 <style lang="stylus" scoped>
 	.content
-		margin 20rpx;
+		margin 20rpx 20rpx 50rpx 20rpx;
 		padding 10rpx;
 		background-color #FFFFFF;
 		border-radius 10rpx;
 		overflow auto;
+		box-shadow 10rpx 10rpx 25rpx #CCCCCC;
 		.title
 			margin 0 20rpx 20rpx 20rpx;
 			padding 10rpx;
-			border-bottom 2rpx solid #F37B1D;
 			.font
 				color #555555;
 				font-size 32rpx;
@@ -275,7 +277,7 @@
 			.left
 				float left;
 				display block;
-				width 35%;
+				width 30%;
 				height 60rpx;
 				line-height 60rpx;
 				text-align center;
@@ -285,7 +287,7 @@
 					border 2rpx solid #F37B1D;
 					border-radius 12rpx;
 					background-color #FFFFFF;
-					width 60%;
+					width 65%;
 					height 56rpx;
 					line-height 56rpx;
 					text-align center;
@@ -294,10 +296,26 @@
 					border 2rpx solid #F37B1D;
 					border-radius 12rpx;
 					background-color #FFFFFF;
-					width 60%+1rpx;
+					width 65%+1rpx;
 					height 58rpx;
 					line-height 58rpx;
 					text-align center;
+			.button-box
+				margin 10rpx 20rpx;
+				.button-reset
+					background #EFEFEF;
+					color #AAAAAA;
+					line-height 70rpx;
+					font-size 30rpx;
+					height 70rpx;
+					box-shadow 4rpx 4rpx 10rpx #CCCCCC;
+				.button-search
+					background #F37B1D;
+					color #FFFFFF;
+					line-height 70rpx;
+					font-size: 30rpx;
+					height 70rpx;
+					box-shadow 4rpx 4rpx 10rpx #ff6400;
 		.option-100
 			float left;
 			width 100%;
@@ -305,7 +323,7 @@
 			.left
 				float left;
 				display block;
-				width 35%;
+				width 30%;
 				height 60rpx;
 				line-height 60rpx;
 				text-align center;
@@ -315,7 +333,7 @@
 				border-radius 12rpx;
 				padding 0 2rpx;
 				background-color #FFFFFF;
-				width 62%;
+				width 67%;
 				height 56rpx;
 				line-height 56rpx;
 				text-align center;
@@ -326,8 +344,4 @@
 				.picker_time
 					float left;
 					width 40%;
-			.button
-				margin 10rpx 20rpx;
-			.button-upperPart
-				margin-bottom 15rpx;
 </style>
