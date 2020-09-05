@@ -4,255 +4,255 @@
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"navigationStyle":"custom",
-				"app-plus":{
-					"scrollIndicator":"none"
+				"navigationStyle": "custom",
+				"app-plus": {
+					"scrollIndicator": "none"
 				}
 			}
 		},
-        {
-            "path" : "pages/food/food",
-            "style" : {
+		{
+			"path": "pages/food/food",
+			"style": {
 				"navigationBarTitleText": "寻吃"
 			}
-        },
-        {
-            "path" : "pages/hotel/hotel",
-            "style" : {
+		},
+		{
+			"path": "pages/hotel/hotel",
+			"style": {
 				"navigationBarTitleText": "寻住"
 			}
-        },
+		},
 		{
-		    "path" : "pages/tourist/tourist",
-		    "style" : {
+			"path": "pages/tourist/tourist",
+			"style": {
 				"navigationBarTitleText": "寻景"
 			}
 		},
 		{
-			"path":"pages/locations/locations",
-			"style":{
-				"navigationBarTitleText":"寻游",
-				"enablePullDownRefresh":true
+			"path": "pages/locations/locations",
+			"style": {
+				"navigationBarTitleText": "寻游",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
-			"path":"pages/play/play",
-			"style":{
-				"navigationBarTitleText":"寻乐"
+			"path": "pages/play/play",
+			"style": {
+				"navigationBarTitleText": "寻乐"
 			}
 		},
 		{
-			"path":"pages/treasure/treasure",
-			"style":{
-				"navigationBarTitleText":"寻宝"
+			"path": "pages/treasure/treasure",
+			"style": {
+				"navigationBarTitleText": "寻宝"
 			}
-		},{
-			"path":"pages/treasure/list",
-			"style":{
-				"navigationBarTitleText":"寻宝列表"
+		}, {
+			"path": "pages/treasure/list",
+			"style": {
+				"navigationBarTitleText": "寻宝列表"
 			}
-		},{
-			"path":"pages/treasure/detail",
-			"style":{
-				"navigationBarTitleText":"寻宝详情"
-			}
-		},
-		{
-			"path":"pages/me/Me",
-			"style":{
-				"navigationStyle":"custom"
+		}, {
+			"path": "pages/treasure/detail",
+			"style": {
+				"navigationBarTitleText": "寻宝详情"
 			}
 		},
 		{
-			"path":"pages/me/Register",
-			"style":{
-				"navigationBarTitleText":"注册"
+			"path": "pages/me/Me",
+			"style": {
+				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path":"pages/me/Setting",
-			"style":{
-				"navigationBarTitleText":"设置"
-			}
-		}
-        ,{
-            "path" : "pages/home/components/Find",
-            "style" : {}
-        }
-		,{
-		    "path" : "pages/search/search",
-		    "style" : {
-				"navigationBarTitleText": "搜索"
-				
+			"path": "pages/me/Register",
+			"style": {
+				"navigationBarTitleText": "注册"
 			}
 		},
 		{
-		    "path" : "pages/search/searchPage",
-		    "style" : {
-				"navigationBarTitleText": "搜索结果"
+			"path": "pages/me/Setting",
+			"style": {
+				"navigationBarTitleText": "设置"
 			}
-		}
-		,{
-		    "path" : "pages/atmosphere/atmosphere",
-		    "style" : {
+		}, {
+			"path": "pages/home/components/Find",
+			"style": {}
+		}, {
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/search/searchPage",
+			"style": {
+				"navigationBarTitleText": "搜索结果",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/search/searchDetail",
+			"style": {
+				"navigationBarTitleText": "详情页"
+			}
+		}, {
+			"path": "pages/atmosphere/atmosphere",
+			"style": {
 				"navigationBarTitleText": "寻意"
 			}
-		},{
-		    "path" : "pages/atmosphere/detail",
-		    "style" : {
+		}, {
+			"path": "pages/atmosphere/detail",
+			"style": {
 				"navigationBarTitleText": "寻意详情"
 			}
-		},{
-		    "path" : "pages/atmosphereD/atmosphere",
-		    "style" : {
+		}, {
+			"path": "pages/atmosphereD/atmosphere",
+			"style": {
 				"navigationBarTitleText": "寻意"
 			}
-		},{
-		    "path" : "pages/atmosphereD/detail",
-		    "style" : {
+		}, {
+			"path": "pages/atmosphereD/detail",
+			"style": {
 				"navigationBarTitleText": "寻意详情"
 			}
-		},{
-		    "path" : "pages/photo/photo",
-		    "style" : {
+		}, {
+			"path": "pages/photo/photo",
+			"style": {
 				"navigationBarTitleText": "看旅拍",
-				"enablePullDownRefresh":true,
-				"app-plus":{
-					"scrollIndicator":"none"
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"scrollIndicator": "none"
 				}
 			}
-		},{
-		    "path" : "pages/poem/poem",
-		    "style" : {
+		}, {
+			"path": "pages/poem/poem",
+			"style": {
 				"navigationBarTitleText": "寻诗"
 			}
-		},{
-			"path":"pages/me/Login",
-			"style":{
-				"navigationBarTitleText":"用户登录"
+		}, {
+			"path": "pages/me/Login",
+			"style": {
+				"navigationBarTitleText": "用户登录"
 			}
-		},{
-			"path":"pages/city/city",
-			"style":{
-				"navigationBarTitleText":"城市列表"
+		}, {
+			"path": "pages/city/city",
+			"style": {
+				"navigationBarTitleText": "城市列表"
 			}
-		},{
-			"path":"pages/locations/locationsDetail",
-			"style":{
-				"navigationBarTitleText":"详情"
+		}, {
+			"path": "pages/locations/locationsDetail",
+			"style": {
+				"navigationBarTitleText": "详情"
 			}
-		},{
-			"path":"pages/me/about",
-			"style":{
-				"navigationBarTitleText":"关于"
+		}, {
+			"path": "pages/me/about",
+			"style": {
+				"navigationBarTitleText": "关于"
 			}
-		},{
-			"path":"pages/me/tellUs",
-			"style":{
-				"navigationBarTitleText":"反馈"
-			}
-		},
-		{
-			"path":"pages/photo/postPhoto",
-			"style":{
-				"navigationBarTitleText":"上传旅图"
+		}, {
+			"path": "pages/me/tellUs",
+			"style": {
+				"navigationBarTitleText": "反馈"
 			}
 		},
 		{
-			"path":"pages/photo/Detail",
-			"style":{
-				"navigationBarTitleText":"内容详情"
+			"path": "pages/photo/postPhoto",
+			"style": {
+				"navigationBarTitleText": "上传旅图"
 			}
 		},
 		{
-			"path":"pages/home/cityList",
-			"style":{
-				"navigationBarTitleText":"城市列表"
+			"path": "pages/photo/Detail",
+			"style": {
+				"navigationBarTitleText": "内容详情"
 			}
 		},
 		{
-			"path":"pages/tourist/Deatil",
-			"style":{
-				"navigationBarTitleText":"景点详情",
-				"navigationStyle":"custom"
+			"path": "pages/home/cityList",
+			"style": {
+				"navigationBarTitleText": "城市列表"
 			}
 		},
 		{
-			"path":"pages/food/detail",
-			"style":{
-				"navigationBarTitleText":"美食详情"
+			"path": "pages/tourist/Deatil",
+			"style": {
+				"navigationBarTitleText": "景点详情",
+				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path":"pages/vr/index",
-			"style":{
-				"navigationBarTitleText":"全景VR"
+			"path": "pages/food/detail",
+			"style": {
+				"navigationBarTitleText": "美食详情"
 			}
 		},
 		{
-			"path":"pages/vr/vr",
-			"style":{
-				"navigationBarTitleText":"全景VR"
+			"path": "pages/vr/index",
+			"style": {
+				"navigationBarTitleText": "全景VR"
 			}
 		},
 		{
-			"path":"pages/painting/painting",
-			"style":{
-				"navigationBarTitleText":"寻画"
+			"path": "pages/vr/vr",
+			"style": {
+				"navigationBarTitleText": "全景VR"
 			}
 		},
 		{
-			"path":"pages/food/otherCity",
-			"style":{
-				"navigationBarTitleText":"其他城市"
+			"path": "pages/painting/painting",
+			"style": {
+				"navigationBarTitleText": "寻画"
+			}
+		},
+		{
+			"path": "pages/food/otherCity",
+			"style": {
+				"navigationBarTitleText": "其他城市"
 			}
 		}
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "浙里寻",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"app-plus":{
-			"bounce":"none",
-			"animationType":"zoom-fade-out",
+		"app-plus": {
+			"bounce": "none",
+			"animationType": "zoom-fade-out",
 			"animationDuration": 300
 		}
 	},
-	"tabBar":{
-		"color":"#000",
-		"selectedColor":"#007AFF",
-		"backgroundColor":"#FFFFFF",
-		"list":[
-			{
-				"iconPath":"static/tabbar/tabbar-home-gray.png",
-				"selectedIconPath":"static/tabbar/tabbar-home-blue.png",
-				"pagePath":"pages/home/home",
-				"text":"首页"
+	"tabBar": {
+		"color": "#000",
+		"selectedColor": "#007AFF",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"iconPath": "static/tabbar/tabbar-home-gray.png",
+				"selectedIconPath": "static/tabbar/tabbar-home-blue.png",
+				"pagePath": "pages/home/home",
+				"text": "首页"
 			},
 			{
-				"iconPath":"static/tabbar/poem.png",
-				"selectedIconPath":"static/tabbar/poem-blue.png",
-				"pagePath":"pages/poem/poem",
-				"text":"诗路"
+				"iconPath": "static/tabbar/poem.png",
+				"selectedIconPath": "static/tabbar/poem-blue.png",
+				"pagePath": "pages/poem/poem",
+				"text": "诗路"
 			},
 			{
-				"iconPath":"static/tabbar/tabbar-my-gray.png",
-				"selectedIconPath":"static/tabbar/tabbar-my-blue.png",
-				"pagePath":"pages/me/Me",
-				"text":"我的"
+				"iconPath": "static/tabbar/tabbar-my-gray.png",
+				"selectedIconPath": "static/tabbar/tabbar-my-blue.png",
+				"pagePath": "pages/me/Me",
+				"text": "我的"
 			}
 		]
-		
+
 	},
-	"condition" : { //模式配置，仅开发期间生效
+	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [
-			{
-				"name": "", //模式名称
-				"path": "", //启动页面，必选
-				"query": "" //启动参数，在页面的onLoad函数里面得到
-			}
-		]
+		"list": [{
+			"name": "", //模式名称
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
 	}
 }

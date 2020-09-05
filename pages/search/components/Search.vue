@@ -4,6 +4,10 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<view class="cu-bar search  bg-white">
+			<view class="uni-page-head-btn" @click="returnBack()">
+				<i class="uni-btn-icon" style="margin-left: 8rpx;rgb(0, 0, 0); font-size: 27px;"></i>
+			</view>
+			<!-- <text class="cuIcon-back" style="font-size: x-large; margin-left: 20rpx;"></text> -->
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>
 				<input focus @blur="InputBlur" @confirm="searchStart()" :adjust-position="false" type="text" :placeholder="valueText"
@@ -35,7 +39,15 @@
 	export default {
 		name: "zy-search",
 		props: {
-			valueText:{
+			home: {
+				type: Boolean,
+				default: true
+			},
+			backPage: {
+				type: String,
+				default: "/pages/home/home"
+			},
+			valueText: {
 				type: String,
 				default: "搜城市/酒店/景点/美食"
 			},
@@ -76,7 +88,7 @@
 		methods: {
 			gotoLunBo(data) {
 				uni.navigateTo({
-					url: "/pages/search/searchPage?data="+data
+					url: "/pages/search/searchPage?data=" + data
 				})
 			},
 			searchStart: function() { //触发搜索
@@ -154,6 +166,19 @@
 			},
 			InputBlur(e) {
 				this.InputBottom = 0
+			},
+			returnBack() {
+				console.log(this.backPage);
+				if(this.home){
+					uni.switchTab({
+						url:this.backPage
+					})
+				}else{
+					uni.navigateTo({
+					url: this.backPage,
+				})
+				}
+				
 			}
 		}
 	}

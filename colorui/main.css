@@ -1633,7 +1633,7 @@ button.cuIcon.lg {
 	flex: 1;
 	display: flex;
 	align-items: center;
-	margin: 0 30upx;
+	margin: 0 15upx;
 }
 
 .cu-bar .search-form+.action {

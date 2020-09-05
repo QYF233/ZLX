@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<zy-search :is-focus="false" :theme="themeClass" :show-want="true" :speechEngine="speechEngine"
+		<zy-search :is-focus="false" :theme="themeClass" :show-want="true" :speechEngine="speechEngine" :backPage="backPage" :home="true"
 		:hot-list="hotList" @getSearchText="getSearchText"></zy-search>
 	</view>
 </template>
@@ -15,7 +15,8 @@
 			return {
 				themeClass: 'block',
 				speechEngine: 'baidu', //语音识别引擎
-				hotList: ['五星级酒店','美食','游乐园','民宿']	//初始化推荐列表
+				hotList: ['杭州','美食','游乐园','民宿'],	//初始化推荐列表
+				backPage:"/pages/home/home",
 			}
 		},
 		methods: {
