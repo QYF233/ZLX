@@ -9,8 +9,6 @@
 				</view>
 			</view>
 		</view>
-
-
 		<!--    right    -->
 		<view>
 			<view id="right" v-if="rightList.length">

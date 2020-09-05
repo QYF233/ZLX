@@ -1,18 +1,25 @@
 <template>
 	<view class="">
-		城市详情页
 	</view>
 </template>
 <script>
 export default{
+	name:"SearchOther",
+	components:{
+	},
 	props:{
+		
 	},
 	data() {
 		return {
-			key: value
+			list: [],
+			data: ''
 		}
 	},
+	onLoad: function(data) {
+	},
 	methods:{
+		
 		
 	}
 }
