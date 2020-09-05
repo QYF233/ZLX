@@ -15,7 +15,7 @@
 			return {
 				themeClass: 'block',
 				speechEngine: 'baidu', //语音识别引擎
-				hotList: ['杭州','美食','游乐园','民宿'],	//初始化推荐列表
+				hotList: ['绍兴','美食','游乐园','民宿'],	//初始化推荐列表
 				backPage:"/pages/home/home",
 			}
 		},

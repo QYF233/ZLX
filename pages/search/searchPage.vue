@@ -1,7 +1,7 @@
 <template>
 	<view class="">
-		<zy-search :is-focus="false" :show-want="false" :showHis="false" :backPage="backPage" :home="false"
-		:valueText="data" @getSearchText="data"></zy-search>
+		<zy-search :is-focus="false" :show-want="false" :showHis="false" :backPage="backPage" :home="false" :valueText="data"
+		 @getSearchText="data"></zy-search>
 		<uni-card class="card" @click="clickCard" isShadow>
 			<view class="box">
 				<view class="left">
@@ -58,27 +58,36 @@
 			</view>
 			<view class="cu-list grid col-3">
 				<view class="cu-item">
-					<view class="bg-img flex align-center" style="background-image: url(../../static/image/hangzhou.jpg);">
-						<view class="padding-xl text-white">
-							<view class="padding-xs text-sm text-bold">
+					<view class="tag bg-yellow">
+						top1
+					</view>
+					<view class="bg-img flex align-end justify-end" style="background-image: url(../../static/image/hangzhou.jpg);">
+						<view class="padding-xs text-white">
+							<view class="padding-xs text-lg text-bold">
 								鲁迅故里
 							</view>
 						</view>
 					</view>
 				</view>
 				<view class="cu-item">
-					<view class="bg-img bg-mask flex align-center" style="background-image: url(../../static/image/shaoxing.jpg);">
-						<view class="padding-xl text-white align-end">
-							<view class="padding-xs text-sm text-bold">
+					<view class="tag bg-yellow">
+						top2
+					</view>
+					<view class="bg-img bg-mask flex  align-end justify-end" style="background-image: url(../../static/image/shaoxing.jpg);">
+						<view class="padding-xs text-white align-end">
+							<view class="padding-xs text-lg text-bold">
 								大禹陵
 							</view>
 						</view>
 					</view>
 				</view>
 				<view class="cu-item">
-					<view class="bg-img bg-mask flex align-center" style="background-image: url(../../static/image/jiaxing.jpg);">
-						<view class="padding-xl text-white">
-							<view class="padding-xs text-sm text-bold">
+					<view class="tag bg-yellow">
+						top3
+					</view>
+					<view class="bg-img bg-mask flex  align-end justify-end" style="background-image: url(../../static/image/jiaxing.jpg);">
+						<view class="padding-xs text-white">
+							<view class="padding-xs text-lg text-bold">
 								新昌大佛寺
 							</view>
 						</view>
@@ -87,8 +96,16 @@
 			</view>
 
 		</view>
-
-
+		
+		<view class="cu-bar justify-center bg-white">
+			<view class="action sub-title">
+				<text class="text-xl text-bold text-blue">其他攻略</text>
+				<text class="text-ABC text-blue">Other</text>
+				<!-- last-child选择器-->
+			</view>
+		</view>
+		
+		推荐
 	</view>
 </template>
 <script>
@@ -106,7 +123,7 @@
 		data() {
 			return {
 				data: '',
-				backPage:"/pages/search/search",
+				backPage: "/pages/search/search",
 			}
 		},
 		onLoad: function(option) {
@@ -154,5 +171,16 @@
 		background-size: cover;
 		height: 300rpx;
 
+	}
+	.cu-item{
+		position: relative;
+	}
+	.tag{
+		z-index: 10;
+		position: absolute;
+		top: 10;
+		left: 0;
+		padding: 8rpx;
+		color: #FFFFFF;
 	}
 </style>
