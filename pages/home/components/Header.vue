@@ -40,4 +40,7 @@
 	.add {
 		color: #fff;
 	}
+	.search-form{
+		margin-left 40upx;
+	}
 </style>

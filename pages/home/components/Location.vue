@@ -3,8 +3,10 @@
 		<view class="flex justify-between">
 			<view class="left">
 				<view class="up flex">
-					<view class="city">{{city}}</view>
-					<text class="cuIcon-rounddown"  @click.stop="gotoLunBo"></text>
+					<navigator url="/pages/search/searchDetail">
+						<view class="city">{{city}}</view>
+					</navigator>
+					<text class="cuIcon-rounddown" @click.stop="gotoLunBo"></text>
 				</view>
 				<view class="temp">
 					<text class="iconfont lg temp-icon">&#xe646;</text>
@@ -25,17 +27,16 @@
 <script>
 	export default {
 		name: 'HomeLocation',
-		props:{
-			city:String,
-			low:String,
-			high:String,
-			weatherType:String
+		props: {
+			city: String,
+			low: String,
+			high: String,
+			weatherType: String
 		},
 		data() {
-			return {
-			}
+			return {}
 		},
-		methods:{
+		methods: {
 			gotoLunBo() {
 				uni.navigateTo({
 					url: "/pages/home/cityList?city=" + this.city
@@ -79,9 +80,11 @@
 		margin-left: 60rpx;
 	}
 
-	.iconfont,.cuIcon-camera{
+	.iconfont,
+	.cuIcon-camera {
 		margin-right: 10rpx;
 	}
+
 	.right {
 		height: 150rpx;
 		line-height: 150rpx;
@@ -90,7 +93,8 @@
 		width: 230rpx;
 		color: #fff;
 		border-radius: 50rpx;
-		.text{
+
+		.text {
 			height: 150rpx;
 			line-height: 150rpx;
 		}

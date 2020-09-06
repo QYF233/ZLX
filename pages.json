@@ -95,10 +95,10 @@
 			"style": {
 				"navigationBarTitleText": "搜索结果"
 			}
-		},{
+		}, {
 			"path": "pages/search/searchDetail",
 			"style": {
-				"navigationBarTitleText": "详情页"
+				"navigationBarTitleText": "城市介绍"
 			}
 		}, {
 			"path": "pages/atmosphere/atmosphere",
@@ -175,7 +175,7 @@
 		{
 			"path": "pages/home/cityList",
 			"style": {
-				"navigationBarTitleText": "城市列表"
+				"navigationBarTitleText": "切换城市"
 			}
 		},
 		{
