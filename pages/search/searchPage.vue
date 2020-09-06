@@ -51,7 +51,8 @@
 				<!-- last-child选择器-->
 			</view>
 		</view>
-		<waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow>
+		<search-other :listData = "listData"></search-other>
+		<!-- <waterfalls-flow :wfList='list' @itemTap="choose"></waterfalls-flow> -->
 	</view>
 </template>
 <script>
@@ -60,7 +61,8 @@
 	import uniCard from '@/components/uni-card/uni-card.vue'
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
 	import SearchHot from "./components/SearchHot.vue"
-	import WaterfallsFlow from '@/components/WaterfallsFlow/WaterfallsFlow.vue'
+	// import WaterfallsFlow from '@/components/WaterfallsFlow/WaterfallsFlow.vue'
+	import SearchOther from "./components/SearchOther.vue"
 	export default {
 		components: {
 			uniCard,
@@ -68,10 +70,12 @@
 			uniNavBar,
 			uniSearchBar,
 			SearchHot,
-			WaterfallsFlow
+			SearchOther
+			// WaterfallsFlow
 		},
 		data() {
 			return {
+				listData: [],
 				list: [],
 				data: '',
 				backPage: "/pages/search/search",
@@ -83,68 +87,79 @@
 		},
 		onLoad: function(option) {
 			this.data = option.data;
-			this.loadList()
+			// this.loadList()
+			this.getData();
 		},
 		methods: {
-			loadList() {
-				this.list = []
-				setTimeout(() => {
-					uni.request({
-						url: this.websiteUrl + 'home/list',
-						success: (res) => {
-							this.pages = res.data.pages
-							let p = res.data.list
-							p.sort(function() {
-								return .5 - Math.random();
-							});
-							this.list = this.list.concat(p)
-						}
-					})
+			async getData() {
+				const res = await this.$myRequest({
+					url: 'home/list'
 				})
-			},
-			switchToCurrentCity() {
-				this.loadList()
-			},
-			homeLoadList(city) {
-				if (city.name !== this.cityname) {
-					this.cityname = city.name
-					this.citybackgroundImage = city.backgroundImage
-					this.getWeather()
-					this.loadList()
+				for (var i = 0; i < res.data.list.length; i++) {
+					this.listData.push(res.data.list[i])
 				}
+				console.log(this.listData);
 			},
-			appendList() {
-				uni.showLoading({
-					title: "正在加载"
-				})
-				if (this.page == this.pages) {
-					uni.hideLoading()
-					uni.showToast({
-						icon: 'none',
-						title: '没有更多了'
-					})
-					return
-				}
-				this.page++
-				setTimeout(() => {
-					uni.request({
-						url: this.websiteUrl + 'home/list?page=' + this.page,
-						success: (res) => {
-							let p = res.data.list
-							p.sort(function() {
-								return .5 - Math.random();
-							});
-							this.list = this.list.concat(p)
-							uni.hideLoading()
-						}
-					})
-				})
-			},
-			choose(data) {
-				uni.navigateTo({
-					url: data.url
-				})
-			},
+			
+			// loadList() {
+			// 	this.list = []
+			// 	setTimeout(() => {
+			// 		uni.request({
+			// 			url: this.websiteUrl + 'home/list',
+			// 			success: (res) => {
+			// 				this.pages = res.data.pages
+			// 				let p = res.data.list
+			// 				p.sort(function() {
+			// 					return .5 - Math.random();
+			// 				});
+			// 				this.list = this.list.concat(p)
+			// 			}
+			// 		})
+			// 	})
+			// },
+			// switchToCurrentCity() {
+			// 	this.loadList()
+			// },
+			// homeLoadList(city) {
+			// 	if (city.name !== this.cityname) {
+			// 		this.cityname = city.name
+			// 		this.citybackgroundImage = city.backgroundImage
+			// 		this.getWeather()
+			// 		this.loadList()
+			// 	}
+			// },
+			// appendList() {
+			// 	uni.showLoading({
+			// 		title: "正在加载"
+			// 	})
+			// 	if (this.page == this.pages) {
+			// 		uni.hideLoading()
+			// 		uni.showToast({
+			// 			icon: 'none',
+			// 			title: '没有更多了'
+			// 		})
+			// 		return
+			// 	}
+			// 	this.page++
+			// 	setTimeout(() => {
+			// 		uni.request({
+			// 			url: this.websiteUrl + 'home/list?page=' + this.page,
+			// 			success: (res) => {
+			// 				let p = res.data.list
+			// 				p.sort(function() {
+			// 					return .5 - Math.random();
+			// 				});
+			// 				this.list = this.list.concat(p)
+			// 				uni.hideLoading()
+			// 			}
+			// 		})
+			// 	})
+			// },
+			// choose(data) {
+			// 	uni.navigateTo({
+			// 		url: data.url
+			// 	})
+			// },
 		}
 	}
 </script>

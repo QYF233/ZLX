@@ -7,7 +7,7 @@
 				<!-- last-child选择器-->
 			</view>
 		</view>
-		<swiper :indicator-dots="false" :autoplay="true" :interval="5000" :duration="1000" @change="ChangeTitle()">
+		<swiper :indicator-dots="false" :autoplay="true" :interval="3000" :duration="1000" @change="ChangeTitle()">
 			<swiper-item>
 				<view class="swiper-item">
 					<view class="cu-list grid col-3 big">
@@ -102,106 +102,105 @@
 							</view>
 						</view>
 					</view>
-
 				</view>
 			</swiper-item>
-			
+
 			<!-- ************************************************************************************* -->
-			
+
 			<swiper-item>
 				<view class="swiper-item">
 					<view class="cu-list grid col-3 big">
-							<view class="cu-item" @click="returnDetail(1)">
-								<view class="tag bg-yellow">
-									top1
-								</view>
-								<view class="introduce">
-									是鲁迅诞生和青少年时期生活过的故土
-								</view>
-								<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/PFRpoX5izZ4Y7qJ.png);">
-									<view class="name padding-xs text-white">
-										<view class="padding-xs text-lg text-bold">
-											绍兴臭豆腐
-										</view>
-									</view>
-								</view>
-					
+						<view class="cu-item" @click="returnDetail(1)">
+							<view class="tag bg-yellow">
+								top1
 							</view>
-							<view class="cu-item" @click="returnDetail(2)">
-								<view class="tag bg-yellow">
-									top2
-								</view>
-								<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/4EjbeQTMcCpa3Fy.png);">
-									<view class="name padding-xs text-white align-end">
-										<view class="padding-xs text-lg text-bold">
-											嵊州榨面
-										</view>
+							<view class="introduce">
+								是鲁迅诞生和青少年时期生活过的故土
+							</view>
+							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/PFRpoX5izZ4Y7qJ.png);">
+								<view class="name padding-xs text-white">
+									<view class="padding-xs text-lg text-bold">
+										绍兴臭豆腐
 									</view>
 								</view>
 							</view>
-							<view class="cu-item" @click="returnDetail(3)">
-								<view class="tag bg-yellow">
-									top3
-								</view>
-								<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/2sHh79K8lAWxLUj.png);">
-									<view class="name padding-xs text-white">
-										<view class="padding-xs text-lg text-bold">
-											新昌炒年糕
-										</view>
+
+						</view>
+						<view class="cu-item" @click="returnDetail(2)">
+							<view class="tag bg-yellow">
+								top2
+							</view>
+							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/4EjbeQTMcCpa3Fy.png);">
+								<view class="name padding-xs text-white align-end">
+									<view class="padding-xs text-lg text-bold">
+										嵊州榨面
 									</view>
 								</view>
 							</view>
 						</view>
-						<view class="cu-list grid col-4 small">
-							<view class="cu-item" @click="returnDetail(4)">
-								<view class="tag bg-yellow">
-									top4
-								</view>
-								<view class="bg-img-sm flex align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/9XAIcY7JHPSD3hL.png);">
-									<view class="name padding-xs text-white">
-										<view class="padding-xs text-sm text-bold">
-											芋饺
-										</view>
+						<view class="cu-item" @click="returnDetail(3)">
+							<view class="tag bg-yellow">
+								top3
+							</view>
+							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/2sHh79K8lAWxLUj.png);">
+								<view class="name padding-xs text-white">
+									<view class="padding-xs text-lg text-bold">
+										新昌炒年糕
 									</view>
 								</view>
 							</view>
-							<view class="cu-item" @click="returnDetail(5)">
-								<view class="tag bg-yellow">
-									top5
-								</view>
-								<view class="bg-img-sm flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/EjNAyP2CrVnIO1T.png);">
-									<view class="name padding-xs text-white align-end">
-										<view class="padding-xs text-sm text-bold">
-											绍兴腐乳
-										</view>
+						</view>
+					</view>
+					<view class="cu-list grid col-4 small">
+						<view class="cu-item" @click="returnDetail(4)">
+							<view class="tag bg-yellow">
+								top4
+							</view>
+							<view class="bg-img-sm flex align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/9XAIcY7JHPSD3hL.png);">
+								<view class="name padding-xs text-white">
+									<view class="padding-xs text-sm text-bold">
+										芋饺
 									</view>
 								</view>
 							</view>
-							<view class="cu-item" @click="returnDetail(6)">
-								<view class="tag bg-yellow">
-									top6
-								</view>
-								<view class="bg-img-sm flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/PkRvfTF29b1i5gA.png);">
-									<view class="name padding-xs text-white">
-										<view class="padding-xs text-sm text-bold">
-											糟鸡
-										</view>
+						</view>
+						<view class="cu-item" @click="returnDetail(5)">
+							<view class="tag bg-yellow">
+								top5
+							</view>
+							<view class="bg-img-sm flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/EjNAyP2CrVnIO1T.png);">
+								<view class="name padding-xs text-white align-end">
+									<view class="padding-xs text-sm text-bold">
+										绍兴腐乳
 									</view>
 								</view>
 							</view>
-							<view class="cu-item" @click="returnDetail(-1)">
-								<!-- <view class="tag bg-yellow">
+						</view>
+						<view class="cu-item" @click="returnDetail(6)">
+							<view class="tag bg-yellow">
+								top6
+							</view>
+							<view class="bg-img-sm flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/PkRvfTF29b1i5gA.png);">
+								<view class="name padding-xs text-white">
+									<view class="padding-xs text-sm text-bold">
+										糟鸡
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="cu-item" @click="returnDetail(-1)">
+							<!-- <view class="tag bg-yellow">
 						top3
 					</view> -->
-								<view class="bg-img-sm flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/8Ldi9ahEm5GSnTU.png);">
-									<view class="name padding-xs text-white">
-										<view class="padding-xs text-sm text-bold">
-											更多
-										</view>
+							<view class="bg-img-sm flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/8Ldi9ahEm5GSnTU.png);">
+								<view class="name padding-xs text-white">
+									<view class="padding-xs text-sm text-bold">
+										更多
 									</view>
 								</view>
 							</view>
 						</view>
+					</view>
 				</view>
 			</swiper-item>
 		</swiper>
@@ -218,8 +217,8 @@
 				data: "",
 				title: "热门景点",
 				flag: {
-					type:Boolean,
-					default:false
+					type: Boolean,
+					default: false
 				}
 			}
 		},
@@ -237,12 +236,12 @@
 				}
 
 			},
-			ChangeTitle(){
+			ChangeTitle() {
 				console.log("改变");
-				
-				if(this.flag){
+
+				if (this.flag) {
 					this.title = "热门美食"
-				}else{
+				} else {
 					this.title = "热门景点"
 				}
 				this.flag = !this.flag;
@@ -252,9 +251,10 @@
 </script>
 
 <style lang="scss" scoped>
-	swiper{
+	swiper {
 		height: 500rpx;
 	}
+
 	.iconfont {
 		font-size: 1.8em;
 	}

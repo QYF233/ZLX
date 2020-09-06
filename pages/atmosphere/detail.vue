@@ -46,6 +46,7 @@
             uni.setNavigationBarTitle({
                 title: this.banner.title
             });
+			console.log(this.banner.describe);
         },
         methods: {
             getDetail() {

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<zy-search :is-focus="false" :theme="themeClass" :show-want="true" :speechEngine="speechEngine" :backPage="backPage" :home="true"
+		<zy-search :is-focus="false" :theme="themeClass" :show-want="true" :showHis="true"  :speechEngine="speechEngine" :backPage="backPage" :home="true"
 		:hot-list="hotList" @getSearchText="getSearchText"></zy-search>
 	</view>
 </template>

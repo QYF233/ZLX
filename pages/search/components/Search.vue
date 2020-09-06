@@ -102,7 +102,7 @@
 				} else {
 					_this.$emit('getSearchText', _this.searchText);
 					this.gotoLunBo(_this.searchText);
-					/* uni.getStorage({
+					uni.getStorage({
 						key: 'search_cache',
 						success(res) {
 							let list = res.data;
@@ -137,7 +137,7 @@
 							});
 							_this.$emit('getSearchText', _this.searchText);
 						}
-					}) */
+					})
 				}
 			},
 			keywordsClick(item) { //关键词搜索与历史搜索

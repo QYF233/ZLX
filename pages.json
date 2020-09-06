@@ -91,6 +91,11 @@
 				"navigationStyle": "custom"
 			}
 		}, {
+			"path": "pages/search/components/SearchOther",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
+			}
+		},{
 			"path": "pages/search/searchDetail",
 			"style": {
 				"navigationBarTitleText": "详情页"
