@@ -27,7 +27,7 @@
 			</view>
 
 			<view class="box1" v-for="(item,index) in intro" :key="index">
-				<view class="box2 flex padding-xs justify-center margin-lr" :class="{ 'solid-bottom': index<13}">
+				<view class="box2 flex padding-xs justify-center margin-lr" :class="{ 'solid-bottom': index+1<intro.length}">
 					<view class="left1 text-bold justify-start" style="width: 40%;">
 						<text>{{item.way}}</text>
 					</view>
