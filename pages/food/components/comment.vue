@@ -23,23 +23,22 @@
 </template>
 <script>
 	import userReply from '@/components/reply/reply.vue'
-	import commentData from './comment.js'
 	export default {
+		props:{
+			commentData:{
+				type:Array
+			}
+		},
 		components: {
 			userReply
 		},
 		data() {
 			return {
-				commentData: []
+				
 			}
-		},
-		onLoad(event) {
-			this.getComment();
 		},
 		methods: {
-			getComment() {
-				this.commentData = commentData.items;
-			}
+			
 		}
 	}
 </script>
