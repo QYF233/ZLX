@@ -40,7 +40,7 @@
 				<text class="iconfont">&#xe612;</text><text class="address">{{spot.address}}</text>
 			</view>
 		</view>
-
+		
 	</view>
 </template>
 
@@ -124,12 +124,12 @@
 		margin: 10rpx 20rpx;
 		border-top: 1px solid #F5F5F5;
 		border-bottom: 1px solid #F5F5F5;
-		min-height: 80rpx;
+		min-height: 290rpx;
 
 	}
 
 	.more {
-		margin-top: 100rpx;
+		/* margin-top: 80rpx; */
 	}
 
 	.cost {

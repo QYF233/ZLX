@@ -90,14 +90,14 @@
 }
 .imgsBanner_swiper{
 	width: 750rpx;
-	height: 750rpx;
+	height: 500rpx;
 	margin-bottom: 24rpx;
 	swiper-item{
 		width: 750rpx;
 		height: 100%;
 		image{
 			width: 750rpx;
-			height: 750rpx;
+			height: 500rpx;
 		}
 	}
 }

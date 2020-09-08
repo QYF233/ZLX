@@ -11,7 +11,13 @@
 			<view v-for="(item,index) in photoList" :key="index" :class="{'active':item.active}" :data-index="index" @tap="openDetail($event)"
 			 :data-detail="item.id">
 				<image :src="item.pic[0]" mode="aspectFill" lazy-load="true"></image>
-				<view>{{item.foodName}}</view>
+				<view class="flex justify-between padding-xs">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="love">
+						<text class="iconfont">&#xe76a;</text>
+						<text class="num">15</text>
+					</view>
+				</view>
 			</view>
 		</view>
 		<view class="load">{{loadTxt}}</view>
@@ -19,6 +25,7 @@
 </template>
 
 <script>
+	
 	import foodHeader from './components/Header.vue'
 	import foodList from './components/FoodList.vue'
 	export default {
@@ -37,7 +44,7 @@
 		},
 		components: {
 			foodHeader,
-			foodList,
+			foodList
 		},
 		onLoad() {
 			this.getData();
@@ -130,6 +137,10 @@
 </script>
 
 <style lang="stylus" scoped>
+	
+	.foodName{
+		
+	}
 	page {
 		background-color: #eee;
 	}

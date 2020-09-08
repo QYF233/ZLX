@@ -6,15 +6,18 @@
 			<uni-title type="h1" :title="foodName"></uni-title>
 			<text>{{introduce}}</text>
 		</view>
+		<comment></comment>
 	</view>
 </template>
 <script>
+	import comment from "./components/comment.vue"
 	import uniTitle from "@/components/uni-title/uni-title.vue"
 	import imgsBanner from '../../components/imgsBanner-tag/imgsBanner-tag.vue'
 	export default {
 		components: {
 			imgsBanner,
-			uniTitle
+			uniTitle,
+			comment
 		},
 		data() {
 			return {
@@ -22,7 +25,7 @@
 				currentImg: 0, //当前默认选中
 				foodId: '',
 				foodName: '',
-				introduce: '',
+				introduce: ''
 			};
 		},
 		onLoad: function(option) {
@@ -38,8 +41,13 @@
 				this.introduce = res.data.introduce;
 				this.foodName = res.data.foodName;
 			},
-		}
+		},
+
+
 	}
 </script>
-<style  lang="stylus" scoped>
+<style lang="stylus" scoped>
+	.detail {
+		// margin-top:32rpx;
+	}
 </style>
