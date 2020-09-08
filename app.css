@@ -2,12 +2,12 @@
 /* iconfont 需要加上https: */
 @font-face {
   font-family: 'iconfont';  /* project id 1897670 */
-  src: url('https://at.alicdn.com/t/font_1897670_m5vbnyzrjn.eot');
-  src: url('https://at.alicdn.com/t/font_1897670_m5vbnyzrjn.eot?#iefix') format('embedded-opentype'),
-  url('https://at.alicdn.com/t/font_1897670_m5vbnyzrjn.woff2') format('woff2'),
-  url('https://at.alicdn.com/t/font_1897670_m5vbnyzrjn.woff') format('woff'),
-  url('https://at.alicdn.com/t/font_1897670_m5vbnyzrjn.ttf') format('truetype'),
-  url('https://at.alicdn.com/t/font_1897670_m5vbnyzrjn.svg#iconfont') format('svg');
+  src: url('https://at.alicdn.com/t/font_1897670_my7afn16hwf.eot');
+  src: url('https://at.alicdn.com/t/font_1897670_my7afn16hwf.eot?#iefix') format('embedded-opentype'),
+  url('https://at.alicdn.com/t/font_1897670_my7afn16hwf.woff2') format('woff2'),
+  url('https://at.alicdn.com/t/font_1897670_my7afn16hwf.woff') format('woff'),
+  url('https://at.alicdn.com/t/font_1897670_my7afn16hwf.ttf') format('truetype'),
+  url('https://at.alicdn.com/t/font_1897670_my7afn16hwf.svg#iconfont') format('svg');
 }
 
 * {

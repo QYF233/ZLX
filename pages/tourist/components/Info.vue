@@ -2,8 +2,8 @@
 	<view class="info">
 		<view class="top">
 			<view class="left">
-				<view class="" >
-					<h1>{{spot.title}}</h1>(国家AAAAA级旅游景区)
+				<view class="">
+					<h1>{{spot.title}}</h1>(国家{{spot.grade}}级旅游景区)
 				</view>
 				<view style="margin-top: 10rpx;">
 					<text class="tags">“{{spot.tags}}”</text>
@@ -27,11 +27,11 @@
 
 		<view class="introduction">
 			<h3>简介</h3>
-			<sunui-grand :content="content" :bg="bg"></sunui-grand>
+			<sunui-grand :content="spot.introduction" :bg="bg"></sunui-grand>
 		</view>
 		<view class="more">
 			<view class="cost">
-				<text class="iconfont">&#xe62a;</text><text class="ticket">免门票</text>
+				<text class="iconfont">&#xe62a;</text><text class="time">门票：{{spot.cost}}</text>
 			</view>
 			<view class="mid">
 				<text class="iconfont">&#xe606;</text><text class="time">{{spot.openTime}}</text>
@@ -138,7 +138,7 @@
 		border-bottom: 1px solid #F5F5F5;
 		line-height: 80rpx;
 		min-height: 80rpx;
-		font-size: 24px;
+		/* font-size: 24px; */
 	}
 
 	.mid {
