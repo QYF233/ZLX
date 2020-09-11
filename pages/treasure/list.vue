@@ -41,7 +41,7 @@
 			},
 			toDetail(data){
 				uni.navigateTo({
-					url:"detail?id="+data
+					url:"detail?id="+data,
 				})
 			}
 		}

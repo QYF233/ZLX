@@ -1,54 +1,47 @@
 <template>
 	<view class="container">
-		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-			<swiper-item v-for="(item,index) in swiperList" :key="index">
+		
+		<swiper class="card-swiper square-dot " :indicator-dots="true" :circular="true"
+		 :autoplay="true" interval="5000" duration="500" @change="cardSwiper" indicator-color="#8799a3"
+		 indicator-active-color="#0081ff">
+			<swiper-item v-for="(item,index) in imgList" :key="index" :class="cardCur==index?'cur':''">
 				<view class="swiper-item">
-					<image :src="item.img" mode=""></image>
+					<image :src="item" mode="aspectFill"></image>
 				</view>
 			</swiper-item>
-
 		</swiper>
+		
 		<view>
 			<view class="detail">
-				<view v-for="(item,index) in detail" :key="index" class="clearfix row">
-					<view class="ways">{{item.ways}}</view>
-					<view class="ans">{{item.ans}}</view>
+				<view class="clearfix row">
+					<view class="ways text-bold">{{treasure.treasureName}}</view>
+					<view class="ans">{{treasure.place}}</view>
 				</view>
 			</view>
-			<h2>这里是这个博物馆的简介</h2>
-			<text>{{introduce}}</text>
+			<h2>简介</h2>
+			<text>{{treasure.content}}</text>
 		</view>
 	</view>
 </template>
 <script>
-	import swiper from '../../components/swiper/swiper.vue'
+	
 	export default {
 		components: {
-			swiper
 		},
-		
 		data() {
 			return {
-				id:"",
-				list:[]
-,				detail: [{
-					ways: '1',
-					ans: 'one'
-				}, {
-					ways: '2',
-					ans: 'two'
-				}, {
-					ways: '3',
-					ans: 'three'
-				}],
-				currentImg: 0, //当前默认选中
-				introduce: '啊吧啊吧 这是简介',
+				id: "",
+				cardCur: 0,
+				imgList: [],
+				treasure:[],
+				towerStart: 0,
+				direction: ''
 			};
 		},
 		onLoad: function(option) {
 			/* 分类id */
 			this.id = option.id;
-			this.getData()
+			this.getData();
 		},
 		methods: {
 			async getData() {
@@ -56,46 +49,22 @@
 					url: '/treasure/getlist'
 				})
 				for (var i = 0; i < res1.data.list.length; i++) {
-					
-					this.treasureList.push(res1.data.list[i])
+					if (res1.data.list[i].id == this.id) {
+						this.treasure = res1.data.list[i];
+						this.imgList = res1.data.list[i].img;
+					}
 				}
-				console.log(res1);
+				console.log(this.treasure);
+				console.log(this.imgList);
+				
 			},
+			cardSwiper(e) {
+				this.cardCur = e.detail.current
+			},
+			
 		}
 	}
 </script>
 <style lang="stylus" scoped>
-	.container {
-		padding: 20px;
-		font-size: 14px;
-		line-height: 24px;
-	}
 
-	.clearfix:after {
-		content: ".";
-		display: block;
-		height: 0;
-		clear: both;
-		visibility: hidden;
-
-	}
-
-	.ways {
-		text-align center;
-		font-size: 25px;
-		font-weight: bolder;
-		width: 40%;
-		float: left;
-	}
-
-	.ans {
-		text-align center;
-		width: 60;
-		float: left;
-	}
-
-	.detail {
-		margin-top: 20rpx;
-		margin-bottom: 40rpx;
-	}
 </style>
