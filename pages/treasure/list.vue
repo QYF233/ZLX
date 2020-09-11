@@ -1,6 +1,6 @@
 <template>
 	<view class="list">
-		<view class="item"  v-for="(item,index) in treasureList" :key="index" v-if="classId==item.classifyId">
+		<view class="item"  v-for="(item,index) in treasureList" :key="index" v-if="classId==item.classifyId" @click="toDetail(item.id)">
 			<view class="title text-bold">
 				{{item.treasureName}}
 			</view>
@@ -37,8 +37,13 @@
 					
 					this.treasureList.push(res1.data.list[i])
 				}
-				console.log(this.treasureList[0].img);
+				console.log(res1);
 			},
+			toDetail(data){
+				uni.navigateTo({
+					url:"detail?id="+data
+				})
+			}
 		}
 	}
 </script>

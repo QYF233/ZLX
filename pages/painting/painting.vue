@@ -41,8 +41,11 @@
 				],
 			}
 		},
+		onLoad() {
+			
+		},
 		methods: {
-
+			
 		}
 	}
 </script>
