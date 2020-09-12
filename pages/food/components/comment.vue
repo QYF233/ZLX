@@ -1,124 +1,120 @@
 <template>
 	<view>
-		<view class="uni-article__comment">
-			<view class="uni-article__comment-box" v-for="comment in commentData" :key="comment.id">
-				<view class="article-meta">
-					<view class="article-header-image">
-						<image class="image" :src="comment.author.portrait" mode="widthFix"></image>
-					</view>
-					<view class="article-header-content">
-						<view class="article-header-title">
-							<text>{{comment.author.name}}</text>
+		<!-- <cu-custom bgColor="bg-gradual-pink" :isBack="true"><block slot="backText">返回</block><block slot="content">聊天</block></cu-custom> -->
+		<view class="cu-chat">
+			<view v-for="(item,index) in dataList" :key="index" v-if="item.foodId==foodId">
+				<view class="cu-item self" v-if="item.self==0">
+					<view class="main">
+						<view class="content bg-green shadow">
+							<text>{{item.comment}}</text>
 						</view>
-						<view class="article-header-info"> {{comment.pubDate||''}}</view>
 					</view>
+					<view class="cu-avatar radius" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big107000.jpg);"></view>
+					<view class="date">{{item.time}}</view>
 				</view>
-				<view class="uni-article__comment-centent">
-					<user-reply v-if="comment.refer.length > 0" :digest="comment.refer"></user-reply>
-					{{comment.content}}
+				<view class="cu-item" v-else>
+					<view class="cu-avatar radius" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big143004.jpg);"></view>
+					<view class="main">
+						<view class="content shadow">
+							<text>{{item.comment}}</text>
+						</view>
+					</view>
+					<view class="date">{{item.time}}</view>
 				</view>
 			</view>
+			<!-- <view class="none" v-if="!this.commentNum">
+				没有任何评论
+			</view> -->
 		</view>
+
+		<view class="cu-bar foot input" :style="[{bottom:InputBottom+'px'}]">
+			<!-- <view class="action">
+				<text class="cuIcon-sound text-grey"></text>
+			</view> -->
+			<input class="solid-bottom" :adjust-position="false" :focus="false" maxlength="300" cursor-spacing="10" @focus="InputFocus"
+			 @blur="InputBlur"></input>
+			<view class="action">
+				<text class="cuIcon-emojifill text-grey"></text>
+			</view>
+			<button class="cu-btn bg-green shadow">发送</button>
+		</view>
+
 	</view>
 </template>
+
 <script>
-	import userReply from '@/components/reply/reply.vue'
 	export default {
 		props:{
-			commentData:{
-				type:Array
-			}
-		},
-		components: {
-			userReply
+			foodId:""
 		},
 		data() {
 			return {
-				
+				InputBottom: 0,
+				dataList:[{
+					foodId:1,
+					self:0,
+					comment:"这个我吃过，炒鸡好吃啊！",
+					time:"2020年11月12日 12:30"
+				},
+				{
+					foodId:1,
+					self:1,
+					comment:"好吃好吃",
+					time:"2020年11月11日 14:00"
+				},
+				{
+					foodId:1,
+					self:1,
+					comment:"不错不错",
+					time:"2020年11月11日 14:00"
+				},
+				{
+					foodId:2,
+					self:1,
+					comment:"这个味道也还行",
+					time:"2020年11月12日 12:30"
+				},
+				{
+					foodId:2,
+					self:0,
+					comment:"太棒了！",
+					time:"2020年11月11日 14:00"
+				},
+				{
+					foodId:2,
+					self:1,
+					comment:"不错不错",
+					time:"2020年11月11日 14:00"
+				}]
+			};
+		},
+		onLoad(option) {
+			/* for (var i = 0; i < this.dataList.length; i++) {
+				this.commentNum = false;
+				this.list.push(this.dataList[i])
 			}
+			console.log(this.commentNum); */
 		},
 		methods: {
-			
+			InputFocus(e) {
+				this.InputBottom = e.detail.height
+			},
+			InputBlur(e) {
+				this.InputBottom = 0
+				console.log('发送评论:' + e.detail.value);
+				this.dataList.push({
+					foodId:this.foodId,
+					self:0,
+					comment:e.detail.value,
+					time:"2020年9月11日 19:50"
+				})
+			}
 		}
 	}
 </script>
 
-<style scoped>
-	.article-meta {
-		padding: 20rpx 20rpx;
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-		justify-content: flex-start;
-		color: gray;
-	}
-
-	.article-header-image {
-		width: 60rpx;
-		height: 60rpx;
-		flex-shrink: 0;
-		/* border-radius: 50%; */
-		overflow: hidden;
-	}
-
-	.article-header-image .image {
-		width: 100%;
-		height: 100%;
-	}
-
-	.article-header-content {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-left: 10px;
-		font-size: 24rpx;
-		line-height: 1;
-		width: 100%;
-		/* height: 60rpx; */
-	}
-
-	.article-header-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 26rpx;
-		line-height: 2;
-		color: #000;
-	}
-
-	.article-header-info {
-		font-size: 24rpx;
-		line-height: 1;
-	}
-
-	.article-top {
-		display: flex;
-		align-items: flex-end;
-		font-size: 26rpx;
-		line-height: 1;
-		color: #999;
-	}
-
-	.article-top .image {
-		width: 30rpx;
-		margin-left: 5rpx;
-	}
-
-	.uni-article__comment-title {
-		width: 100%;
-		line-height: 3;
-		font-size: 28rpx;
-		color: #666;
-		background: #f5f5f5;
-		padding-left: 20rpx;
-	}
-
-	.uni-article__comment-centent {
-		border-bottom: 1px #eee solid;
-		padding: 0 20rpx;
-		padding-left: 95rpx;
-		padding-bottom: 20rpx;
-		font-size: 14px;
-		color: #333;
+<style>
+	page {
+		padding-bottom: 100upx;
 	}
 </style>

@@ -2,64 +2,98 @@
 <template>
 	<view class="page">
 		<imgsBanner :imgList='imgList' :currentImg='currentImg'></imgsBanner>
-		<view class="detail padding-lr">
+
+		<view class="detail padding-lr flex justify-between">
 			<uni-title type="h1" :title="foodName"></uni-title>
-			<text>{{introduce}}</text>
+			<view class="right flex">
+				<view class="favor" @click="tofavor()">
+					<text>收藏</text>
+					<view class="favor-icon">
+						<view class="cuIcon-favorfill" v-if="favor"></view>
+						<view class="cuIcon-favor" v-else></view>
+					</view>
+				</view>
+				<view class="like" @click="tolike()">
+					<text>点赞</text>
+					<view class="like-icon">
+						<view class="cuIcon-likefill" v-if="like"></view>
+						<view class="cuIcon-like" v-else></view>
+					</view>
+				</view>
+			</view>
 		</view>
-		
-		<view class="comment padding-lr">
-			<uni-title type="h1" title="评论"></uni-title>
+
+		<scroll-view scroll-x class="bg-white nav text-center">
+			<view class="cu-item" :class="0==TabCur?'text-blue':''" @tap="tabSelect" data-id="0">
+				<text class="cuIcon-camerafill"></text> 简介
+			</view>
+			<view class="cu-item" :class="1==TabCur?'text-blue cur':''" @tap="tabSelect" data-id="1">
+				<text class="cuIcon-upstagefill"></text> 评论
+			</view>
+			<view class="cu-item" :class="2==TabCur?'text-blue cur':''" @tap="tabSelect" data-id="2">
+				<text class="cuIcon-clothesfill"></text> 更多
+			</view>
+		</scroll-view>
+
+		<view class="content">
+			<view class="cu-item shadow" v-if="TabCur==0">
+				<uni-title class="introduce" type="h1" title="简介"></uni-title>
+				<text class="text">{{introduce}}</text>
+				<uni-title class="story" type="h1" title="历史故事"></uni-title>
+				<text class="text">{{story}}</text>
+			</view>
+			<view class="comment" v-if="TabCur==1">
+				<uni-title type="h1" title="评论"></uni-title>
+				<comment :foodId="this.foodId"></comment>
+			</view>
+			<view class="more" v-if="TabCur==2">
+				<uni-title type="h1" title="更多"></uni-title>
+
+			</view>
 		</view>
-		<!-- <comment :commentData="commentData"></comment> -->
-		        <!-- 
-		        @param: commentList展示的评论列表数据
-		        @method: clickPraise 点赞评论
-		        @method: clickDelete 删除父级评论
-		        @method: clickRecommentChild 点赞子评论
-		        @method: clickDeleteChild 删除子评论
-		         -->
-		        <five-mul-commentlist
-		            :commentList="commentList"
-		        ></five-mul-commentlist>
+
 	</view>
 </template>
 <script>
-	import fiveMulCommentlist from "@/components/five-mul-commentlist/five-mul-commentlist.vue"
+	// import MypListCell from '@/components/mypui/myp-list-cell.vue'
+	// import introScroll from '@/components/mypui/introScroll.vue'
 	import commentData from './components/comment.js'
 	import comment from "./components/comment.vue"
 	import uniTitle from "@/components/uni-title/uni-title.vue"
 	import imgsBanner from '../../components/imgsBanner-tag/imgsBanner-tag.vue'
-	import commentList from './components/comment2.js'
 	export default {
 		components: {
 			imgsBanner,
 			uniTitle,
 			comment,
-			fiveMulCommentlist
+			// MypListCell,
+			// introScroll
 		},
 		data() {
 			return {
-				title:"网友评论",
-				commentList:[],
+				title: "网友评论",
+				commentList: [],
 				commentData: [],
 				imgList: [],
 				currentImg: 0, //当前默认选中
 				foodId: '',
 				foodName: '',
-				introduce: ''
+				introduce: '',
+				TabCur: 0,
+				scrollLeft: 0,
+				favor: false, //收藏
+				like: false, //点赞
 			};
 		},
 		onLoad: function(option) {
 			this.foodId = parseInt(option.id);
 			this.getData();
-			this.getComment();
-			console.log(commentList);
-			this.commentList = commentList.commentList;
+			// this.getComment();
 		},
 		methods: {
-			getComment() {
-				this.commentData = commentData.items;
-				// console.log(this.commentData);
+			tabSelect(e) {
+				this.TabCur = e.currentTarget.dataset.id;
+				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
 			},
 			async getData() {
 				const res = await this.$myRequest({
@@ -69,14 +103,84 @@
 				this.introduce = res.data.introduce;
 				this.foodName = res.data.foodName;
 			},
-			
+			/**
+			 * 格式化发布日期
+			 * @param {Object} dateString
+			 */
+			formateDate(dateString) {
+				dateString = parseInt(dateString) * 1000;
+				let date = new Date(dateString);
+				let formatStr = dateUtils.dateFormat('YYYY年mm月dd日 HH:MM:SS', date);
+				return formatStr;
+			},
+			tofavor() {
+				this.favor = !this.favor;
+				if (this.favor) {
+					uni.showToast({
+						icon:'none',
+						title: "收藏成功"
+					})
+				}
+				/* else{
+					uni.showToast({
+						title: "取消收藏"
+					})
+				}*/
+			},
+			tolike() {
+				this.like = !this.like;
+				if (this.like) {
+					uni.showToast({
+						icon:'none',
+						title: "点赞成功"
+					})
+				}
+				/* else{
+					uni.showToast({
+						title: "取消点赞"
+					})
+				} */
+			}
+
+
+
+
 		},
 
 
 	}
 </script>
 <style lang="stylus" scoped>
-	.detail {
-		// margin-top:32rpx;
+	.right {
+		flex-direction: row
+	}
+
+	.favor,
+	.like {
+		height 60rpx;
+		line-height: 60rpx;
+		display: flex;
+		flex-direction: row;
+		margin-left: 20rpx;
+	}
+
+	.favor-icon {
+		margin-left 10rpx;
+		color: #ffaa00;
+	}
+
+	.like-icon {
+		margin-left 10rpx;
+		color: red;
+	}
+		
+	.introduce{
+		padding 20rpx
+	}
+	.story{
+		padding 20rpx
+	}
+	.text{
+		padding 20rpx
 	}
 </style>

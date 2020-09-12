@@ -79,7 +79,7 @@
 }
 .imgLength{
 	position: absolute;
-	top: 694rpx;
+	top: 620rpx;
 	right: 24rpx;
 	background:rgba(0,0,0,0.34);
 	padding: 0 12rpx;
