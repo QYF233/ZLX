@@ -120,12 +120,12 @@
 						icon:'none',
 						title: "收藏成功"
 					})
-				}
-				/* else{
+					
+				}else{
 					uni.showToast({
 						title: "取消收藏"
 					})
-				}*/
+				}
 			},
 			tolike() {
 				this.like = !this.like;
@@ -134,12 +134,11 @@
 						icon:'none',
 						title: "点赞成功"
 					})
-				}
-				/* else{
+				}else{
 					uni.showToast({
 						title: "取消点赞"
 					})
-				} */
+				}
 			}
 
 

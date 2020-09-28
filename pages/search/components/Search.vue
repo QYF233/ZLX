@@ -49,7 +49,7 @@
 			},
 			valueText: {
 				type: String,
-				default: "搜城市/酒店/景点/美食"
+				default: "搜城市/景点/美食"
 			},
 			isFocus: { //是否自动获取焦点
 				type: Boolean,

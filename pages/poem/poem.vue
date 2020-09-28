@@ -4,7 +4,7 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<view class="img-box">
-			<image class="poem" src="../../static/image/zhejiang.png" mode="widthFix"></image>
+			<web-view :webview-styles="webviewStyles" src="https://www.baidu.com"></web-view>
 		</view>
 	</view>
 </template>
@@ -26,22 +26,21 @@
 					}
 				});
 			}
-		
-
 		}
 
 	}
 </script>
 
 <style lang="stylus" scoped>
-	// .img-box{
-	// 	height: 100%;
-	// 	width: 100%;
-	// 	background-image: url('../../static/image/zhejiang.png');
-	// 	background-repeat:no-repeat;
-	// 	background-size: cover;
-	// }
+	.img-box{
+		height: 100%;
+		width: 100%;
+		// background-image: url('../../static/image/zhejiang.png');
+		// background-repeat:no-repeat;
+		// background-size: cover;
+	}
 	.poem {
-		width 100%;
+		height 2000rpx;
+		width 2000rpx;
 	}
 </style>

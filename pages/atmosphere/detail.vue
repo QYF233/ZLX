@@ -11,7 +11,7 @@
 			<text class="article-time">{{banner.published_at}}</text>
 		</view>
 		<view class="article-content">
-			<rich-text :nodes="banner.describe"></rich-text>
+			<rich-text style="text-indent: 2em" :nodes="banner.describe"></rich-text>
 		</view>
 		<!-- #ifdef MP-WEIXIN -->
 		<ad v-if="htmlString" unit-id="adunit-01b7a010bf53d74e"></ad>

@@ -3,7 +3,7 @@
 		<view class="cu-bar search">
 			<view class="search-form round" @tap="gotoLunBo">
 				<text class="cuIcon-search"></text>
-				<text>搜城市/酒店/景点/美食</text>
+				<text>搜城市/景点/美食</text>
 			</view>
 			<view class="action">
 				<view class="iconfont add">&#xe6cd;</view>
