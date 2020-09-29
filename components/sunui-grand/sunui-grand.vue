@@ -3,7 +3,7 @@
 		<view v-show="isHide">
 			<view class="sunui-grand-hide-bg" :style="'background-color:'+bg+';'">
 				<view class="sunui-grand-summary" :style="'-webkit-line-clamp:'+clamp+';'">{{ content }}</view>
-				<view class="sunui-grand-show-btn" :style="'top:'+(clamp-2)+'rem;height:'+(clamp/2)+'rem;'" v-show="clamp>=4">
+				<view class="sunui-grand-show-btn" :style="'top:'+(clamp-1)+'rem;height:'+(clamp/1)+'rem;'" v-show="clamp>=4">
 					<view @tap="show" :style="{color:color}">
 						<text :style="'border-bottom: 1upx solid '+color+';'">{{expandText}}</text>
 					</view>
@@ -103,7 +103,7 @@
 		z-index: 0;
 		text-align: center;
 		background-image: linear-gradient(-180deg, rgba(233, 236, 239, 0) 0%, #fff 80%);
-		padding-top: 3rem;
+		padding-top: 3.5rem;
 	
 	}
 

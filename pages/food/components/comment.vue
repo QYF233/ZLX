@@ -31,12 +31,12 @@
 			<!-- <view class="action">
 				<text class="cuIcon-sound text-grey"></text>
 			</view> -->
-			<input class="solid-bottom" :adjust-position="false" :focus="false" maxlength="300" cursor-spacing="10" @focus="InputFocus"
-			 @blur="InputBlur"></input>
+			<input class="solid-bottom inputComment" :value="inputValue" :adjust-position="false" :focus="false" maxlength="300"
+			 cursor-spacing="10" @focus="InputFocus" @blur="InputBlur"></input>
 			<view class="action">
 				<text class="cuIcon-emojifill text-grey"></text>
 			</view>
-			<button class="cu-btn bg-green shadow">发送</button>
+			<button class="cu-btn bg-green shadow" @click="sendComment">发送</button>
 		</view>
 
 	</view>
@@ -44,48 +44,50 @@
 
 <script>
 	export default {
-		props:{
-			foodId:""
+		props: {
+			foodId: "",
+			inputValue: ""
 		},
 		data() {
 			return {
 				InputBottom: 0,
-				dataList:[{
-					foodId:1,
-					self:0,
-					comment:"这个我吃过，炒鸡好吃啊！",
-					time:"2020年11月12日 12:30"
-				},
-				{
-					foodId:1,
-					self:1,
-					comment:"好吃好吃",
-					time:"2020年11月11日 14:00"
-				},
-				{
-					foodId:1,
-					self:1,
-					comment:"不错不错",
-					time:"2020年11月11日 14:00"
-				},
-				{
-					foodId:2,
-					self:1,
-					comment:"这个味道也还行",
-					time:"2020年11月12日 12:30"
-				},
-				{
-					foodId:2,
-					self:0,
-					comment:"太棒了！",
-					time:"2020年11月11日 14:00"
-				},
-				{
-					foodId:2,
-					self:1,
-					comment:"不错不错",
-					time:"2020年11月11日 14:00"
-				}]
+				dataList: [{
+						foodId: 1,
+						self: 0,
+						comment: "这个我吃过，炒鸡好吃啊！",
+						time: "2020年11月12日 12:30"
+					},
+					{
+						foodId: 1,
+						self: 1,
+						comment: "好吃好吃",
+						time: "2020年11月11日 14:00"
+					},
+					{
+						foodId: 1,
+						self: 1,
+						comment: "不错不错",
+						time: "2020年11月11日 14:00"
+					},
+					{
+						foodId: 2,
+						self: 1,
+						comment: "这个味道也还行",
+						time: "2020年11月12日 12:30"
+					},
+					{
+						foodId: 2,
+						self: 0,
+						comment: "太棒了！",
+						time: "2020年11月11日 14:00"
+					},
+					{
+						foodId: 2,
+						self: 1,
+						comment: "不错不错",
+						time: "2020年11月11日 14:00"
+					}
+				]
 			};
 		},
 		onLoad(option) {
@@ -100,14 +102,22 @@
 				this.InputBottom = e.detail.height
 			},
 			InputBlur(e) {
-				this.InputBottom = 0
-				console.log('发送评论:' + e.detail.value);
+				this.InputBottom = 0;
+				this.inputValue = e.detail.value;
+			},
+			sendComment(e){
+				console.log('发送评论:' + this.inputValue);
 				this.dataList.push({
-					foodId:this.foodId,
-					self:0,
-					comment:e.detail.value,
-					time:"2020年9月11日 19:50"
+					foodId: this.foodId,
+					self: 0,
+					comment: this.inputValue,
+					time: "2020年9月11日 19:50"
 				})
+				this.inputValue = ''
+				setTimeout(() => {
+				   uni.pageScrollTo({scrollTop: 99999, duration: 200});
+				}, 50);
+
 			}
 		}
 	}

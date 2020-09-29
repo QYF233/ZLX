@@ -158,8 +158,8 @@
 	.ticket,
 	.time,
 	.address {
-		padding-left: 20rpx;
+		padding-left: 15rpx;
 		/* font-weight: bold; */
-		font-size: 24px;
+		font-size: 16px;
 	}
 </style>
