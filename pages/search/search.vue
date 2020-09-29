@@ -21,10 +21,10 @@
 		},
 		methods: {
 			getSearchText(e) {
-				uni.showToast({
+				/* uni.showToast({
 					title:'回调的搜索信息: ' + e,
 					icon:"none"
-				})
+				}) */
 			}
 		},
 	}
