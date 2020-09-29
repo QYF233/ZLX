@@ -6,6 +6,9 @@
 		<view class="head">
 			<h1 class="title">绍兴</h1>
 			<span class="little">21-35℃</span>
+			<navigator url="./cityMap" class="text-right">
+				<span class="text-right">查看地图</span>
+			</navigator>
 		</view>
 		<view class="body">
 			<view style="text-indent: 2em;">
