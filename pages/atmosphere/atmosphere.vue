@@ -4,7 +4,7 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<view class="banner" @click="goDetail(banner)">
-			<image class="banner-img" :src="banner.images[0]"></image>
+			<image class="banner-img" :src="this.bannerImg"></image>
 			<view class="banner-title">{{banner.cityCultureName}}</view>
 		</view>
 		<view class="uni-list">
@@ -31,6 +31,7 @@
 		data() {
 			return {
 				banner: {},
+				bannerImg:"",
 				listData: [],
 				last_id: "",
 				reload: false,
@@ -59,59 +60,64 @@
 				for (var i = 1; i < res.data.list.length; i++) {
 					this.listData.push(res.data.list[i])
 				}
-				console.log(this.listData);
 			},
+			/* 跳转到详细页面 */
 			goDetail: function(e) {
+				const img = ''
+				if(e.images instanceof Array){
+					//应对banner的图片是数组问题
+					this.img = e.images[0]
+					
+				}else{
+					this.img = e.images
+				}
 				let detail = {
 					author_name: e.cityCultureName,
-					image: e.images,
+					image: this.img,
 					id: e.id,
 					post_id: e.id,
 					published_at: e.time,
 					title: e.cityCultureName,
 					describe: e.describe
 				}
-				console.log("dateil" + detail);
 				uni.navigateTo({
 					url: "detail?detailDate=" + encodeURIComponent(JSON.stringify(
 						detail))
 				})
 			},
+			/* 获取第一个数据 */
 			getBanner() {
-				let data = {
-					// column: "businessHours,cityCultureName" //需要的字段名
-				};
+				let data = {};
 				uni.request({
-					url: 'http://zlx.kikohk.top/atmosphere/getlist',
+					url: 'http://localhost:8080/atmosphere/list',
 					success: (data) => {
+						// console.log("**************************");
 						uni.stopPullDownRefresh();
 						if (data.statusCode == 200) {
 							this.banner = data.data.list[0];
+							this.bannerImg = this.banner.images[0]
 						}
 					},
 					fail: (data, code) => {}
 				})
 			},
 			getList() {
-				var data = {
-					// column: "id,post_id,title,author_name,cover,published_at" //需要的字段名
-				};
+				var data = {};
 				if (this.last_id) { //说明已有数据，目前处于上拉加载
 					data.minId = this.last_id;
 					data.time = new Date().getTime() + "";
 					data.pageSize = 10;
 				}
 				uni.request({
-					url: 'http://zlx.kikohk.top/atmosphere/getlist',
+					url: 'http://localhost:8080/atmosphere/list',
 					success: (data) => {
 						if (data.statusCode == 200) {
-							console.log(data);
+							// console.log(data);
 							let list = this.setTime(data.data.list);
 							this.listData = this.reload ? list : this.listData.concat(list);
 							this.last_id = list[list.length - 1].id;
 							this.reload = false;
 						}
-						console.log(this.listData);
 					},
 					fail: (data, code) => {
 						console.log('fail' + JSON.stringify(data));
@@ -123,8 +129,9 @@
 				items.forEach((e) => {
 					newItems.push({
 						cityCultureName: e.cityCultureName,
-						city: e.city.name,
+						city: "杭州",
 						id: e.id,
+						// time: "2020年"+e.time,
 						time: e.time,
 						describe: e.describe,
 						images: e.images[0]
@@ -137,6 +144,7 @@
 </script>
 
 <style lang="stylus" scoped>
+
 	.banner {
 		height: 360upx;
 		overflow: hidden;
@@ -164,7 +172,10 @@
 		background-color: rgba(#999999, 0.5);
 		padding: 20rpx 0 10rpx 20rpx;
 		height: 84rpx;
-		letter-spacing: 10rpx
+		letter-spacing: 10rpx;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.uni-list {

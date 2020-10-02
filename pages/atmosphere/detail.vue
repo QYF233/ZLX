@@ -41,12 +41,12 @@
 			} catch (error) {
 				this.banner = JSON.parse(event.detailDate);
 			}
-			console.log(this.banner);
+			console.log(this.banner['image']);
 			this.getDetail();
 			uni.setNavigationBarTitle({
-				title: this.banner.title
+				title: this.banner.title,
 			});
-			console.log(this.banner.describe);
+			// console.log(this.banner);
 		},
 		methods: {
 			getDetail() {
@@ -68,6 +68,7 @@
 </script>
 
 <style>
+
 	view {
 		font-size: 28upx;
 		line-height: 1.8;
@@ -92,7 +93,6 @@
 		bottom: 30upx;
 		width: 90%;
 		font-size: 32upx;
-		font-weight: 400;
 		line-height: 42upx;
 		color: white;
 		z-index: 11;
