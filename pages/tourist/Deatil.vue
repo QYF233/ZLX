@@ -5,7 +5,7 @@
 		</view>
 		<view class="detail">
 			<images :images="spot.images"></images>
-			<info :spot="spot"></info>
+			<info :spot="spot" ></info>
 			<detail-map :targetlatitude="spot.latitude" :targetlongitude="spot.longitude"
 						:currentlatitude="currentlatitude" :currentlongitude="currentlongitude"></detail-map>
 		</view>
@@ -28,6 +28,7 @@
 				spot:{},
 				currentlongitude:0, //经度
 				currentlatitude:0,	//纬度
+				
 			}
 		},
 		onLoad(e) {

@@ -89,7 +89,7 @@
 			getBanner() {
 				let data = {};
 				uni.request({
-					url: 'http://localhost:8080/atmosphere/list',
+					url: 'http://zlx.kikohk.top/atmosphere/list',
 					success: (data) => {
 						// console.log("**************************");
 						uni.stopPullDownRefresh();
@@ -109,7 +109,7 @@
 					data.pageSize = 10;
 				}
 				uni.request({
-					url: 'http://localhost:8080/atmosphere/list',
+					url: 'http://zlx.kikohk.top/atmosphere/list',
 					success: (data) => {
 						if (data.statusCode == 200) {
 							// console.log(data);

@@ -1,11 +1,12 @@
 <template>
 	<view class="content">
-		<view class="title">
+		<view class="title" @click="show = !show">
 			<view class="font">
-				景点查询
+				<uni-icons type="search" style="margin-right: 10rpx;"/>景点查询
 			</view>
 		</view>
-		<form @submit="formSubmit" @reset="formReset">
+		<transition name="fade">
+			<form @submit="formSubmit" @reset="formReset" v-if="this.show">
 			<view class="option-50">
 				<view class="left">类别</view>
 				<view class="right">
@@ -44,10 +45,10 @@
 					</view>
 				</picker>
 			</view>
-			<view class="option-100">
-				<view class="left">开始时间</view>
-				<view class="right">
-					<biaofun-datetime-picker class="picker_datetime" :defaultValue="startDatetime"  :start="start_startDatetime" @change="startDatetimeChange"></biaofun-datetime-picker>
+			<!-- <view class="option-100 hiddle"> -->
+				<!-- <view class="left">开始时间</view> -->
+				<!-- <view class="right"> -->
+					<!-- <biaofun-datetime-picker class="picker_datetime" :defaultValue="startDatetime"  :start="start_startDatetime" @change="startDatetimeChange"></biaofun-datetime-picker> -->
 					<!-- <view class="picker_date">
 						<picker mode="date" :value="start_date" :start="startDate" :end="endDate" @change="bindStartDateChange">
 							<view class="uni-input">{{start_date}}</view>
@@ -58,12 +59,12 @@
 							<view class="uni-input">{{start_time}}</view>
 						</picker>
 					</view> -->
-				</view>
-			</view>
-			<view class="option-100">
-				<view class="left">结束时间</view>
-				<view class="right">
-					<biaofun-datetime-picker class="picker_datetime" :defaultValue="endDatetime" :start="start_endDatetime" @change="endDatetimeChange"></biaofun-datetime-picker>
+				<!-- </view> -->
+			<!-- </view> -->
+			<!-- <view class="option-100"> -->
+				<!-- <view class="left">结束时间</view> -->
+				<!-- <view class="right"> -->
+					<!-- <biaofun-datetime-picker class="picker_datetime" :defaultValue="endDatetime" :start="start_endDatetime" @change="endDatetimeChange"></biaofun-datetime-picker> -->
 					<!-- <view class="picker_date">
 						<picker mode="date" :value="end_date" :start="startDate" :end="endDate" @change="bindEndDateChange">
 							<view class="uni-input">{{end_date}}</view>
@@ -74,8 +75,8 @@
 							<view class="uni-input">{{end_time}}</view>
 						</picker>
 					</view> -->
-				</view>
-			</view>
+				<!-- </view> -->
+			<!-- </view> -->
 			<view class="option-50">
 				<view class="button-box">
 					<button class="button-reset" form-type="reset">&nbsp;清空表单&nbsp;</button>
@@ -87,6 +88,7 @@
 				</view>
 			</view>
 		</form>
+		</transition>
 	</view>
 </template>
 
@@ -136,6 +138,7 @@
 				endDatetime: currentDatetime,
 				start_startDatetime: currentDatetime,
 				start_endDatetime: currentDatetime,
+				show: false
 			}
 		},
 		computed: {
@@ -257,17 +260,25 @@
 </script>
 
 <style lang="stylus" scoped>
+	.fade-enter-active, .fade-leave-active {
+	  transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	  opacity: 0;
+	}
 	.content
-		margin 20rpx 20rpx 50rpx 20rpx;
+		margin 20rpx 20rpx 20rpx 20rpx;
 		padding 10rpx;
 		background-color #FFFFFF;
 		border-radius 10rpx;
 		overflow auto;
 		box-shadow 10rpx 10rpx 25rpx #CCCCCC;
 		.title
-			margin 0 20rpx 20rpx 20rpx;
-			padding 10rpx;
+			// margin 0 20rpx 20rpx 20rpx;
+			padding 20rpx;
 			.font
+				height 100%;
+				line-height 100%;
 				color #555555;
 				font-size 32rpx;
 		.option-50
