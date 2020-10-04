@@ -11,7 +11,11 @@
 			<text class="article-time">{{banner.published_at}}</text>
 		</view>
 		<view class="article-content">
-			<rich-text style="text-indent: 2em" :nodes="banner.describe"></rich-text>
+			<rich-text style="text-indent: 2em"></rich-text>
+			<!-- <rich-text style="text-indent: 2em" :nodes="banner.describe"></rich-text> -->
+			<view class="grace-rich-text">
+				<rich-text type="text" :nodes="describe"></rich-text>
+			</view>
 		</view>
 		<!-- #ifdef MP-WEIXIN -->
 		<ad v-if="htmlString" unit-id="adunit-01b7a010bf53d74e"></ad>
@@ -20,12 +24,14 @@
 </template>
 
 <script>
+	var graceRichText = require("../../components/rich-text.js");
 	export default {
 		data() {
 			return {
 				title: 'list-triplex-row',
 				banner: {},
-				htmlString: ""
+				htmlString: "",
+				describe: ""
 			}
 		},
 		onShareAppMessage() {
@@ -41,11 +47,12 @@
 			} catch (error) {
 				this.banner = JSON.parse(event.detailDate);
 			}
-			console.log(this.banner['image']);
+			console.log(this.banner.image);
 			this.getDetail();
 			uni.setNavigationBarTitle({
 				title: this.banner.title,
 			});
+			this.describe = graceRichText.format(this.banner.describe)
 			// console.log(this.banner);
 		},
 		methods: {
@@ -68,7 +75,6 @@
 </script>
 
 <style>
-
 	view {
 		font-size: 28upx;
 		line-height: 1.8;

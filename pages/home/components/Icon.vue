@@ -68,6 +68,8 @@
 		background-color: #FFF;
 		border-radius: 20rpx;	
 		.item
+			.name
+				font-size .9em
 			.iconfont
 				font-size: 60rpx;
 				margin: 20rpx 20rpx;

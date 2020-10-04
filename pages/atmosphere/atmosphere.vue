@@ -67,7 +67,6 @@
 				if(e.images instanceof Array){
 					//应对banner的图片是数组问题
 					this.img = e.images[0]
-					
 				}else{
 					this.img = e.images
 				}
@@ -96,6 +95,7 @@
 						if (data.statusCode == 200) {
 							this.banner = data.data.list[0];
 							this.bannerImg = this.banner.images[0]
+							// this.bannerImg = "http://img.zjol.com.cn/mlf/dzw/zxlypd/xw14873/lyjsb/202010/W020201003387460049677.png"
 						}
 					},
 					fail: (data, code) => {}
