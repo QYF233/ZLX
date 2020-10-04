@@ -87,7 +87,8 @@
 						comment: "不错不错",
 						time: "2020年11月11日 14:00"
 					}
-				]
+				],
+				pageHeight:""
 			};
 		},
 		onLoad(option) {
@@ -105,7 +106,7 @@
 				this.InputBottom = 0;
 				this.inputValue = e.detail.value;
 			},
-			sendComment(e){
+			sendComment(e) {
 				console.log('发送评论:' + this.inputValue);
 				this.dataList.push({
 					foodId: this.foodId,
@@ -115,12 +116,28 @@
 				})
 				this.inputValue = ''
 				setTimeout(() => {
-				   uni.pageScrollTo({scrollTop: 99999, duration: 200});
+					uni.pageScrollTo({
+						scrollTop: 99999,
+						duration: 200
+					});
 				}, 50);
 
+			},
+			scrollToBottom() {
+				let that = this;
+				let query = uni.createSelectorQuery();
+				query.selectAll('.m-item').boundingClientRect();
+				query.select('#scrollview').boundingClientRect();
+				query.exec((res) => {
+					that.style.mitemHeight = 0;
+					res[0].forEach((rect) => that.style.mitemHeight = that.style.mitemHeight + rect.height + 40) //获取所有内部子元素的高度
+					if (that.style.mitemHeight > (that.style.contentViewHeight - 100)) { //判断子元素高度是否大于显示高度
+						that.scrollTop = that.style.mitemHeight - that.style.contentViewHeight //用子元素的高度减去显示的高度就获益获得序言滚动的高度
+					}
+				})
 			}
+}
 		}
-	}
 </script>
 
 <style>

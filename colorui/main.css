@@ -2054,6 +2054,7 @@ button.cuIcon.lg {
 .cu-chat {
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 50upx;//底部高度
 }
 
 .cu-chat .cu-item {

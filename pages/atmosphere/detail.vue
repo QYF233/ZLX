@@ -46,7 +46,7 @@
 				this.banner = JSON.parse(decodeURIComponent(event.detailDate));
 			} catch (error) {
 				this.banner = JSON.parse(event.detailDate);
-			}
+			}console.log("333333333333");
 			console.log(this.banner.image);
 			this.getDetail();
 			uni.setNavigationBarTitle({

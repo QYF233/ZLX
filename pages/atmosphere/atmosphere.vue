@@ -67,9 +67,12 @@
 				if(e.images instanceof Array){
 					//应对banner的图片是数组问题
 					this.img = e.images[0]
+					console.log("1111111");
 				}else{
 					this.img = e.images
+					console.log("2222222");
 				}
+					console.log(this.img);
 				let detail = {
 					author_name: e.cityCultureName,
 					image: this.img,
