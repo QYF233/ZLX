@@ -31,16 +31,14 @@
 		data() {
 			return {
 				banner: {},
-				bannerImg:"",
+				bannerImg: "",
 				listData: [],
 				last_id: "",
 				reload: false,
 			}
 		},
 		onLoad() {
-			this.getBanner();
-			this.getList();
-			// this.getData();
+			this.getData();
 		},
 		onPullDownRefresh() {
 			this.reload = true;
@@ -52,43 +50,18 @@
 			this.getList();
 		},
 		methods: {
-			async getData() {
-				const res = await this.$myRequest({
-					url: 'atmosphere/getlist'
-				})
-				this.banner = res.data.list[0];
-				for (var i = 1; i < res.data.list.length; i++) {
-					this.listData.push(res.data.list[i])
-				}
-			},
-			/* 跳转到详细页面 */
-			goDetail: function(e) {
-				const img = ''
-				if(e.images instanceof Array){
-					//应对banner的图片是数组问题
-					this.img = e.images[0]
-					console.log("1111111");
-				}else{
-					this.img = e.images
-					console.log("2222222");
-				}
-					console.log(this.img);
-				let detail = {
-					author_name: e.cityCultureName,
-					image: this.img,
-					id: e.id,
-					post_id: e.id,
-					published_at: e.time,
-					title: e.cityCultureName,
-					describe: e.describe
-				}
-				uni.navigateTo({
-					url: "detail?detailDate=" + encodeURIComponent(JSON.stringify(
-						detail))
-				})
+			getData() {
+				uni.showLoading({
+					title: '加载中'
+				});
+				this.getBanner();
+				this.getList();
 			},
 			/* 获取第一个数据 */
 			getBanner() {
+				uni.showLoading({
+					title: '加载中'
+				});
 				let data = {};
 				uni.request({
 					url: 'http://zlx.kikohk.top/atmosphere/list',
@@ -104,6 +77,7 @@
 					fail: (data, code) => {}
 				})
 			},
+			/* 获取剩余列表 */
 			getList() {
 				var data = {};
 				if (this.last_id) { //说明已有数据，目前处于上拉加载
@@ -121,12 +95,38 @@
 							this.last_id = list[list.length - 1].id;
 							this.reload = false;
 						}
+						uni.hideLoading();
 					},
 					fail: (data, code) => {
 						console.log('fail' + JSON.stringify(data));
 					}
 				})
 			},
+			/* 跳转到详细页面 */
+			goDetail: function(e) {
+				const img = '';
+				const typ = typeof e.images;
+				if (typ == "object") {
+					//应对banner的图片是数组问题
+					this.img = e.images[0];
+				} else {
+					this.img = e.images;
+				}
+				let detail = {
+					author_name: e.cityCultureName,
+					image: this.img,
+					id: e.id,
+					post_id: e.id,
+					published_at: e.time,
+					title: e.cityCultureName,
+					describe: e.describe
+				}
+				uni.navigateTo({
+					url: "detail?detailDate=" + encodeURIComponent(JSON.stringify(
+						detail))
+				})
+			},
+
 			setTime: function(items) {
 				var newItems = [];
 				items.forEach((e) => {
@@ -147,7 +147,6 @@
 </script>
 
 <style lang="stylus" scoped>
-
 	.banner {
 		height: 360upx;
 		overflow: hidden;
