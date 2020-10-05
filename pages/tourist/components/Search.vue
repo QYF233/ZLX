@@ -241,12 +241,7 @@
 				return `${year}-${month}-${day} ${hour}:${mninute}`;
 			},
 			formSubmit: function(e) {
-				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-				var formdata = e.detail.value
-				uni.showModal({
-					content: '表单数据内容：' + JSON.stringify(formdata),
-					showCancel: false
-				});
+				
 			},
 			formReset: function(e) {
 				this.index_types = 0;
@@ -254,6 +249,8 @@
 				this.index_preferences = 0;
 				this.start_date = this.end_date = this.getDate();
 				this.start_time = this.end_time = this.getTime();
+				this.multiIndex = [0, 0];
+				this.reMultiIndex = [0, 0];
 			}
 		}
 	}

@@ -31,6 +31,8 @@
 <style>
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
+	/* @import "common/iconfont.css"; */
+	@import "colorui/iconfont-weapp-icon.css";
 	@import "app.css";/* 本项目css */
 	page {
 		background-color: #efeff4;
