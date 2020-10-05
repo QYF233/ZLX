@@ -12,7 +12,6 @@
 		</view>
 		<view class="article-content">
 			<rich-text style="text-indent: 2em"></rich-text>
-			<!-- <rich-text style="text-indent: 2em" :nodes="banner.describe"></rich-text> -->
 			<view class="grace-rich-text">
 				<rich-text type="text" :nodes="describe"></rich-text>
 			</view>
@@ -52,7 +51,6 @@
 				title: this.banner.title,
 			});
 			this.describe = graceRichText.format(this.banner.describe)
-			// console.log(this.banner);
 		},
 		methods: {
 			getDetail() {

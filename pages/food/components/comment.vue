@@ -22,9 +22,11 @@
 					<view class="date">{{item.time}}</view>
 				</view>
 			</view>
-			<!-- <view class="none" v-if="!this.commentNum">
-				没有任何评论
-			</view> -->
+			<!-- 
+				<view class="none" v-if="!this.commentNum">
+					没有任何评论
+				</view> 
+			-->
 		</view>
 
 		<view class="cu-bar foot input" :style="[{bottom:InputBottom+'px'}]">
@@ -88,7 +90,7 @@
 						time: "2020年11月11日 14:00"
 					}
 				],
-				pageHeight:""
+				pageHeight: ""
 			};
 		},
 		onLoad(option) {
@@ -121,7 +123,6 @@
 						duration: 200
 					});
 				}, 50);
-
 			},
 			scrollToBottom() {
 				let that = this;
@@ -136,12 +137,15 @@
 					}
 				})
 			}
-}
 		}
+	}
 </script>
 
 <style>
 	page {
 		padding-bottom: 100upx;
+	}
+	.cu-chat{
+		margin-bottom: 100rpx;
 	}
 </style>

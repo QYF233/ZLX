@@ -214,18 +214,16 @@
 			"style": {
 				"navigationBarTitleText": "其他城市"
 			}
-		}
-	    ,{
-            "path" : "pages/me/Collection",
-            "style" : {
+		}, {
+			"path": "pages/me/Collection",
+			"style": {
 				"navigationBarTitleText": "我的收藏"
 			}
-        }
-        ,{
-            "path" : "pages/search/cityMap",
-            "style" : {}
-        }
-    ],
+		}, {
+			"path": "pages/search/cityMap",
+			"style": {}
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "浙里寻",
@@ -233,7 +231,7 @@
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
 			"bounce": "none",
-			"animationType": "zoom-fade-out",
+			// "animationType": "zoom-fade-out",
 			"animationDuration": 300
 		}
 	},

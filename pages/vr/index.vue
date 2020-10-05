@@ -27,16 +27,20 @@
 		},
 		methods: {
 			async getData() {
+				uni.showLoading({
+					title: '加载中'
+				});
 				const res1 = await this.$myRequest({
 					url: '/vr/getlist'
 				})
+				uni.hideLoading();
 				for (var i = 0; i < res1.data.list.length; i++) {
-					console.log(res1.data);
+					// console.log(res1.data);
 					this.options.push(res1.data.list[i])
 				}
 			},
 			onClick: function(e) {
-				console.log('onClick');
+				// console.log('onClick');
 			}
 		}
 	}
