@@ -3,9 +3,12 @@
 		<view class="vedio">
 			<video id="myVideo" src="http://cdn.kikohk.top/shaoxing.mp4" object-fit:fill enable-danmu danmu-btn controls></video>
 		</view>
-		<view class="head">
-			<h1 class="title">绍兴</h1>
+		<view class="head flex justify-between">
+			<view class="left">
+				<h1 class="title">绍兴</h1>
 			<span class="little">21-35℃</span>
+			</view>
+			
 			<navigator url="./cityMap" class="text-right">
 				<span class="text-right">查看地图</span>
 			</navigator>
@@ -102,6 +105,7 @@
 <style>
 	.vedio {
 		width: 100%;
+		text-align: center;
 	}
 	#myVideo {
 		width: 100%;

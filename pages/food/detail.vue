@@ -40,25 +40,20 @@
 				<uni-title class="introduce" type="h1" title="简介"></uni-title>
 				<text class="text">{{introduce}}</text>
 				<uni-title class="story" type="h1" title="历史故事"></uni-title>
-				<text class="text">{{story}}</text>
+				<!-- <text class="text">{{story}}</text> -->
 			</view>
 			<view class="comment" v-if="TabCur==1">
 				<!-- <uni-title type="h1" title="评论"></uni-title> -->
-				<comment></comment>
-				
+				<comment :commentData="commentData" :dataInfo="dataInfo"></comment>
 			</view>
 			<view class="more" v-if="TabCur==2">
 				<uni-title type="h1" title="更多"></uni-title>
 			</view>
 		</view>
-
 	</view>
 </template>
 <script>
-	import fiveMulCommentlist from '@/components/five-mul-commentlist/five-mul-commentlist.vue'
-	// import MypListCell from '@/components/mypui/myp-list-cell.vue'
-	// import introScroll from '@/components/mypui/introScroll.vue'
-	import commentData from './components/comment.js'
+	// import commentData from '@/common/data.js';
 	import comment from "./components/comment.vue"
 	import uniTitle from "@/components/uni-title/uni-title.vue"
 	import imgsBanner from '../../components/imgsBanner-tag/imgsBanner-tag.vue'
@@ -66,56 +61,73 @@
 		components: {
 			imgsBanner,
 			uniTitle,
-			comment,
-			fiveMulCommentlist
+			comment
 		},
 		data() {
 			return {
+				test: "sssss",
 				title: "网友评论",
-				commentList: [{
-					"COMMENT_TIME": "2020-10-12 8:20",
-					"FIRSTNICKNAME": "乔峰",
-					"IS_PRAISE": null,
-					"COMMENT": "真好吃",
-					"PRAISE_NUM": 0,
-					"CANDELETE": 0,
-					"HEADIMGURL": "http://img2.imgtn.bdimg.com/it/u=2659658743,1944621503&fm=26&gp=0.jpg",
-					"PARENTID": "",
-					"SECONDNICKNAME": null,
-					"CHILD_ANWSER_LIST": [{
-						"COMMENT_TIME": "2020-10-12 8:20",
-						"FIRSTNICKNAME": "段誉",
+				commentData: [{
+						"COMMENT_TIME": "2020-07-07 10:33:29",
+						"FIRSTNICKNAME": "网友1271622",
+						"CHILD_ANWSER_LIST": [],
 						"IS_PRAISE": null,
-						"COMMENT": "是的呀，太好吃了",
+						"COMMENT": "赞",
 						"PRAISE_NUM": 0,
 						"CANDELETE": 1,
-						"HEADIMGURL": "http://pic1.zhimg.com/50/v2-e88c0426c1ccc429dbedea3d01e5fac2_hd.jpg",
-						"SECONDNICKNAME": ""
-					}]
-
-				}, {
-					"COMMENT_TIME": "2020-10-12 8:20",
-					"FIRSTNICKNAME": "武大郎",
-					"IS_PRAISE": null,
-					"COMMENT": "比烧饼还好吃",
-					"PRAISE_NUM": 0,
-					"CANDELETE": 0,
-					"HEADIMGURL": "http://img2.imgtn.bdimg.com/it/u=2659658743,1944621503&fm=26&gp=0.jpg",
-					"PARENTID": "",
-					"SECONDNICKNAME": null,
-					"CHILD_ANWSER_LIST": [{
-						"COMMENT_TIME": "2020-10-12 8:20",
-						"FIRSTNICKNAME": "段誉",
+						"HEADIMGURL": "http://img2.imgtn.bdimg.com/it/u=2659658743,1944621503&fm=26&gp=0.jpg",
+						"SECONDNICKNAME": null
+					},
+					{
+						"COMMENT_TIME": "2020-07-07 10:32:52",
+						"FIRSTNICKNAME": "网友3778839",
 						"IS_PRAISE": null,
-						"COMMENT": "哈哈哈笑死我了",
+						"COMMENT": "花好看",
 						"PRAISE_NUM": 0,
-						"CANDELETE": 1,
+						"CANDELETE": 0,
 						"HEADIMGURL": "http://pic1.zhimg.com/50/v2-e88c0426c1ccc429dbedea3d01e5fac2_hd.jpg",
-						"SECONDNICKNAME": ""
-					}]
+						"PARENTID": "1",
+						"SECONDNICKNAME": null,
+						"CHILD_ANWSER_LIST": [{
+							"COMMENT_TIME": "2020-07-07 10:39:20",
+							"FIRSTNICKNAME": "网友3778839",
+							"IS_PRAISE": null,
+							"COMMENT": "嘻嘻，真的很好看呀，很喜欢！",
+							"PRAISE_NUM": 0,
+							"CANDELETE": 1,
+							"HEADIMGURL": "http://pic1.zhimg.com/50/v2-e88c0426c1ccc429dbedea3d01e5fac2_hd.jpg",
+							"SECONDNICKNAME": "小五"
+						}, {
+							"COMMENT_TIME": "2020-07-07 10:33:10",
+							"FIRSTNICKNAME": "小五",
+							"IS_PRAISE": null,
+							"COMMENT": "谢谢",
+							"PRAISE_NUM": 0,
+							"CANDELETE": 1,
+							"HEADIMGURL": "http://img0.imgtn.bdimg.com/it/u=2400095643,300983595&fm=11&gp=0.jpg",
+							"SECONDNICKNAME": null
+						}]
 
-				}],
-				commentData: [],
+					}
+				],
+				dataInfo: {
+					"CREATE_TIME": 1593502282.0,
+					"DETAIL_DESC": "美好的一天从这里开始！",
+					"PLACE": "济南市章丘市",
+					"IS_FAVORITE": "0", //是否收藏
+					"FAVORITE_NUM": "0", //收藏数
+					"VIEW_NUM": "6", //查看数
+					"IS_PRAISE": "0", //是否点赞
+					"PRAISE_NUM": "1", //点赞数
+					"COMMENT_NUM": "3", //评论数
+					"CANDELETE": 1, //是否可删除
+					"NICKNAME": "小五",
+					"HEADIMGURL": "http://img0.imgtn.bdimg.com/it/u=2400095643,300983595&fm=11&gp=0.jpg",
+					"IMAG_ARR": [
+						"http://p2.likewed.com/2013/10/26/526b212dcc289.jpg"
+					],
+
+				},
 				imgList: [],
 				currentImg: 0, //当前默认选中
 				foodId: '',
