@@ -34,11 +34,11 @@
 				  url: '/pages/tourist/tourist',
 				  clas: 'iconjingdian'
 				},{
-				  icon: '\ue600',
+				  icon: '\ue681',
 				  color: '#6739b6',
 				  name: '寻意',
 				  url: '/pages/atmosphere/atmosphere',
-				  clas: 'iconjieri'
+				  clas: 'iconwenhua'
 				},{
 				  icon: '\ue65d',
 				  color: '#9c26b0',
@@ -52,17 +52,17 @@
 				  url: '/pages/treasure/treasure',
 				  clas: 'iconzhubao'
 				},{
-				  icon: '\ue802',
+				  icon: '\ue62d',
 				  color: '#8799a3',
 				  name: '寻画',
 				  url: '/pages/painting/painting',
-				  clas: 'iconpic-filling'
+				  clas: 'iconzhaopian'
 				},{
-				  icon: '\ue67c',
+				  icon: '\ue62f',
 				  color: '#1cbbb4',
 				  name: '寻境',
 				  url: '/pages/vr/index',
-				  clas: 'iconVR'
+				  clas: 'iconiconfont-zhutizuizhong-'
 				}]
 			}
 		},
