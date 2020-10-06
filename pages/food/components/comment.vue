@@ -8,7 +8,7 @@
 		@method: clickRecommentChild 点赞子评论
 		@method: clickDeleteChild 删除子评论
 		 -->
-		<five-mul-commentlist :commentList="commentData" @clickPraise="clickPraiseComment" @clickDelete="clickDeleteComment"
+		<five-mul-commentlist :commentList="commentList" @clickPraise="clickPraiseComment" @clickDelete="clickDeleteComment"
 		 @clickDeleteChild="clickDeleteCommentChild" @clickRecomment="clickRecomment" @clickRecommentChild="clickRecommentChild"></five-mul-commentlist>
 		<view class="view-conmment-send-bottom">
 			<view class=" view-comment-textarea" @click="clickComment()">
@@ -24,50 +24,38 @@
 	 * 注：
 	 * 1. 评论详情 、回复评论及回复子评论功能实际是调用接口实现，在这里只为实现效果，逻辑无参考价值
 	 */
+	import data from '@/common/data';
 	import dateUtils from '@/common/utils/dateUtils.js';
 	export default {
-		props: ['commentData','dataInfo'],
 		data() {
 			return {
-				detailInfo: {},
-				commentList: [],
-
+				detailInfo: data.detailInfo,
 				//评论组件相关
+				commentList: data.commentList,
 				placeholder: '请输入评论内容…',
 				commentParam: {},
 			};
 		},
 		onLoad: function(e) {
-		},
-		onShow: function() {
 			this.getData(); //获取数据
 			this.getComment(); //获取评论列表
 		},
+		/* onShow: function() {
+			this.getData(); //获取数据
+			this.getComment(); //获取评论列表
+		}, */
 		methods: {
 			/**
 			 * 获取用户信息
 			 */
 			getData() {
-				// this.detailInfo = commentData.dataInfo;
-				
+				// this.detailInfo = data.dataInfo;
 			},
 			/**
 			 * 获取评论详情
 			 */
 			getComment() {
-				this.commentList = commentData;
-				
-			},
-
-			/**
-			 * 格式化发布日期
-			 * @param {Object} dateString
-			 */
-			formateDate(dateString) {
-				dateString = parseInt(dateString) * 1000;
-				let date = new Date(dateString);
-				let formatStr = dateUtils.dateFormat('YYYY年mm月dd日 HH:MM:SS', date);
-				return formatStr;
+				// this.commentList = data.dataInfo
 			},
 
 			/**
@@ -75,13 +63,13 @@
 			 */
 			clickComment() {
 				this.commentParam = {
-					COMMENT_TIME: '2020-07-07 14:30:01',
-					FIRSTNICKNAME: '网友45454545',
+					COMMENT_TIME: this.getTime(),
+					FIRSTNICKNAME: '网友666666',
 					CHILD_ANWSER_LIST: [],
 					IS_PRAISE: null,
 					PRAISE_NUM: 0,
 					CANDELETE: 1,
-					HEADIMGURL: 'http://img4.imgtn.bdimg.com/it/u=2858424520,3197172862&fm=11&gp=0.jpg',
+					HEADIMGURL: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1340127580,1407454083&fm=26&gp=0.jpg',
 					SECONDNICKNAME: null
 				};
 				this.$refs.detailComment.open();
@@ -152,12 +140,21 @@
 			 * 删除多级评论
 			 */
 			clickDeleteComment(item) {
+				var _this = this;
 				uni.showModal({
 					title: '提示',
 					content: '确定要删除评论吗？',
 					confirmColor: '#12B368',
 					success: function(res) {
 						/* 调用接口删除 */
+						if (res.confirm == true) {
+							for (var i = 0; i < _this.commentList.length; i++) {
+								console.log(_this.commentList[i]);
+								if (_this.commentList[i] == item) {
+									_this.commentList.splice(i, 1)
+								}
+							}
+						}
 					}
 				});
 			},
@@ -165,14 +162,27 @@
 			 * 删除多级子评论
 			 */
 			clickDeleteCommentChild(item) {
+				console.log("999");
+				var _this = this;
+				console.log(item);
 				uni.showModal({
 					title: '提示',
 					content: '确定要删除评论吗？',
 					confirmColor: '#12B368',
 					success: function(res) {
 						/* 调用接口删除 */
+						if (res.confirm == true) {
+							for (var i = 0; i < _this.commentList.length; i++) {
+								for (var j = 0; j < _this.commentList[i].CHILD_ANWSER_LIST.length; j++) {
+									if (_this.commentList[i].CHILD_ANWSER_LIST[j] == item) {
+										_this.commentList[i].CHILD_ANWSER_LIST.splice(j, 1)
+									}
+								}
+							}
+						}
 					}
 				});
+
 			},
 
 			/**
@@ -180,15 +190,20 @@
 			 * @param {Object} item
 			 */
 			clickRecomment(item) {
+				console.log("回复 评论1");
 				this.commentParam = {};
+				console.log("回复 评论2");
 				this.$refs.detailComment.open();
+				console.log("回复 评论3");
 				this.placeholder = '回复' + item.FIRSTNICKNAME + ':';
+				console.log("回复 评论4");
 			},
 			/**
 			 * 回复评论的评论
 			 * @param {Object} item
 			 */
 			clickRecommentChild(item) {
+				console.log("回复评论的评论");
 				this.commentParam = {};
 				this.$refs.detailComment.open();
 				this.placeholder = '回复' + item.FIRSTNICKNAME + ':';
@@ -197,12 +212,14 @@
 			 * 删除单级评论
 			 */
 			clickDeleteSig(item) {
+				console.log("shanch8");
 				uni.showModal({
 					title: '提示',
 					content: '确定要删除评论吗？',
 					confirmColor: '#12B368',
 					success: function(res) {
 						/* 调用接口删除 */
+						console.log(this.item);
 					}
 				});
 			},
@@ -222,8 +239,33 @@
 			 * @param {Object} result
 			 */
 			sendComment(result) {
+				console.log("发送评论");
 				this.commentParam.COMMENT = result;
 				this.commentList.push(this.commentParam);
+				// console.log(this.commentList);
+			},
+			getTime: function() {
+
+				var date = new Date(),
+					year = date.getFullYear(),
+					month = date.getMonth() + 1,
+					day = date.getDate(),
+					hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+					minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
+					second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+				month >= 1 && month <= 9 ? (month = "0" + month) : "";
+				day >= 0 && day <= 9 ? (day = "0" + day) : "";
+				var timer = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+				return timer;
+			},
+			/* 删除评论调用接口 */
+			async delComment(item) {
+				for (var i = 0; i < this.commentList.length; i++) {
+					console.log(this.commentList[i]);
+					if (this.commentList[i] == item) {
+						this.commentList.splice(i, 1)
+					}
+				}
 			}
 		}
 	};
