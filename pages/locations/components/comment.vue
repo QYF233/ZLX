@@ -35,9 +35,9 @@
 				<view class="replys" v-show="replys.length>0">
 					<template v-for="reply in replys">
 						<uni-transition :mode-class="['slide-bottom','fade','zoom-in']" :show="true">
-						<reply :dark="dark" @updateReply="updateReply" @deleteReply="deleteReply" :key="reply.id" 
+						<reply1 :dark="dark" @updateReply="updateReply" @deleteReply="deleteReply" :key="reply.id" 
 						:id="reply.id" :user="reply.user" :context="reply.content"
-						:replyto="reply.replyTo" :currentUserId="currentUserId"></reply>
+						:replyto="reply.replyTo" :currentUserId="currentUserId"></reply1>
 						</uni-transition>
 					</template>
 				</view>
@@ -47,11 +47,11 @@
 </template>
 
 <script>
-	import Reply from './reply.vue'
+	import Reply1 from './reply.vue'
 	export default {
 		name:"Comment",
 		components:{
-			Reply
+			Reply1
 		},
 		props:{
 			id:Number,

@@ -69,7 +69,8 @@
 											id: res.data.id,
 											name: res.data.name,
 											backgroundImage: res.data.backgroundPicture,
-											icon: res.data.icon
+											icon: res.data.icon,
+											role: res.data.role
 										}
 									})
 									uni.switchTab({

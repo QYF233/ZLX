@@ -222,6 +222,12 @@
 		}, {
 			"path": "pages/search/cityMap",
 			"style": {}
+		},
+		{
+			"path":"pages/food/add",
+			"style":{
+				"navigationBarTitleText":"添加"
+			}
 		}
 	],
 	"globalStyle": {

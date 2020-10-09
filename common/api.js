@@ -1,4 +1,5 @@
 const BASE_URL = "http://zlx.kikohk.top/"
+// const BASE_URL = 'http://localhost:8081/'
 
 export const myRequest = (options) => {
 	return new Promise((resolve, reject) => {

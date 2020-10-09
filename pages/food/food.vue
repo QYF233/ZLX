@@ -5,7 +5,7 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<!-- 城市名称 -->
-		<food-header :currentCity="currentCity"></food-header>
+		<food-header :currentCity="currentCity" :role="role"></food-header>
 		<!-- 美食列表 -->
 		<view class="list-box">
 			<view v-for="(item,index) in photoList" :key="index" :class="{'active':item.active}" :data-index="index" @tap="openDetail($event)"
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-	
 	import foodHeader from './components/Header.vue'
 	import foodList from './components/FoodList.vue'
 	export default {
@@ -39,6 +38,7 @@
 				isGet: true,
 				loadTxt: "",
 				currentCity: "",
+				role: 0,
 				flag: true,
 			}
 		},
@@ -59,6 +59,10 @@
 					title: '加载中'
 				});
 				this.currentCity = uni.getStorageSync('city');
+				let user = uni.getStorageSync('user')
+				if(user) {
+					 this.role = user.role
+				}
 				const res1 = await this.$myRequest({
 					url: 'food/getlist'
 				})
