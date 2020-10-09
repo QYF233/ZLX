@@ -20,19 +20,19 @@
 				  color: '#fbbd08',
 				  name: '寻吃',
 				  url: '/pages/food/food',
-				  clas: 'icontubiaozhizuomoban_meishi'
+				  clas: 'iconmeishi1'
 				},{
 				  icon: '\ue608',
 				  color: '#0081ff',
 				  name: '寻游',
 				  url: '/pages/locations/locations',
-				  clas: 'icontubiaozhizuomoban_fengjing'
+				  clas: 'iconlvyougonglve'
 				},{
 				  icon: '\ueb55',
 				  color: '#39b54a',
 				  name: '寻景',
 				  url: '/pages/tourist/tourist',
-				  clas: 'iconjingdian'
+				  clas: 'iconjingdian1'
 				},{
 				  icon: '\ue681',
 				  color: '#6739b6',
@@ -50,7 +50,7 @@
 				  color: '#f37b1d',
 				  name: '寻宝',
 				  url: '/pages/treasure/treasure',
-				  clas: 'iconzhubao'
+				  clas: 'iconbowuguan2'
 				},{
 				  icon: '\ue62d',
 				  color: '#8799a3',
