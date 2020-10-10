@@ -3,9 +3,6 @@
 		<view v-show="userId===''" class="not-login">
 			您还没有登录^_^
 			<br>
-			用户名：123123@qq.com
-			<br>
-			密码：123456qq
 			<navigator url="/pages/me/Login" hover-class="none">
 				<button size="mini" type="primary">点击登录</button>
 			</navigator>
