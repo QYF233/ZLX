@@ -229,7 +229,13 @@
 				"navigationBarTitleText":"添加"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/poem/poemPage",
+            "style" : {
+				"navigationBarTitleText":"浙东唐诗之路"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "浙里寻",

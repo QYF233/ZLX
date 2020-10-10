@@ -37,91 +37,91 @@
 						top: 31.5,
 						left: 45.2,
 						name: "杭州",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 33,
 						left: 36,
 						name: "西湖区",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: true
 					}, {
 						top: 33.5,
 						left: 47,
 						name: "萧山",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 35,
 						left: 55,
 						name: "柯桥",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 37,
 						left: 56,
 						name: "越城",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 41,
 						left: 55,
 						name: "嵊州",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: true
 					}, {
 						top: 43.5,
 						left: 63,
 						name: "新昌",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 48,
 						left: 64,
 						name: "天台",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 51.5,
 						left: 66,
 						name: "临海",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 53,
 						left: 75.5,
 						name: "椒江",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 35.3,
 						left: 69.5,
 						name: "余姚",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 38,
 						left: 77.5,
 						name: "宁波",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 32.2,
 						left: 70,
 						name: "慈溪",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 53.5,
 						left: 58,
 						name: "仙居",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 55,
 						left: 72,
 						name: "黄岩",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					},
 					/* 钱塘江唐诗之路 */
@@ -129,44 +129,44 @@
 						top: 36,
 						left: 37,
 						name: "富阳",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 39,
 						left: 33,
 						name: "桐庐",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 42.5,
 						left: 30,
 						name: "建德",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 42.5,
 						left: 20,
 						name: "淳安",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					},
 					{
 						top: 50.5,
 						left: 36,
 						name: "金华",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 47,
 						left: 35,
 						name: "兰溪",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}, {
 						top: 51.5,
 						left: 20,
 						name: "衢州",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					},
 					/* 瓯江山水诗路 */
@@ -174,21 +174,21 @@
 						top: 58,
 						left: 25,
 						name: "遂昌",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					},
 					{
 						top: 61,
 						left: 29,
 						name: "松阳",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					},
 					{
 						top: 60,
 						left: 34,
 						name: "莲都",
-						url: "../search/searchDetail",
+						url: "../poem/poemPage",
 						flag: false
 					}
 				]
