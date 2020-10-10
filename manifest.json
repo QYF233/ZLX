@@ -95,9 +95,9 @@
             "splashscreen" : {
                 "androidStyle" : "default",
                 "android" : {
-                    "hdpi" : "C:/Users/kiko/OneDrive/桌面/upload/logo.png",
-                    "xhdpi" : "C:/Users/kiko/OneDrive/桌面/upload/浙江四条诗路文化带.png",
-                    "xxhdpi" : "F:/软件技术/诗画浙江/logo/浙里寻2.png"
+                    "hdpi" : "F:/软件技术/诗画浙江/logo/startPic2.png",
+                    "xhdpi" : "F:/软件技术/诗画浙江/logo/startPic1.png",
+                    "xxhdpi" : "F:/软件技术/诗画浙江/logo/startPic2.png"
                 }
             }
         }
