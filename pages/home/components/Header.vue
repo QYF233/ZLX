@@ -5,9 +5,9 @@
 				<text class="cuIcon-search"></text>
 				<text>搜城市/景点/美食</text>
 			</view>
-			<view class="action">
+			<!-- <view class="action">
 				<view class="iconfont add">&#xe6cd;</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -42,5 +42,6 @@
 	}
 	.search-form{
 		margin-left 40upx;
+		margin-right 40upx;
 	}
 </style>
