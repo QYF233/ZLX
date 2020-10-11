@@ -1,10 +1,10 @@
 <template>
 	<view class="map-container">
-		<view class="distance" @click="show = !show">
+		<view class="distance" >
 			<text class="iconfont" style="margin-right: 5px;">&#xe622;</text>距离您{{getDistance}}km
 		</view>
 		<transition name="fade">
-			<map class="map" v-if="this.show" :latitude="targetlatitude" :longitude="targetlongitude" :markers="getCovers" scale="12"
+			<map class="map" :latitude="targetlatitude" :longitude="targetlongitude" :markers="getCovers" scale="13"
 			 show-location="true">
 			</map>
 		</transition>
@@ -68,7 +68,7 @@
 
 	.map {
 		width: 100%;
-		height: 350px;
+		height: 200px;
 	}
 
 	.distance {
