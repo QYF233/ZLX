@@ -1,5 +1,5 @@
 <template>
-		<view class="box cu-list grid margin col-4 no-border" :style="{backgroundImage: 'url('+imageURL+')'}">
+		<view class="box cu-list grid margin col-4 no-border" :style="{backgroundImage: 'url('+imgUrl+')'}">
 			
 			<view class="icon-b cu-item" v-for="(item,index) in iconListBig" :key = 'index'>
 				<navigator :url='item.url' open-type="navigate" class="item">
@@ -17,6 +17,7 @@
 		name: 'HomeIcon',
 		props: {
 			cityId: '',
+			imgUrl:""
 		},
 		data() {
 			return {
@@ -73,7 +74,7 @@
 			}
 		},
 		mounted() {
-			this.getUrl()
+			// this.getUrl()
 		},
 		methods: {
 			getUrl(){

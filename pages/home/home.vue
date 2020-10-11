@@ -6,7 +6,7 @@
 			</view>
 			<home-header></home-header>
 			<home-location :city="cityname" :weatherType="weatherType" :low="low" :high="high"></home-location>
-			<home-icon :cityId='thisCityId' v-if="update"></home-icon>
+			<home-icon :cityId='thisCityId' :imgUrl="imgUrl"></home-icon>
 			<view v-if="currentCity !== cityname && currentCity!==''" class="switch">
 				当前定位显示你在“{{currentCity}}”<view class="switch_btn" @click="switchToCurrentCity">切换</view>
 			</view>
@@ -44,7 +44,8 @@
 				currentCity: '',
 				page: 1,
 				pages: 0,
-				thisCityId: ''
+				thisCityId: '',
+				imgUrl:"/static/image/homeBG3.jpg"
 			}
 		},
 		onLoad() {
@@ -96,7 +97,13 @@
 					this.citybackgroundImage = city.backgroundImage
 					this.getWeather()
 					this.loadList()
+					if(city.id==1){
+						this.imgUrl = "/static/image/homeBG3.jpg";
+					}else{
+						this.imgUrl = "/static/image/homeBG7.jpg";
+					}
 				}
+				
 			},
 			appendList() {
 				uni.showLoading({
