@@ -9,8 +9,8 @@
 		            <view class="uni-media-list-body">
 		                <view class="uni-media-list-text-top text-bold">{{value.title}}</view>
 		                <view class="uni-media-list-text-bottom">
-		                    <text>123</text>
-		                    <text>456</text>
+		                    <text>热度：100</text>
+		                    <text>杭州</text>
 		                </view>
 		            </view>
 		        </view>

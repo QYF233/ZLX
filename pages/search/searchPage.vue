@@ -101,65 +101,6 @@
 				console.log(this.listData);
 			},
 			
-			// loadList() {
-			// 	this.list = []
-			// 	setTimeout(() => {
-			// 		uni.request({
-			// 			url: this.websiteUrl + 'home/list',
-			// 			success: (res) => {
-			// 				this.pages = res.data.pages
-			// 				let p = res.data.list
-			// 				p.sort(function() {
-			// 					return .5 - Math.random();
-			// 				});
-			// 				this.list = this.list.concat(p)
-			// 			}
-			// 		})
-			// 	})
-			// },
-			// switchToCurrentCity() {
-			// 	this.loadList()
-			// },
-			// homeLoadList(city) {
-			// 	if (city.name !== this.cityname) {
-			// 		this.cityname = city.name
-			// 		this.citybackgroundImage = city.backgroundImage
-			// 		this.getWeather()
-			// 		this.loadList()
-			// 	}
-			// },
-			// appendList() {
-			// 	uni.showLoading({
-			// 		title: "正在加载"
-			// 	})
-			// 	if (this.page == this.pages) {
-			// 		uni.hideLoading()
-			// 		uni.showToast({
-			// 			icon: 'none',
-			// 			title: '没有更多了'
-			// 		})
-			// 		return
-			// 	}
-			// 	this.page++
-			// 	setTimeout(() => {
-			// 		uni.request({
-			// 			url: this.websiteUrl + 'home/list?page=' + this.page,
-			// 			success: (res) => {
-			// 				let p = res.data.list
-			// 				p.sort(function() {
-			// 					return .5 - Math.random();
-			// 				});
-			// 				this.list = this.list.concat(p)
-			// 				uni.hideLoading()
-			// 			}
-			// 		})
-			// 	})
-			// },
-			// choose(data) {
-			// 	uni.navigateTo({
-			// 		url: data.url
-			// 	})
-			// },
 		}
 	}
 </script>

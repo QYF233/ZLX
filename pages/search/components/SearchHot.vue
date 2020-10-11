@@ -16,12 +16,12 @@
 								top1
 							</view>
 							<view class="introduce">
-								是鲁迅诞生和青少年时期生活过的故土
+								许仙和白娘子约会的地方
 							</view>
 							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(../../static/image/hangzhou.jpg);">
 								<view class="name padding-xs text-white">
 									<view class="padding-xs text-lg text-bold">
-										鲁迅故里
+										西湖
 									</view>
 								</view>
 							</view>
@@ -31,10 +31,10 @@
 							<view class="tag bg-yellow">
 								top2
 							</view>
-							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(../../static/image/shaoxing.jpg);">
+							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(../../static/image/leifengta.jpg);">
 								<view class="name padding-xs text-white align-end">
 									<view class="padding-xs text-lg text-bold">
-										大禹陵
+										雷峰塔
 									</view>
 								</view>
 							</view>
@@ -43,10 +43,10 @@
 							<view class="tag bg-yellow">
 								top3
 							</view>
-							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(../../static/image/jiaxing.jpg);">
+							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(../../static/image/sudi.jpg);">
 								<view class="name padding-xs text-white">
 									<view class="padding-xs text-lg text-bold">
-										新昌大佛寺
+										苏堤春晓
 									</view>
 								</view>
 							</view>
@@ -115,12 +115,12 @@
 								top1
 							</view>
 							<view class="introduce">
-								是鲁迅诞生和青少年时期生活过的故土
+								东坡肉是以苏东坡的名字命名的菜肴
 							</view>
-							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(https://i.loli.net/2020/09/05/PFRpoX5izZ4Y7qJ.png);">
+							<view class="bg-img-lg flex  align-end justify-end" style="background-image: url(../../static/image/dong.jpeg);">
 								<view class="name padding-xs text-white">
 									<view class="padding-xs text-lg text-bold">
-										绍兴臭豆腐
+										东坡肉
 									</view>
 								</view>
 							</view>
