@@ -109,6 +109,7 @@
 	.box{
 		 display: flex;
 		 justify-content:center ;
+		 font-size: 14px;
 	}
 	.relevant{
 		margin-top: 20px;
@@ -116,5 +117,7 @@
 	}
 	.introduce{
 		text-indent: 2em;
+		font-size: 16px;
+		/* background-color: #F0F0F0; */
 	}
 </style>

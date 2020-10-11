@@ -54,9 +54,7 @@
                     }
                 },
                 "ad" : {
-                    "360" : {},
-                    "csj" : {},
-                    "gdt" : {}
+                    "360" : {}
                 },
                 "geolocation" : {}
             },
@@ -95,9 +93,9 @@
             "splashscreen" : {
                 "androidStyle" : "default",
                 "android" : {
-                    "hdpi" : "F:/软件技术/诗画浙江/logo/startPic2.png",
-                    "xhdpi" : "F:/软件技术/诗画浙江/logo/startPic1.png",
-                    "xxhdpi" : "F:/软件技术/诗画浙江/logo/startPic2.png"
+                    "hdpi" : "C:/Users/kiko/OneDrive/桌面/诗画浙江/loading-3.png",
+                    "xhdpi" : "C:/Users/kiko/OneDrive/桌面/诗画浙江/loading-2.png",
+                    "xxhdpi" : "C:/Users/kiko/OneDrive/桌面/诗画浙江/loading-1.png"
                 }
             }
         }
