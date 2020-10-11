@@ -1,9 +1,5 @@
 <template>
 	<view>
-<<<<<<< HEAD
-=======
-	
->>>>>>> 37188093bb0ae6d2c72f8ec2d1b940360337cf2c
 		<swiperImg 
 		:swiperList="swiperList" 
 		:indicatorDots="true" 
