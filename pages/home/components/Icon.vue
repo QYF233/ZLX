@@ -1,5 +1,6 @@
 <template>
-		<view class="box cu-list grid margin col-4 no-border">
+		<view class="box cu-list grid margin col-4 no-border" :style="{backgroundImage: 'url('+imgUrl+')'}">
+			
 			<view class="icon-b cu-item" v-for="(item,index) in iconListBig" :key = 'index'>
 				<navigator :url='item.url' open-type="navigate" class="item">
 					<!-- <view class="iconfont tubiaozhizuomoban_fengjing" :style="{color:item.color}">{{item.icon}}</view> -->
@@ -7,12 +8,17 @@
 					<view class="name">{{item.name}}</view>
 				</navigator>
 			</view>
+			
 		</view>
 </template>
 
 <script>
 	export default {
 		name: 'HomeIcon',
+		props: {
+			cityId: '',
+			imgUrl:""
+		},
 		data() {
 			return {
 				iconListBig: [{
@@ -63,17 +69,38 @@
 				  name: '寻境',
 				  url: '/pages/vr/index',
 				  clas: 'iconiconfont-zhutizuizhong-'
-				}]
+				}],
+				imageURL:''
 			}
 		},
+		mounted() {
+			// this.getUrl()
+		},
 		methods: {
-			
+			getUrl(){
+				console.log(this.cityId);
+				if(this.cityId==1){
+					this.imageURL = "/static/image/homeBG3.jpg";
+				}else{
+					this.imageURL = "/static/image/homeBG7.jpg";
+				}
+			},
+			homeLoadList(city) {
+				if (city.name !== this.cityname) {
+					this.cityname = city.name
+					this.citybackgroundImage = city.backgroundImage
+					this.getWeather()
+					this.loadList()
+				}
+			},
 		}
 	}
 </script>
 
 <style lang="stylus" scoped>
 	.box
+		// background-image: url("~@/static/image/homeBG7.jpg");
+		background-size: 100% 100%;
 		background-color: #FFF;
 		border-radius: 20rpx;	
 		.item

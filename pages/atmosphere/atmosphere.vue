@@ -1,8 +1,8 @@
 <template>
 	<view>
-		<view class="status_bar">
+		<!-- <view class="status_bar"> -->
 			<!-- 这里是状态栏 -->
-		</view>
+	<!-- 	</view> -->
 		<view class="banner" @click="goDetail(banner)">
 			<image class="banner-img" :src="this.bannerImg"></image>
 			<view class="banner-title">{{banner.cityCultureName}}</view>

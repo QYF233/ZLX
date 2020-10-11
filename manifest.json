@@ -54,9 +54,7 @@
                     }
                 },
                 "ad" : {
-                    "360" : {},
-                    "csj" : {},
-                    "gdt" : {}
+                    "360" : {}
                 },
                 "geolocation" : {}
             },
@@ -95,9 +93,9 @@
             "splashscreen" : {
                 "androidStyle" : "default",
                 "android" : {
-                    "hdpi" : "C:/Users/kiko/OneDrive/桌面/upload/logo.png",
-                    "xhdpi" : "C:/Users/kiko/OneDrive/桌面/upload/浙江四条诗路文化带.png",
-                    "xxhdpi" : "F:/软件技术/诗画浙江/logo/浙里寻2.png"
+                    "hdpi" : "C:/Users/kiko/OneDrive/桌面/诗画浙江/loading-3.png",
+                    "xhdpi" : "C:/Users/kiko/OneDrive/桌面/诗画浙江/loading-2.png",
+                    "xxhdpi" : "C:/Users/kiko/OneDrive/桌面/诗画浙江/loading-1.png"
                 }
             }
         }

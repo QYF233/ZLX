@@ -4,11 +4,11 @@
 		<movable-area scale-area class="movable-area">
 			<movable-view class="movable-view" direction="all" scale="true" scale-min="1" scale-max="4" :scale-value="scale"
 			 @dblclick="dblclick">
-				<image class="lookimg" src="../../static/image/ditu_zj.png" mode="widthFix"></image>
+				<image class="lookimg" src="../../static/image/ditu_zj8.png" mode="widthFix"></image>
 				<!-- <canvas style="width: 500px; height: 500px;" canvas-id="pointCanvas" id="pointCanvas"></canvas> -->
 
 				<view class="" v-for="(item,index) in locale" :key='index'>
-					<span class="city" id="shaoxing" @click="gotoDetail(item.url)" :style="'top:'+item.top+'px;left:'+item.left+'px;'">
+					<span class="city" id="shaoxing" @click="gotoDetail(item.url)" :style="'top:'+item.top+'%;left:'+item.left+'%;'">
 						<view class="" v-if="item.flag">
 							<view class="cityName">{{item.name}}</view>
 							<view class="circle"></view>
@@ -19,7 +19,6 @@
 						</view>
 					</span>
 				</view>
-
 			</movable-view>
 		</movable-area>
 
@@ -32,97 +31,167 @@
 			return {
 				scale: 1,
 				ShopName: "123",
-				locale: [{
-					top: 150,
-					left: 170,
-					name: "杭州",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 160,
-					left: 140,
-					name: "西湖区",
-					url: "../search/searchDetail",
-					flag: true
-				}, {
-					top: 160,
-					left: 180,
-					name: "萧山",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 180,
-					left: 200,
-					name: "柯桥",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 190,
-					left: 210,
-					name: "越城",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 215,
-					left: 205,
-					name: "嵊州",
-					url: "../search/searchDetail",
-					flag: true
-				}, {
-					top: 225,
-					left: 230,
-					name: "新昌",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 250,
-					left: 235,
-					name: "天台",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 270,
-					left: 245,
-					name: "临海",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 290,
-					left: 260,
-					name: "椒江",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 173,
-					left: 250,
-					name: "余姚",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 185,
-					left: 280,
-					name: "宁波",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 155,
-					left: 255,
-					name: "慈溪",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 288,
-					left: 210,
-					name: "仙居",
-					url: "../search/searchDetail",
-					flag: false
-				}, {
-					top: 283,
-					left: 240,
-					name: "黄岩",
-					url: "../search/searchDetail",
-					flag: false
-				}]
+				locale: [
+					/* 浙东唐诗之路 */
+					{
+						top: 31.5,
+						left: 45.2,
+						name: "杭州",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 33,
+						left: 36,
+						name: "西湖区",
+						url: "../poem/poemPage",
+						flag: true
+					}, {
+						top: 33.5,
+						left: 47,
+						name: "萧山",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 35,
+						left: 55,
+						name: "柯桥",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 37,
+						left: 56,
+						name: "越城",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 41,
+						left: 55,
+						name: "嵊州",
+						url: "../poem/poemPage",
+						flag: true
+					}, {
+						top: 43.5,
+						left: 63,
+						name: "新昌",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 48,
+						left: 64,
+						name: "天台",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 51.5,
+						left: 66,
+						name: "临海",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 53,
+						left: 75.5,
+						name: "椒江",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 35.3,
+						left: 69.5,
+						name: "余姚",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 38,
+						left: 77.5,
+						name: "宁波",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 32.2,
+						left: 70,
+						name: "慈溪",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 53.5,
+						left: 58,
+						name: "仙居",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 55,
+						left: 72,
+						name: "黄岩",
+						url: "../poem/poemPage",
+						flag: false
+					},
+					/* 钱塘江唐诗之路 */
+					{
+						top: 36,
+						left: 37,
+						name: "富阳",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 39,
+						left: 33,
+						name: "桐庐",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 42.5,
+						left: 30,
+						name: "建德",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 42.5,
+						left: 20,
+						name: "淳安",
+						url: "../poem/poemPage",
+						flag: false
+					},
+					{
+						top: 50.5,
+						left: 36,
+						name: "金华",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 47,
+						left: 35,
+						name: "兰溪",
+						url: "../poem/poemPage",
+						flag: false
+					}, {
+						top: 51.5,
+						left: 20,
+						name: "衢州",
+						url: "../poem/poemPage",
+						flag: false
+					},
+					/* 瓯江山水诗路 */
+					{
+						top: 58,
+						left: 25,
+						name: "遂昌",
+						url: "../poem/poemPage",
+						flag: false
+					},
+					{
+						top: 61,
+						left: 29,
+						name: "松阳",
+						url: "../poem/poemPage",
+						flag: false
+					},
+					{
+						top: 60,
+						left: 34,
+						name: "莲都",
+						url: "../poem/poemPage",
+						flag: false
+					}
+				]
 			};
 		},
 		onLoad() {
@@ -149,8 +218,8 @@
 					/* 开始画点 */
 					var lo = this.locale[i];
 					ctx.beginPath();
-					ctx.arc(lo.x, lo.y, 2, 0, 2 * Math.PI);
-					ctx.fillText(lo.name, lo.x + 4, lo.y + 2);
+					ctx.arc(lo.left, lo.top, 2, 0, 2 * Math.PI);
+					ctx.fillText(lo.name, lo.left + 4, lo.top + 2);
 					ctx.closePath();
 					/* 结束画点 */
 					ctx.stroke()
@@ -169,11 +238,12 @@
 
 <style lang="stylus" scoped>
 	.movable-view {
+		position relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 100%;
-		width: 100%;
+		height: 1300rpx;
+		width: 750rpx;
 		text-align: center;
 	}
 

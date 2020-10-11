@@ -1,8 +1,11 @@
 <template>
 	<view class="login">
-		<view class="title">
+		<!-- <view class="title">
 			<h1>浙里寻</h1>
 			<view class="titleBg"></view>
+		</view> -->
+		<view class="logo">
+			
 		</view>
 		<form @submit="formSubmit">
 			<input type="text" name="user" placeholder="输入邮箱或手机号">
@@ -94,6 +97,11 @@
 </script>
 
 <style lang="stylus" scoped>
+	.logo{
+		background-image: url("~@/static/image/logo.png");
+		background-size: 100% 100%;
+		height 180px;
+	}
 	.titleBg {
 		position: absolute;
 		width: 100px;

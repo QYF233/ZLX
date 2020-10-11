@@ -38,12 +38,13 @@
 		<view class="content">
 			<view class="cu-item shadow" v-if="TabCur==0">
 				<uni-title class="introduce" type="h1" title="简介"></uni-title>
-				<text class="text">{{introduce}}</text>
+				<view class="text padding-xs" style="text-indent: 2em;">{{introduce}}</view>
 				<uni-title class="story" type="h1" title="历史故事"></uni-title>
-				<!-- <text class="text">{{story}}</text> -->
+				<view class="text padding-xs" style="text-indent: 2em;">
+					{{story}}
+				</view>
 			</view>
 			<view class="comment" v-if="TabCur==1">
-				<!-- <uni-title type="h1" title="评论"></uni-title> -->
 				<comment></comment>
 			</view>
 			<view class="more" v-if="TabCur==2">
@@ -75,6 +76,7 @@
 				scrollLeft: 0,
 				favor: false, //收藏
 				like: false, //点赞
+				story:""
 			};
 		},
 		onLoad: function(option) {
@@ -94,6 +96,7 @@
 				this.imgList = res.data.pic;
 				this.introduce = res.data.introduce;
 				this.foodName = res.data.foodName;
+				this.story = res.data.detail;
 			},
 			/**
 			 * 格式化发布日期
@@ -170,7 +173,7 @@
 	}
 
 	.story {
-		padding 20rpx
+		padding 20rpx;
 	}
 
 	.text {

@@ -111,16 +111,6 @@
 				"navigationBarTitleText": "寻意详情"
 			}
 		}, {
-			"path": "pages/atmosphereD/atmosphere",
-			"style": {
-				"navigationBarTitleText": "寻意"
-			}
-		}, {
-			"path": "pages/atmosphereD/detail",
-			"style": {
-				"navigationBarTitleText": "寻意详情"
-			}
-		}, {
 			"path": "pages/photo/photo",
 			"style": {
 				"navigationBarTitleText": "看旅拍",
@@ -132,7 +122,7 @@
 		}, {
 			"path": "pages/poem/poem",
 			"style": {
-				"navigationBarTitleText": "寻诗"
+				"navigationBarTitleText": "唐诗之路"
 			}
 		}, {
 			"path": "pages/me/Login",
@@ -229,7 +219,13 @@
 				"navigationBarTitleText":"添加"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/poem/poemPage",
+            "style" : {
+				"navigationBarTitleText":"浙东唐诗之路"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "浙里寻",

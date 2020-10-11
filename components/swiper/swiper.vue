@@ -57,8 +57,6 @@
 					scrollTop: 0,
 					duration: 300
 				})
-				// console.log(data);
-				// this.toPic(data);
 				this.mounted()
 			},
 			mounted() {
@@ -88,6 +86,7 @@
 
 	.swiper {
 		width: 100%;
+		min-height: 1600rpx;
 		/* height: 1500rpx; */
 	}
 
